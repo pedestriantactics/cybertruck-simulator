@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d1yh5t3rsgu0x"
+path="res://.godot/imported/cybertruck-wheel.obj-b73240d4b72bde355c23696b268919fc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cybertruck-wheel.obj-b73240d4b72bde355c23696b268919fc.mesh"]
+
+source_file="res://models/cybertruck-wheel.obj"
+dest_files=["res://.godot/imported/cybertruck-wheel.obj-b73240d4b72bde355c23696b268919fc.mesh", "res://.godot/imported/cybertruck-wheel.obj-b73240d4b72bde355c23696b268919fc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

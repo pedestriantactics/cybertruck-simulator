@@ -23,6 +23,10 @@ var forward = true
 
 func _physics_process(delta):
 
+	# toggle the bool if the reverse switchc is pressed
+	if Input.is_action_just_pressed("toggle_reverse"):
+		forward = !forward
+
 	var collision_info = move_and_collide(linear_velocity * delta)
 
 	# check if there's a collision and then get the strength by comparing the previous velocity to the current velocity
@@ -36,12 +40,12 @@ func _physics_process(delta):
 			other_velocity = collider.linear_velocity
 			impact = (linear_velocity - other_velocity).length()
 			#impact is very strong, let's make it reasonable
-			impact = pow(impact / 18, 2)
+			impact = pow(impact / 30, 2)
 		else:
 			# if it's not another object you're hitting a wall, compare your velocity to the previous velocity
 			impact = (previous_velocity - linear_velocity).length()
 			#impact is very strong, let's make it reasonable
-			impact = pow(impact / 8, 2)
+			impact = pow(impact / 10, 2)
 			
 		# Check if the collision is from the side and the impact is above a certain threshold
 		# if abs(collision_info.get_normal().y) < 0.7 and impact > some_threshold:  # Adjust the threshold as needed
@@ -50,10 +54,6 @@ func _physics_process(delta):
 			print("emitted signal " + str(impact))
 
 	previous_velocity = linear_velocity
-
-	# toggle the bool if the reverse switchc is pressed
-	if Input.is_action_just_pressed("toggle_reverse"):
-		forward = !forward
 
 	steering = lerp(steering, Input.get_axis("turn_right", "turn_left") * max_steering, steering_speed * delta)
 	var acceleration = Input.get_axis("move_backward", "move_forward")

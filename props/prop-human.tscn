@@ -1,0 +1,55 @@
+[gd_scene load_steps=22 format=3 uid="uid://hc1ywbfhiaym"]
+
+[ext_resource type="ArrayMesh" uid="uid://coa82po4n78nb" path="res://meshes/human-tall_001.obj" id="1_4p3fh"]
+[ext_resource type="Script" path="res://random-human.gd" id="1_s5sge"]
+[ext_resource type="ArrayMesh" uid="uid://cvx0o7l7g00is" path="res://meshes/human-short.obj" id="2_mfhou"]
+[ext_resource type="ArrayMesh" uid="uid://bq56717l4wh2j" path="res://meshes/human-short_001.obj" id="3_d72j1"]
+[ext_resource type="ArrayMesh" uid="uid://6kg2t6dsro40" path="res://meshes/human-short_002.obj" id="4_svljm"]
+[ext_resource type="ArrayMesh" uid="uid://cw2ljg313y633" path="res://meshes/human-short_003.obj" id="5_i8xi8"]
+[ext_resource type="ArrayMesh" uid="uid://cbobeu880ai72" path="res://meshes/human-short_004.obj" id="6_edj4c"]
+[ext_resource type="ArrayMesh" uid="uid://d2n8x2wcalit4" path="res://meshes/human-short_005.obj" id="7_40rx2"]
+[ext_resource type="ArrayMesh" uid="uid://br6xevcy36302" path="res://meshes/human-short_006.obj" id="8_a83jm"]
+[ext_resource type="ArrayMesh" uid="uid://b6w3hy2brdliy" path="res://meshes/human-short_007.obj" id="9_nxt5p"]
+[ext_resource type="ArrayMesh" uid="uid://dyjiyeaarxm4u" path="res://meshes/human-tall.obj" id="10_77lyg"]
+[ext_resource type="ArrayMesh" uid="uid://bprd3e1dwl3uq" path="res://meshes/human-tall_002.obj" id="12_dwh71"]
+[ext_resource type="ArrayMesh" uid="uid://c74i7f6wddnj4" path="res://meshes/human-tall_003.obj" id="13_jg5m0"]
+[ext_resource type="ArrayMesh" uid="uid://l8r1x1hecd8r" path="res://meshes/human-tall_004.obj" id="14_j2fso"]
+[ext_resource type="ArrayMesh" uid="uid://cnjslnchoyma1" path="res://meshes/human-tall_005.obj" id="15_fw3sw"]
+[ext_resource type="ArrayMesh" uid="uid://7j1mckr40l28" path="res://meshes/human-tall_006.obj" id="16_uy35r"]
+[ext_resource type="ArrayMesh" uid="uid://cn3h8xqxrgg1q" path="res://meshes/human-tall_007.obj" id="17_xtpq6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5wovb"]
+friction = 0.47
+bounce = 0.33
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_32shn"]
+height = 0.10544
+radius = 0.435346
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qb3iu"]
+height = 1.6695
+radius = 0.379951
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3h8w7"]
+albedo_color = Color(0.223529, 0.447059, 1, 1)
+metallic_specular = 0.0
+
+[node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mass = 0.03
+physics_material_override = SubResource("PhysicsMaterial_5wovb")
+script = ExtResource("1_s5sge")
+meshes = Array[Mesh]([ExtResource("2_mfhou"), ExtResource("3_d72j1"), ExtResource("4_svljm"), ExtResource("5_i8xi8"), ExtResource("6_edj4c"), ExtResource("7_40rx2"), ExtResource("8_a83jm"), ExtResource("9_nxt5p"), ExtResource("10_77lyg"), ExtResource("1_4p3fh"), ExtResource("12_dwh71"), ExtResource("13_jg5m0"), ExtResource("14_j2fso"), ExtResource("15_fw3sw"), ExtResource("16_uy35r"), ExtResource("17_xtpq6")])
+colors = Array[Color]([Color(1, 0.439216, 0.4, 1), Color(1, 0.566667, 0.35, 1), Color(1, 0.783333, 0.35, 1), Color(0.435, 0.87, 0.58725, 1), Color(0.2523, 0.777345, 0.87, 1), Color(0.3267, 0.492525, 0.99, 1), Color(0.67848, 0.4059, 0.99, 1), Color(0.99, 0.4257, 0.70785, 1)])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.0440652, 2.08165e-12)
+shape = SubResource("CylinderShape3D_32shn")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.959992, 0)
+shape = SubResource("CylinderShape3D_qb3iu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4p3fh")
+surface_material_override/0 = SubResource("StandardMaterial3D_3h8w7")

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://br6xevcy36302"
+path="res://.godot/imported/human-short_006.obj-148d616e3831dde99239ba9df08a8025.mesh"
+
+[deps]
+
+files=["res://.godot/imported/human-short_006.obj-148d616e3831dde99239ba9df08a8025.mesh"]
+
+source_file="res://meshes/human-short_006.obj"
+dest_files=["res://.godot/imported/human-short_006.obj-148d616e3831dde99239ba9df08a8025.mesh", "res://.godot/imported/human-short_006.obj-148d616e3831dde99239ba9df08a8025.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

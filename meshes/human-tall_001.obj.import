@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://coa82po4n78nb"
+path="res://.godot/imported/human-tall_001.obj-fadcee1bdcd51c2241527a8d83a41056.mesh"
+
+[deps]
+
+files=["res://.godot/imported/human-tall_001.obj-fadcee1bdcd51c2241527a8d83a41056.mesh"]
+
+source_file="res://meshes/human-tall_001.obj"
+dest_files=["res://.godot/imported/human-tall_001.obj-fadcee1bdcd51c2241527a8d83a41056.mesh", "res://.godot/imported/human-tall_001.obj-fadcee1bdcd51c2241527a8d83a41056.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

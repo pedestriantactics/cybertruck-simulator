@@ -1,0 +1,9 @@
+res://play.tscn
+res://environment/new_environment.tres
+res://Materials/wheel.tres
+res://Materials/cybertruck-body.tres
+res://props/prop-person.tscn
+res://vehicle.gd
+res://random-human.gd
+res://props/prop-human.tscn
+res://props/random-human.gd
