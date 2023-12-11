@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://hc1ywbfhiaym"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5wovb"]
+friction = 0.47
+bounce = 0.33
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g63va"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpw43"]
+albedo_color = Color(1, 0.419608, 0.419608, 1)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mass = 0.03
+physics_material_override = SubResource("PhysicsMaterial_5wovb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
+shape = SubResource("BoxShape3D_g63va")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.24494e-12, 1, 6.24494e-12)
+material_override = SubResource("StandardMaterial3D_bpw43")
+size = Vector3(1, 2, 1)
