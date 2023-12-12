@@ -1,14 +1,33 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=33 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environment/new_environment.tres" id="1_608ts"]
-[ext_resource type="Script" path="res://spedometer.gd" id="2_njc2h"]
-[ext_resource type="Script" path="res://vehicle.gd" id="3_udmgw"]
+[ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
+[ext_resource type="Script" path="res://scripts/vehicle.gd" id="3_udmgw"]
+[ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="4_a2qxl"]
 [ext_resource type="ArrayMesh" uid="uid://cl0hbt18yr3ha" path="res://meshes/cybertruck-wheel.obj" id="4_cuis8"]
 [ext_resource type="PackedScene" uid="uid://hc1ywbfhiaym" path="res://props/prop-human.tscn" id="4_y1n71"]
-[ext_resource type="Material" uid="uid://br0orlc7tgs4x" path="res://Materials/wheel.tres" id="5_g13nm"]
+[ext_resource type="Material" uid="uid://br0orlc7tgs4x" path="res://materials/wheel.tres" id="5_g13nm"]
+[ext_resource type="Script" path="res://scripts/audio_wind.gd" id="5_mphdo"]
+[ext_resource type="AudioStream" uid="uid://daae6fl14bxpr" path="res://sounds/truck-acceleration-loop.wav" id="6_4pby1"]
 [ext_resource type="ArrayMesh" uid="uid://chl8nv8audeuo" path="res://meshes/cybertruck-body.obj" id="6_5pjgd"]
-[ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://Materials/cybertruck-body.tres" id="7_20hfr"]
-[ext_resource type="Script" path="res://follow_camera.gd" id="7_oo1bo"]
+[ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/cybertruck-body.tres" id="7_20hfr"]
+[ext_resource type="Script" path="res://scripts/audio_truck_loop.gd" id="7_gipd0"]
+[ext_resource type="Script" path="res://scripts/follow_camera.gd" id="7_oo1bo"]
+[ext_resource type="Script" path="res://scripts/audio_truck_accelerate.gd" id="8_d7lu3"]
+[ext_resource type="AudioStream" uid="uid://w8jb6122t5dt" path="res://sounds/truck-accelerate-1.wav" id="9_5syvl"]
+[ext_resource type="AudioStream" uid="uid://ds4qcis8va4du" path="res://sounds/truck-accelerate-2.wav" id="10_ywl0j"]
+[ext_resource type="AudioStream" uid="uid://duqm07bh20482" path="res://sounds/truck-accelerate-3.wav" id="11_rmkww"]
+[ext_resource type="AudioStream" uid="uid://4aophh10bsf2" path="res://sounds/decelerate.wav" id="12_5m4u8"]
+[ext_resource type="AudioStream" uid="uid://kmrp8rcmynh2" path="res://sounds/truck-brake.wav" id="13_smw5b"]
+[ext_resource type="Script" path="res://scripts/audio_truck_impact.gd" id="14_fdxpe"]
+[ext_resource type="AudioStream" uid="uid://dk3v2q4ahxwmt" path="res://sounds/truck-hit-1.wav" id="15_exxkq"]
+[ext_resource type="AudioStream" uid="uid://co3xsvwxahc6g" path="res://sounds/truck-hit-2.wav" id="16_drpyg"]
+[ext_resource type="AudioStream" uid="uid://hjwh0x7p6mpj" path="res://sounds/truck-hit-3.wav" id="17_7tem3"]
+[ext_resource type="AudioStream" uid="uid://dyy4io8wnvhc5" path="res://sounds/truck-hit-4.wav" id="18_n2b5r"]
+[ext_resource type="AudioStream" uid="uid://bxnqgllhrkmlw" path="res://sounds/truck-hit-5.wav" id="19_p4ae3"]
+[ext_resource type="AudioStream" uid="uid://dgdb3mvijloai" path="res://sounds/truck-hit-6.wav" id="20_x2a7m"]
+[ext_resource type="AudioStream" uid="uid://caa42n42ka5qy" path="res://sounds/truck-hit-7.wav" id="21_fl42q"]
+[ext_resource type="AudioStream" uid="uid://bxhyat3ru5j51" path="res://sounds/truck-hit-8.wav" id="22_1umyv"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
@@ -62,6 +81,73 @@ gravity_scale = 1.6
 center_of_mass_mode = 1
 script = ExtResource("3_udmgw")
 max_torque = 60000.0
+
+[node name="WindAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
+stream = ExtResource("4_a2qxl")
+volume_db = -80.0
+autoplay = true
+bus = &"Ambient"
+script = ExtResource("5_mphdo")
+
+[node name="TruckMotorAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
+stream = ExtResource("6_4pby1")
+volume_db = -80.0
+autoplay = true
+bus = &"Ambient"
+script = ExtResource("7_gipd0")
+
+[node name="TruckAccelerateAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
+bus = &"Ambient"
+script = ExtResource("8_d7lu3")
+acceleration_sounds = [ExtResource("9_5syvl"), ExtResource("10_ywl0j"), ExtResource("11_rmkww")]
+deceleration_sounds = Array[AudioStream]([ExtResource("12_5m4u8")])
+braking_sounds = Array[AudioStream]([ExtResource("13_smw5b")])
+
+[node name="TruckImpactAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
+max_polyphony = 16
+bus = &"Impacts"
+script = ExtResource("14_fdxpe")
+impact_sounds = Array[AudioStream]([ExtResource("15_exxkq"), ExtResource("16_drpyg"), ExtResource("17_7tem3"), ExtResource("18_n2b5r"), ExtResource("19_p4ae3"), ExtResource("20_x2a7m"), ExtResource("21_fl42q"), ExtResource("22_1umyv")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body/TruckImpactAudioStreamPlayer"]
+stream = ExtResource("15_exxkq")
+max_polyphony = 3
+bus = &"Impacts"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="InstancePos/car/Body/TruckImpactAudioStreamPlayer"]
+stream = ExtResource("16_drpyg")
+max_polyphony = 3
+bus = &"Impacts"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="InstancePos/car/Body/TruckImpactAudioStreamPlayer"]
+stream = ExtResource("17_7tem3")
+max_polyphony = 3
+bus = &"Impacts"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="InstancePos/car/Body/TruckImpactAudioStreamPlayer"]
+stream = ExtResource("18_n2b5r")
+max_polyphony = 3
+bus = &"Impacts"
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="InstancePos/car/Body/TruckImpactAudioStreamPlayer"]
+stream = ExtResource("19_p4ae3")
+max_polyphony = 3
+bus = &"Impacts"
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="InstancePos/car/Body/TruckImpactAudioStreamPlayer"]
+stream = ExtResource("20_x2a7m")
+max_polyphony = 3
+bus = &"Impacts"
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="InstancePos/car/Body/TruckImpactAudioStreamPlayer"]
+stream = ExtResource("21_fl42q")
+max_polyphony = 3
+bus = &"Impacts"
+
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="InstancePos/car/Body/TruckImpactAudioStreamPlayer"]
+stream = ExtResource("22_1umyv")
+max_polyphony = 3
+bus = &"Impacts"
 
 [node name="FL" type="VehicleWheel3D" parent="InstancePos/car/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957798, 0.142565, 2.08265)

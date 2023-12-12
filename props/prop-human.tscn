@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://hc1ywbfhiaym"]
 
 [ext_resource type="ArrayMesh" uid="uid://coa82po4n78nb" path="res://meshes/human-tall_001.obj" id="1_4p3fh"]
-[ext_resource type="Script" path="res://random-human.gd" id="1_s5sge"]
+[ext_resource type="Script" path="res://scripts/random-human.gd" id="1_s5sge"]
 [ext_resource type="ArrayMesh" uid="uid://cvx0o7l7g00is" path="res://meshes/human-short.obj" id="2_mfhou"]
 [ext_resource type="ArrayMesh" uid="uid://bq56717l4wh2j" path="res://meshes/human-short_001.obj" id="3_d72j1"]
 [ext_resource type="ArrayMesh" uid="uid://6kg2t6dsro40" path="res://meshes/human-short_002.obj" id="4_svljm"]
