@@ -15,14 +15,14 @@ func _ready():
 	var mesh_instance = get_node("MeshInstance3D")
 	# Pick a random mesh instance from the list
 	if meshes.size() == 0:
-		print("No mesh instances found")
+		printerr("No mesh instances found")
 		return
 	var random_mesh = meshes[randi() % meshes.size()]
 	# Assign the random mesh instance to the MeshInstance3D child
 	mesh_instance.mesh = random_mesh
 	# Pick a random color from the list
 	if colors.size() == 0:
-		print("No colors found")
+		printerr("No colors found")
 		return
 	var random_color = colors[randi() % colors.size()]
 

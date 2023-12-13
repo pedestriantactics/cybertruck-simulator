@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://4aophh10bsf2"
-path="res://.godot/imported/decelerate.wav-8c7112afa349e81551b2111f517e773a.sample"
+path="res://.godot/imported/truck-decelerate.wav-7739f3832862ce972f679c58475b6858.sample"
 
 [deps]
 
-source_file="res://sounds/decelerate.wav"
-dest_files=["res://.godot/imported/decelerate.wav-8c7112afa349e81551b2111f517e773a.sample"]
+source_file="res://sounds/truck-decelerate.wav"
+dest_files=["res://.godot/imported/truck-decelerate.wav-7739f3832862ce972f679c58475b6858.sample"]
 
 [params]
 

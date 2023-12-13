@@ -9,19 +9,30 @@ extends VehicleBody3D
 
 var accelerationDelaySeconds = .3
 var accelerationTimer = 0.0
-var previousAcceleration = 0.0
+var previous_acceleration = 0.0
 
 # for collisions
-signal collision_occurred(impact)
+signal object_collision_occurred(impact)
+signal static_collision_occurred(impact)
 # for shakes when accelerating
 signal shake_occurred(impact)
 
 var previous_velocity = Vector3()
 
+@onready var accelerate_audio_stream_player = $TruckAccelerateAudioStreamPlayer
+
 # for switching the direction
 var forward = true
 
 # todo: fix the double acceleration bug when reversing when still moving forward
+
+func is_moving_forward() -> bool:
+	# Get the forward vector of the vehicle
+	var forward_vector = transform.basis.z.normalized()
+	# Calculate the dot product between the forward vector and the linear velocity
+	var dot_product = forward_vector.dot(linear_velocity.normalized())
+	# Return true if the vehicle is moving forward, false otherwise
+	return dot_product > 0
 
 func _physics_process(delta):
 
@@ -38,21 +49,22 @@ func _physics_process(delta):
 		var collider = collision_info.get_collider()
 		var other_velocity = 0
 		var impact = 0
+		# if it's another object that can move
 		if collider is RigidBody3D:
 			other_velocity = collider.linear_velocity
 			impact = (linear_velocity - other_velocity).length()
 			#impact is very strong, let's make it reasonable
 			impact = pow(impact / 30, 2)
+			if impact > .01:
+				emit_signal("object_collision_occurred", impact)
+		# if it's a wall
 		else:
 			# if it's not another object you're hitting a wall, compare your velocity to the previous velocity
 			impact = (previous_velocity - linear_velocity).length()
 			#impact is very strong, let's make it reasonable
 			impact = pow(impact / 10, 2)
-			
-		# Check if the collision is from the side and the impact is above a certain threshold
-		# if abs(collision_info.get_normal().y) < 0.7 and impact > some_threshold:  # Adjust the threshold as needed
-		if impact > .01:
-			emit_signal("collision_occurred", impact)
+			if impact > .01:
+				emit_signal("static_collision_occurred", impact)
 
 	previous_velocity = linear_velocity
 
@@ -61,39 +73,67 @@ func _physics_process(delta):
 
 	if acceleration > 0:
 		acceleration = 1
-	else:
+	elif acceleration < 0:
 		acceleration = -1
 
 	# this is where the first start delay happens
-	if (previousAcceleration <= 0 && acceleration > 0 && linear_velocity.length() < 5):
+	if (forward and acceleration > 0 and previous_acceleration <= 0 and (linear_velocity.length() < 2 or linear_velocity.length() < 5 and is_moving_forward())):
+		if accelerationTimer == 0:
+			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.acceleration_sounds)
 		# if the timer has ended throttle it
 		if accelerationTimer > accelerationDelaySeconds:
 			accelerationTimer = 0
 			emit_signal("shake_occurred", 5)
+			previous_acceleration = acceleration
 		else:
 			accelerationTimer += delta
 			acceleration = 0
-	
-	previousAcceleration = acceleration
+			return;
 
-	# brake as quickly as possible if moving and backward is pressed
-	# prevent moving backward
+	# brake if the brakes are on
 	if acceleration < 0 and linear_velocity.length() > 0:
+		if (previous_acceleration != acceleration and linear_velocity.length() > 5):
+			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.braking_sounds)
 		brake = mass / 2
-		acceleration = 0
+		engine_force = 0
+		previous_acceleration = acceleration
+		return
 
-	if acceleration > 0:
-		brake = 0
+	# brake if moving forward but you're in reverse
+	if !forward and is_moving_forward() and acceleration > 0 and linear_velocity.length() > 2:
+		if (previous_acceleration != acceleration and linear_velocity.length() > 5):
+			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.braking_sounds)
+		brake = mass / 2
+		engine_force = 0
+		previous_acceleration = acceleration
+		return
 
-	# simulated regenerative braking
-	if acceleration == 0:
+	# simulated regenerative braking if not pressing the accelerator
+	if acceleration == 0 and linear_velocity.length() > 0:
+		if (previous_acceleration != acceleration and linear_velocity.length() > 5):
+			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.braking_sounds)
 		brake = mass / 8
+		engine_force = 0
+		previous_acceleration = acceleration
+		return
 
 	# # get the rpm of all the wheels and create an average
 	var rpm = abs(($BL.get_rpm() + $BR.get_rpm() + $FL.get_rpm() + $FR.get_rpm()) / 4)
 
-	if forward:
+	# forward movement
+	if forward and acceleration > 0:
+		if (previous_acceleration != acceleration):
+			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.soft_acceleration_sounds)
+		brake = 0
 		engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
+		previous_acceleration = acceleration
+		return
 
-	if !forward and engine_force <= 0:
+	# backward movement
+	if !forward and acceleration > 0:
+		brake = 0
 		engine_force = -acceleration * max_torque * (1 - rpm / max_rpm_reverse)
+		previous_acceleration = acceleration
+		return
+	
+	previous_acceleration = acceleration

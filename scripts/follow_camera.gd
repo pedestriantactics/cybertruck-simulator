@@ -29,7 +29,8 @@ func _ready():
 	set_as_top_level(true)
 
 	# Assuming vehicle is a reference to your VehicleBody3D instance
-	get_parent().get_parent().collision_occurred.connect(_on_vehicle_collision_occurred)
+	get_parent().get_parent().object_collision_occurred.connect(_on_vehicle_collision_occurred)
+	get_parent().get_parent().static_collision_occurred.connect(_on_vehicle_collision_occurred)
 	get_parent().get_parent().shake_occurred.connect(_on_vehicle_collision_occurred)
 
 func _on_vehicle_collision_occurred(impact):
