@@ -9,3 +9,4 @@ res://scripts/follow_camera.gd
 res://scripts/random-human.gd
 res://scripts/audio_truck_loop.gd
 res://scripts/audio_wind.gd
+res://scripts/audio_truck_tires_loop.gd

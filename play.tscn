@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=37 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environment/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -13,8 +13,11 @@
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/cybertruck-body.tres" id="7_20hfr"]
 [ext_resource type="Script" path="res://scripts/audio_truck_loop.gd" id="7_gipd0"]
 [ext_resource type="Script" path="res://scripts/follow_camera.gd" id="7_oo1bo"]
+[ext_resource type="AudioStream" uid="uid://bqg0o0fd3ee11" path="res://sounds/truck-reverse-loop.wav" id="8_chimf"]
 [ext_resource type="Script" path="res://scripts/audio_truck_accelerate.gd" id="8_d7lu3"]
 [ext_resource type="AudioStream" uid="uid://w8jb6122t5dt" path="res://sounds/truck-accelerate-1.wav" id="9_5syvl"]
+[ext_resource type="AudioStream" uid="uid://dvp715uvnrkbw" path="res://sounds/truck-tires-loop.wav" id="9_iwxkm"]
+[ext_resource type="Script" path="res://scripts/audio_truck_tires_loop.gd" id="10_3eles"]
 [ext_resource type="AudioStream" uid="uid://ds4qcis8va4du" path="res://sounds/truck-accelerate-2.wav" id="10_ywl0j"]
 [ext_resource type="AudioStream" uid="uid://duqm07bh20482" path="res://sounds/truck-accelerate-3.wav" id="11_rmkww"]
 [ext_resource type="AudioStream" uid="uid://b64vsub0d5sqr" path="res://sounds/truck-soft-accelerate.wav" id="13_3kv7e"]
@@ -96,6 +99,15 @@ volume_db = -80.0
 autoplay = true
 bus = &"Ambient"
 script = ExtResource("7_gipd0")
+forward_stream = ExtResource("6_4pby1")
+reverse_stream = ExtResource("8_chimf")
+
+[node name="TruckTiresAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
+stream = ExtResource("9_iwxkm")
+volume_db = -80.0
+autoplay = true
+bus = &"Ambient"
+script = ExtResource("10_3eles")
 
 [node name="TruckAccelerateAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
 bus = &"Ambient"
@@ -116,6 +128,7 @@ use_as_steering = true
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.48
 wheel_rest_length = 2.08165e-12
+wheel_friction_slip = 4.0
 suspension_travel = 0.15
 suspension_stiffness = 200.0
 suspension_max_force = 8000.0
@@ -135,6 +148,7 @@ use_as_steering = true
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.48
 wheel_rest_length = 2.08165e-12
+wheel_friction_slip = 4.0
 suspension_travel = 0.15
 suspension_stiffness = 200.0
 suspension_max_force = 8000.0
@@ -152,7 +166,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957798, 0.142565, -1.62108)
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.48
 wheel_rest_length = 2.08165e-12
-wheel_friction_slip = 4.0
+wheel_friction_slip = 3.0
 suspension_travel = 0.15
 suspension_stiffness = 200.0
 suspension_max_force = 8000.0
@@ -170,7 +184,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.958, 0.143, -1.62073)
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.48
 wheel_rest_length = 2.08165e-12
-wheel_friction_slip = 4.0
+wheel_friction_slip = 3.0
 suspension_travel = 0.15
 suspension_stiffness = 200.0
 suspension_max_force = 8000.0
