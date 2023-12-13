@@ -13,10 +13,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# if below a volume stop playing at all
-	# if playing and volume_db < -70:
-	# 	stop()
-	# if !playing and volume_db > -70:
-	# 	play()
+	if playing and parent.get_linear_velocity().length() < 1:
+		stop()
+	if !playing and parent.get_linear_velocity().length() > 1:
+		play()
 	
 	if parent == null:
 		return

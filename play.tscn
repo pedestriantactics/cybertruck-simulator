@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=51 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environment/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -32,6 +32,20 @@
 [ext_resource type="AudioStream" uid="uid://dgdb3mvijloai" path="res://sounds/truck-hit-6.wav" id="20_x2a7m"]
 [ext_resource type="AudioStream" uid="uid://caa42n42ka5qy" path="res://sounds/truck-hit-7.wav" id="21_fl42q"]
 [ext_resource type="AudioStream" uid="uid://bxhyat3ru5j51" path="res://sounds/truck-hit-8.wav" id="22_1umyv"]
+[ext_resource type="AudioStream" uid="uid://dgb62dxjqao4h" path="res://sounds/truck-hit-hard-1.wav" id="27_j4yta"]
+[ext_resource type="AudioStream" uid="uid://b42n8giihjyv5" path="res://sounds/truck-hit-hard-2.wav" id="28_us5pt"]
+[ext_resource type="AudioStream" uid="uid://bfjt011qcwn5i" path="res://sounds/truck-hit-hard-3.wav" id="29_anvkl"]
+[ext_resource type="AudioStream" uid="uid://b7rch3fddjw4" path="res://sounds/truck-hit-hard-4.wav" id="30_ahe5v"]
+[ext_resource type="AudioStream" uid="uid://itrfjtl3yftq" path="res://sounds/truck-hit-hard-5.wav" id="31_e00e4"]
+[ext_resource type="AudioStream" uid="uid://ca0xm4cvj8dbt" path="res://sounds/truck-crash-1.wav" id="32_nx7oq"]
+[ext_resource type="AudioStream" uid="uid://crlds0ulv18s7" path="res://sounds/truck-crash-2.wav" id="33_hytdo"]
+[ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="33_orntt"]
+[ext_resource type="Script" path="res://scripts/dev_console.gd" id="34_7mley"]
+[ext_resource type="AudioStream" uid="uid://cpykpe4iy30ou" path="res://sounds/truck-crash-3.wav" id="34_cqoti"]
+[ext_resource type="FontFile" uid="uid://dw8ppg88hpy7d" path="res://fonts/Hyperwalk-Display.otf" id="35_xvq7y"]
+[ext_resource type="Script" path="res://scripts/gear_shift_indicator.gd" id="36_iwnde"]
+[ext_resource type="AudioStream" uid="uid://il6apbs2r1uv" path="res://sounds/switch-forward.wav" id="45_wpc7e"]
+[ext_resource type="AudioStream" uid="uid://djcjym3o355th" path="res://sounds/switch-reverse.wav" id="46_e3al3"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
@@ -84,7 +98,6 @@ physics_material_override = SubResource("PhysicsMaterial_15ilr")
 gravity_scale = 1.6
 center_of_mass_mode = 1
 script = ExtResource("3_udmgw")
-max_torque = 60000.0
 
 [node name="WindAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
 stream = ExtResource("4_a2qxl")
@@ -120,6 +133,8 @@ braking_sounds = Array[AudioStream]([ExtResource("13_smw5b")])
 [node name="TruckImpactAudio" type="Node" parent="InstancePos/car/Body"]
 script = ExtResource("14_fdxpe")
 impact_sounds = Array[AudioStream]([ExtResource("15_exxkq"), ExtResource("16_drpyg"), ExtResource("17_7tem3"), ExtResource("18_n2b5r"), ExtResource("19_p4ae3"), ExtResource("20_x2a7m"), ExtResource("21_fl42q"), ExtResource("22_1umyv")])
+impact_hard_sounds = Array[AudioStream]([ExtResource("27_j4yta"), ExtResource("28_us5pt"), ExtResource("29_anvkl"), ExtResource("30_ahe5v"), ExtResource("31_e00e4")])
+crash_sounds = Array[AudioStream]([ExtResource("32_nx7oq"), ExtResource("33_hytdo"), ExtResource("34_cqoti")])
 
 [node name="FL" type="VehicleWheel3D" parent="InstancePos/car/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957798, 0.142565, 2.08265)
@@ -218,13 +233,6 @@ script = ExtResource("7_oo1bo")
 min_distance = 6.0
 max_distance = 8.0
 height = 2.0
-
-[node name="Back" type="Button" parent="."]
-offset_left = 17.0
-offset_top = 9.0
-offset_right = 85.0
-offset_bottom = 41.0
-text = "<- Back!"
 
 [node name="ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.5, 2.08165e-12)
@@ -518,5 +526,69 @@ size = Vector3(100, 2, 0.5)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49.75, 1, 1.08186e-06)
 use_collision = true
 size = Vector3(100, 2, 0.5)
+
+[node name="DevConsole" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("33_orntt")
+script = ExtResource("34_7mley")
+
+[node name="LineEdit" type="LineEdit" parent="DevConsole"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -235.0
+offset_top = -20.0
+offset_right = 235.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Enter command"
+
+[node name="Dash" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("33_orntt")
+
+[node name="Margin" type="Control" parent="Dash"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 23.0
+offset_right = -22.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Dash/Margin"]
+layout_mode = 1
+offset_right = 30.0
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("35_xvq7y")
+theme_override_font_sizes/font_size = 48
+text = "D"
+script = ExtResource("36_iwnde")
+vehicle_node = NodePath("../../../InstancePos/car/Body")
+forward_sound = ExtResource("45_wpc7e")
+reverse_sound = ExtResource("46_e3al3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dash/Margin/Label"]
+volume_db = -8.065
 
 [connection signal="pressed" from="InstancePos/Panel/Spedometer" to="InstancePos/Panel/Spedometer" method="_on_Spedometer_pressed"]

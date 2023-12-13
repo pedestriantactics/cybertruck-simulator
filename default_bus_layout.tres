@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://diyp0iqyevltm"]
+[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://diyp0iqyevltm"]
 
 [sub_resource type="AudioEffectEQ21" id="AudioEffectEQ21_wingd"]
 resource_name = "EQ21"
@@ -6,11 +6,14 @@ band_db/22_hz = 15.1
 
 [sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_8xrqf"]
 resource_name = "Distortion"
-drive = 0.24
-post_gain = -13.6
+drive = 0.27
+post_gain = 24.0
 
 [sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_s8s6l"]
 resource_name = "Limiter"
+threshold_db = -4.0
+soft_clip_db = 0.0
+soft_clip_ratio = 5.6
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_grcbn"]
 resource_name = "Compressor"
@@ -18,18 +21,22 @@ threshold = -14.1
 release_ms = 20.0
 sidechain = &"Impacts"
 
+[sub_resource type="AudioEffectEQ21" id="AudioEffectEQ21_bn7ff"]
+resource_name = "EQ21"
+band_db/22_hz = 12.1
+
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectEQ21_wingd")
 bus/0/effect/0/enabled = false
 bus/0/effect/1/effect = SubResource("AudioEffectDistortion_8xrqf")
 bus/0/effect/1/enabled = false
 bus/0/effect/2/effect = SubResource("AudioEffectLimiter_s8s6l")
-bus/0/effect/2/enabled = false
+bus/0/effect/2/enabled = true
 bus/1/name = &"Ambient"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = 1.556
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectCompressor_grcbn")
 bus/1/effect/0/enabled = true
@@ -39,3 +46,5 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectEQ21_bn7ff")
+bus/2/effect/0/enabled = true

@@ -1,5 +1,10 @@
-Node
 AudioStreamPlayer
+Control
+Label
+LineEdit
+CanvasLayer
+TextEdit
+Node
 CollisionShape3D
 MeshInstance3D
 CSGCylinder3D

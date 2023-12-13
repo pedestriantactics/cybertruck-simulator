@@ -1,11 +1,11 @@
 extends VehicleBody3D
 
 # extends VehicleBody
-@export var max_rpm = 600.0
-@export var max_rpm_reverse = 200.0
-@export var max_torque = 30000.0
-@export var max_steering = 0.4
-@export var steering_speed = 5.0
+var max_rpm = 600.0
+var max_rpm_reverse = 200.0
+var max_torque = 80000.0
+var max_steering = 0.5
+var steering_speed = 5.0
 
 var accelerationDelaySeconds = .3
 var accelerationTimer = 0.0
@@ -53,17 +53,17 @@ func _physics_process(delta):
 		if collider is RigidBody3D:
 			other_velocity = collider.linear_velocity
 			impact = (linear_velocity - other_velocity).length()
-			#impact is very strong, let's make it reasonable
-			impact = pow(impact / 30, 2)
 			if impact > .01:
+				#impact is very strong, let's make it reasonable
+				impact = pow(impact / 30, 2)
 				emit_signal("object_collision_occurred", impact)
 		# if it's a wall
 		else:
 			# if it's not another object you're hitting a wall, compare your velocity to the previous velocity
 			impact = (previous_velocity - linear_velocity).length()
-			#impact is very strong, let's make it reasonable
-			impact = pow(impact / 10, 2)
 			if impact > .01:
+				#impact is very strong, let's make it reasonable
+				impact = pow(impact / 10, 2)
 				emit_signal("static_collision_occurred", impact)
 
 	previous_velocity = linear_velocity

@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c5e7qkd72wxfn"]
+
+[ext_resource type="StyleBox" uid="uid://d2js3s8r07vwe" path="res://ui/dark-container.tres" id="1_ui7o3"]
+[ext_resource type="FontFile" uid="uid://dlexece4y3f5n" path="res://fonts/Hyperwalk-Body.otf" id="2_ghdgd"]
+
+[resource]
+default_font = ExtResource("2_ghdgd")
+default_font_size = 16
+LineEdit/colors/caret_color = Color(1, 1, 1, 1)
+LineEdit/colors/clear_button_color = Color(1, 1, 1, 1)
+LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_outline_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+LineEdit/colors/selection_color = Color(1, 1, 1, 1)
+LineEdit/styles/focus = ExtResource("1_ui7o3")
+LineEdit/styles/normal = ExtResource("1_ui7o3")
+LineEdit/styles/read_only = ExtResource("1_ui7o3")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
