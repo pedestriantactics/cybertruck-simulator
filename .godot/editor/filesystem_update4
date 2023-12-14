@@ -3,3 +3,4 @@ res://play.tscn
 res://environment/new_environment.tres
 res://ui/dark-container.tres
 res://pt_theme.tres
+res://scripts/vehicle.gd
