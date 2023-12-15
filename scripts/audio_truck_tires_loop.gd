@@ -3,6 +3,7 @@ extends AudioStreamPlayer
 # the tire screech is playing on loop by default
 # this will turn the volume up if there's a lot of lateral movement
 
+@export var mute = false
 @onready var parent = get_parent()
 
 # Called when the node enters the scene tree for the first time.
@@ -13,10 +14,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# if below a volume stop playing at all
-	if playing and parent.get_linear_velocity().length() < 1:
+	if (playing and parent.get_linear_velocity().length() < 1) or mute:
 		stop()
 	if !playing and parent.get_linear_velocity().length() > 1:
 		play()
+
+	if mute:
+		return
 	
 	if parent == null:
 		return

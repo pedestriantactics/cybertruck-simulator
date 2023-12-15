@@ -2,6 +2,7 @@ extends Node
 
 # this listens to the collision_occurred signal and plays a random sound from an array at the volume of the impact
 
+@export var mute = false
 @export var impact_sounds: Array[AudioStream] = []
 @export var impact_hard_sounds: Array[AudioStream] = []
 @export var crash_sounds: Array[AudioStream] = []
@@ -16,7 +17,7 @@ func _on_object_collision_occurred(impact):
 		return
 	
 	var final_sounds = impact_sounds
-	if (impact > 20):
+	if (impact > .75):
 		final_sounds = impact_hard_sounds
 	# scale the volume to be -80 for an impact of 0 and 0 for an impact of 2
 	var calculated_volume = impact * 40 - 20
@@ -50,6 +51,8 @@ func _process(delta):
 
 	# create a function called play that takes in the array of sounds and plays one of them at random
 func play_random_instantiated(sounds, volume):
+	if mute:
+		return
 	if (sounds.size() > 0):
 		var sound = sounds[randi() % sounds.size()]
 		#instantiate a new child audiostreamplayer

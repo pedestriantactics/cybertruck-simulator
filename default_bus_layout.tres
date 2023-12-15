@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://diyp0iqyevltm"]
+[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://diyp0iqyevltm"]
 
 [sub_resource type="AudioEffectEQ21" id="AudioEffectEQ21_wingd"]
 resource_name = "EQ21"
@@ -25,6 +25,16 @@ sidechain = &"Impacts"
 resource_name = "EQ21"
 band_db/22_hz = 12.1
 
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_3i6lq"]
+resource_name = "Amplify"
+volume_db = 24.0
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_v245h"]
+resource_name = "Limiter"
+ceiling_db = -5.8
+threshold_db = -10.7
+soft_clip_ratio = 17.5
+
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectEQ21_wingd")
 bus/0/effect/0/enabled = false
@@ -44,7 +54,17 @@ bus/2/name = &"Impacts"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = -0.0305074
 bus/2/send = &"Master"
 bus/2/effect/0/effect = SubResource("AudioEffectEQ21_bn7ff")
 bus/2/effect/0/enabled = true
+bus/3/name = &"Spatial"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = -0.0327297
+bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectAmplify_3i6lq")
+bus/3/effect/0/enabled = false
+bus/3/effect/1/effect = SubResource("AudioEffectLimiter_v245h")
+bus/3/effect/1/enabled = true

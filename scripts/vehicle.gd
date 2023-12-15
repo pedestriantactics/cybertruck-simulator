@@ -57,6 +57,16 @@ func _physics_process(delta):
 				#impact is very strong, let's make it reasonable
 				impact = pow(impact / 30, 2)
 				emit_signal("object_collision_occurred", impact)
+			
+			# move the other object up about half a meter and then recalculate the collision
+			# collider.translate(Vector3(0, .5, 0))
+			# collision_info = move_and_collide(linear_velocity * delta)
+			# try speeding up the other object to get it out of the way
+			var new_velocity = collider.linear_velocity.normalized() * .05
+			# make the velocity go up a little
+			new_velocity.y += .005
+			collider.apply_central_impulse(new_velocity)
+			# collider.apply_torque_impulse(collider.constant_torque * 1)
 		# if it's a wall
 		else:
 			# if it's not another object you're hitting a wall, compare your velocity to the previous velocity

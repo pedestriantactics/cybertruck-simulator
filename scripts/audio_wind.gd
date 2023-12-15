@@ -5,6 +5,7 @@ extends AudioStreamPlayer
 # this script turns the volume up based on the velocity of the parent object (which is the car body)
 # the volume is capped at 0db
 
+@export var mute = false
 @onready var parent = get_parent()
 
 # Called when the node enters the scene tree for the first time.
@@ -15,10 +16,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# if below a volume stop playing at all
-	if playing and volume_db < -70:
+	if (playing and volume_db < -70) or mute:
 		stop()
 	if !playing and volume_db > -70:
 		play()
+
+	if mute:
+		return
 	
 	if parent == null:
 		return

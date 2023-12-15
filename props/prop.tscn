@@ -1,0 +1,62 @@
+[gd_scene load_steps=27 format=3 uid="uid://drthnjjvl30hm"]
+
+[ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="1_xmqoq"]
+[ext_resource type="AudioStream" uid="uid://bmv7p5wm7merl" path="res://sounds/hit-dumpster-1.wav" id="2_sydcl"]
+[ext_resource type="AudioStream" uid="uid://bqb70skyprkxn" path="res://sounds/hit-dumpster-2.wav" id="3_nagi3"]
+[ext_resource type="AudioStream" uid="uid://cl74x6y1homp6" path="res://sounds/hit-dumpster-3.wav" id="4_eeyja"]
+[ext_resource type="AudioStream" uid="uid://8eddbc3knuva" path="res://sounds/hit-debris-large-1.wav" id="5_8t084"]
+[ext_resource type="AudioStream" uid="uid://7kesvwcu6mx1" path="res://sounds/hit-debris-large-2.wav" id="6_gayji"]
+[ext_resource type="ArrayMesh" uid="uid://coa82po4n78nb" path="res://meshes/human-tall_001.obj" id="13_dlmed"]
+[ext_resource type="Script" path="res://scripts/random-human.gd" id="14_xybup"]
+[ext_resource type="ArrayMesh" uid="uid://cvx0o7l7g00is" path="res://meshes/human-short.obj" id="15_8nobj"]
+[ext_resource type="ArrayMesh" uid="uid://bq56717l4wh2j" path="res://meshes/human-short_001.obj" id="16_4wl10"]
+[ext_resource type="ArrayMesh" uid="uid://6kg2t6dsro40" path="res://meshes/human-short_002.obj" id="17_bqhen"]
+[ext_resource type="ArrayMesh" uid="uid://cw2ljg313y633" path="res://meshes/human-short_003.obj" id="18_b8ktr"]
+[ext_resource type="ArrayMesh" uid="uid://cbobeu880ai72" path="res://meshes/human-short_004.obj" id="19_8pdum"]
+[ext_resource type="ArrayMesh" uid="uid://d2n8x2wcalit4" path="res://meshes/human-short_005.obj" id="20_7adiv"]
+[ext_resource type="ArrayMesh" uid="uid://br6xevcy36302" path="res://meshes/human-short_006.obj" id="21_fio55"]
+[ext_resource type="ArrayMesh" uid="uid://b6w3hy2brdliy" path="res://meshes/human-short_007.obj" id="22_s2do2"]
+[ext_resource type="ArrayMesh" uid="uid://dyjiyeaarxm4u" path="res://meshes/human-tall.obj" id="23_qe8si"]
+[ext_resource type="ArrayMesh" uid="uid://bprd3e1dwl3uq" path="res://meshes/human-tall_002.obj" id="24_2ynt6"]
+[ext_resource type="ArrayMesh" uid="uid://c74i7f6wddnj4" path="res://meshes/human-tall_003.obj" id="25_a43bp"]
+[ext_resource type="ArrayMesh" uid="uid://l8r1x1hecd8r" path="res://meshes/human-tall_004.obj" id="26_x8km6"]
+[ext_resource type="ArrayMesh" uid="uid://cnjslnchoyma1" path="res://meshes/human-tall_005.obj" id="27_o6o7e"]
+[ext_resource type="ArrayMesh" uid="uid://7j1mckr40l28" path="res://meshes/human-tall_006.obj" id="28_buauy"]
+[ext_resource type="ArrayMesh" uid="uid://cn3h8xqxrgg1q" path="res://meshes/human-tall_007.obj" id="29_36743"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5wovb"]
+friction = 0.47
+bounce = 0.33
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xdxja"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3h8w7"]
+albedo_color = Color(0.75, 0.510375, 0.2175, 1)
+metallic_specular = 0.0
+
+[node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_layer = 3
+collision_mask = 3
+mass = 0.03
+physics_material_override = SubResource("PhysicsMaterial_5wovb")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 2
+bus = &"Spatial"
+script = ExtResource("1_xmqoq")
+sounds = Array[AudioStream]([ExtResource("2_sydcl"), ExtResource("3_nagi3"), ExtResource("4_eeyja"), ExtResource("5_8t084"), ExtResource("6_gayji")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+shape = SubResource("BoxShape3D_xdxja")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("13_dlmed")
+surface_material_override/0 = SubResource("StandardMaterial3D_3h8w7")
+script = ExtResource("14_xybup")
+meshes = Array[Mesh]([ExtResource("15_8nobj"), ExtResource("16_4wl10"), ExtResource("17_bqhen"), ExtResource("18_b8ktr"), ExtResource("19_8pdum"), ExtResource("20_7adiv"), ExtResource("21_fio55"), ExtResource("22_s2do2"), ExtResource("23_qe8si"), ExtResource("13_dlmed"), ExtResource("24_2ynt6"), ExtResource("25_a43bp"), ExtResource("26_x8km6"), ExtResource("27_o6o7e"), ExtResource("28_buauy"), ExtResource("29_36743")])
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)

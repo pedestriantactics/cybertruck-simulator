@@ -6,6 +6,7 @@ extends AudioStreamPlayer
 # one for the braking sound
 # this also checks the velocity of the parent to choose whether to play the hard acceleration or soft
 
+@export var mute = false
 @export var acceleration_sounds: Array[AudioStream] = []
 @export var soft_acceleration_sounds: Array[AudioStream] = []
 @export var deceleration_sounds: Array[AudioStream] = []
@@ -44,6 +45,8 @@ func _ready():
 			
 # create a function called play that takes in the array of sounds and plays one of them at random
 func play_random(sounds):
+	if mute:
+		return
 	if (sounds.size() > 0):
 		stop()
 		var sound = sounds[randi() % sounds.size()]

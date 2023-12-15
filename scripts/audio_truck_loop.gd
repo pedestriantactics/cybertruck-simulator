@@ -6,6 +6,7 @@ extends AudioStreamPlayer
 # this only happens when the acceleration key is down
 # the volume is capped at 0db
 
+@export var mute = false
 @export var forward_stream: AudioStream
 @export var reverse_stream: AudioStream
 
@@ -19,10 +20,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# if below a volume stop playing at all
-	if playing and volume_db < -70:
+	if (playing and volume_db < -70) or mute:
 		stop()
 	if !playing and volume_db > -70:
 		play()
+
+	if mute:
+		return
 
 	# if the parent is moving forward, play the forward stream
 	if parent.forward && parent.is_moving_forward() and stream != forward_stream:

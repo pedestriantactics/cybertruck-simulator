@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=53 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environment/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -46,6 +46,7 @@
 [ext_resource type="Script" path="res://scripts/gear_shift_indicator.gd" id="36_iwnde"]
 [ext_resource type="AudioStream" uid="uid://il6apbs2r1uv" path="res://sounds/switch-forward.wav" id="45_wpc7e"]
 [ext_resource type="AudioStream" uid="uid://djcjym3o355th" path="res://sounds/switch-reverse.wav" id="46_e3al3"]
+[ext_resource type="PackedScene" uid="uid://drthnjjvl30hm" path="res://props/prop.tscn" id="47_mr1bq"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
@@ -55,7 +56,10 @@ Button/styles/focus = SubResource("1")
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_15ilr"]
 
 [sub_resource type="BoxShape3D" id="7"]
-size = Vector3(2.28125, 1.54492, 5.6196)
+size = Vector3(2.28125, 1.54492, 5.64902)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_admae"]
+size = Vector3(2.06152, 3.59378, 5.52096)
 
 [node name="TownScene" type="Node3D"]
 
@@ -219,7 +223,7 @@ mesh = ExtResource("6_5pjgd")
 surface_material_override/0 = ExtResource("7_20hfr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InstancePos/car/Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769337, 0.110237)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769337, 0.0749741)
 shape = SubResource("7")
 
 [node name="CameraBase" type="Node3D" parent="InstancePos/car/Body"]
@@ -227,12 +231,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.0
 
 [node name="Camera3D" type="Camera3D" parent="InstancePos/car/Body/CameraBase"]
 transform = Transform3D(-1, 2.11495e-08, -8.48259e-08, 9.03234e-16, 0.970296, 0.241922, 8.74227e-08, 0.241922, -0.970296, 0, 3.032, -4.394)
+doppler_tracking = 2
 current = true
 fov = 60.0
 script = ExtResource("7_oo1bo")
 min_distance = 6.0
 max_distance = 8.0
 height = 2.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="InstancePos/car/Body"]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="InstancePos/car/Body/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.755173, 0.0815091)
+shape = SubResource("BoxShape3D_admae")
 
 [node name="ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.5, 2.08165e-12)
@@ -590,5 +603,19 @@ reverse_sound = ExtResource("46_e3al3")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dash/Margin/Label"]
 volume_db = -8.065
+
+[node name="Props" type="Node" parent="."]
+
+[node name="RigidBody3D" parent="Props" instance=ExtResource("47_mr1bq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.580263, 2.2819, 11.2254)
+
+[node name="RigidBody3D2" parent="Props" instance=ExtResource("47_mr1bq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67953, 1.55406, 13.9301)
+
+[node name="RigidBody3D3" parent="Props" instance=ExtResource("47_mr1bq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26703, 2.2819, 8.49978)
+
+[node name="RigidBody3D4" parent="Props" instance=ExtResource("47_mr1bq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.87518, 2.2819, 10.1995)
 
 [connection signal="pressed" from="InstancePos/Panel/Spedometer" to="InstancePos/Panel/Spedometer" method="_on_Spedometer_pressed"]

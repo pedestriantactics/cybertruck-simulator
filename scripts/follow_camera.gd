@@ -34,7 +34,7 @@ func _ready():
 	get_parent().get_parent().shake_occurred.connect(_on_vehicle_collision_occurred)
 
 func _on_vehicle_collision_occurred(impact):
-	shakeStrength += impact
+	shakeStrength += impact/1.7
 	# adjust this line based on how you want the impact to affect the shakeStrength
 
 
