@@ -20,6 +20,11 @@ func _ready():
 # when the key is pressed
 func _input(event):
 	if event.is_action_pressed("dev_console"):
+		# TEMPORARY
+		# reload the scene
+		get_tree().reload_current_scene()
+		return
+
 		if line_edit.visible:
 			line_edit.visible = false
 			get_tree().paused = false
@@ -30,6 +35,7 @@ func _input(event):
 
 	# when the line edit is shown and the return key is pressed
 	if event.is_action_pressed("ui_accept") and line_edit.visible:
+
 		# hide the line edit
 		line_edit.visible = false
 		get_tree().paused = false

@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://nsp4y1oyoms1"]
+
+[ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="1_b75gu"]
+[ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_bacoq"]
+[ext_resource type="AudioStream" uid="uid://bjd8axs2outh6" path="res://sounds/hit-sign-1.wav" id="2_kbici"]
+[ext_resource type="AudioStream" uid="uid://bjqyl3j86l151" path="res://sounds/hit-sign-2.wav" id="3_ugds5"]
+[ext_resource type="ArrayMesh" uid="uid://bmj7wurhmi21b" path="res://meshes/stop-sign.obj" id="5_k53qo"]
+[ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="6_e51xt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xdxja"]
+size = Vector3(0.783203, 0.73816, 0.193604)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jipu8"]
+height = 2.14778
+radius = 0.0530881
+
+[node name="StopSign" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_layer = 3
+collision_mask = 3
+mass = 0.03
+physics_material_override = ExtResource("1_bacoq")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 2
+bus = &"Spatial"
+script = ExtResource("1_b75gu")
+sounds = Array[AudioStream]([ExtResource("2_kbici"), ExtResource("3_ugds5")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.44537, 2.08165e-12)
+shape = SubResource("BoxShape3D_xdxja")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_k53qo")
+surface_material_override/0 = ExtResource("6_e51xt")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05345, 0)
+shape = SubResource("CylinderShape3D_jipu8")

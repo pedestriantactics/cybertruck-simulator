@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnkxhvw1e7xw4"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_ftcp6"]
+[ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="1_t5hnl"]
+[ext_resource type="AudioStream" uid="uid://cyms3rnusvhya" path="res://sounds/hit-pole-1.wav" id="2_f1bjn"]
+[ext_resource type="AudioStream" uid="uid://dpamheesh07wx" path="res://sounds/hit-pole-2.wav" id="3_ctt6f"]
+[ext_resource type="ArrayMesh" uid="uid://cbsh66v87233d" path="res://meshes/street-lamp.obj" id="5_bejps"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xdxja"]
+size = Vector3(0.741943, 0.176758, 0.689453)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bit3d"]
+size = Vector3(0.164062, 7.50287, 0.1875)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33ncl"]
+size = Vector3(1.84497, 0.206909, 0.635742)
+
+[node name="StreetLight" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_layer = 3
+collision_mask = 3
+mass = 0.03
+physics_material_override = ExtResource("1_ftcp6")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 2
+bus = &"Spatial"
+script = ExtResource("1_t5hnl")
+sounds = Array[AudioStream]([ExtResource("2_f1bjn"), ExtResource("3_ctt6f")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.088379, 2.08165e-12)
+shape = SubResource("BoxShape3D_xdxja")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84128, 0)
+shape = SubResource("BoxShape3D_bit3d")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.872103, -0.489322, 0, 0.489322, 0.872103, 0, 0, 0, 1, 0.687413, 7.71704, 0)
+shape = SubResource("BoxShape3D_33ncl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_bejps")
