@@ -1,3 +1,4 @@
+VBoxContainer
 Node3D
 CollisionShape3D
 StaticBody3D
@@ -12,4 +13,3 @@ Control
 Label
 LineEdit
 CanvasLayer
-TextEdit

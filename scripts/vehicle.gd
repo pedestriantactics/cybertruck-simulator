@@ -12,7 +12,7 @@ var accelerationTimer = 0.0
 var previous_acceleration = 0.0
 
 # for collisions
-signal object_collision_occurred(impact)
+signal object_collision_occurred(impact, collision_info)
 signal static_collision_occurred(impact)
 # for shakes when accelerating
 signal shake_occurred(impact)
@@ -56,7 +56,7 @@ func _physics_process(delta):
 			if impact > .01:
 				#impact is very strong, let's make it reasonable
 				impact = pow(impact / 30, 2)
-				emit_signal("object_collision_occurred", impact)
+				emit_signal("object_collision_occurred", impact, collision_info)
 			
 			# move the other object up about half a meter and then recalculate the collision
 			# collider.translate(Vector3(0, .5, 0))

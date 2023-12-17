@@ -1,4 +1,4 @@
-extends Button
+extends Label
 
 enum SpeedUnit {
 	METERS_PER_SECOND = 0,
@@ -6,11 +6,13 @@ enum SpeedUnit {
 	MILES_PER_HOUR = 2,
 }
 
+@export var car_path: NodePath
+@onready var car = get_node(car_path)
 @export var speed_unit: SpeedUnit = 0
 
 
 func _process(_delta):
-	var speed = get_parent().get_parent().get_child(1).get_child(0).linear_velocity.length()
+	var speed = car.linear_velocity.length()
 	if speed_unit == SpeedUnit.METERS_PER_SECOND:
 		text = "Speed: " + ("%.1f" % speed) + " m/s"
 	elif speed_unit == SpeedUnit.KILOMETERS_PER_HOUR:
