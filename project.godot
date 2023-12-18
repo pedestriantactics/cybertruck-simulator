@@ -20,6 +20,10 @@ reworked in the future."
 run/main_scene="res://play.tscn"
 config/features=PackedStringArray("4.2")
 
+[autoload]
+
+SceneChanger="*res://prefabs/scene_changer.tscn"
+
 [display]
 
 window/size/viewport_width=1920

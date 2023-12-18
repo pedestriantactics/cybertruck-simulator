@@ -5,7 +5,9 @@
 
 [resource]
 default_font = ExtResource("2_ghdgd")
-default_font_size = 16
+default_font_size = 32
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/styles/normal = ExtResource("1_ui7o3")
 LineEdit/colors/caret_color = Color(1, 1, 1, 1)
 LineEdit/colors/clear_button_color = Color(1, 1, 1, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
