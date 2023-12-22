@@ -66,15 +66,25 @@ func _physics_process(delta):
 			# make the velocity go up a little
 			new_velocity.y += .005
 			collider.apply_central_impulse(new_velocity)
+			return
 			# collider.apply_torque_impulse(collider.constant_torque * 1)
 		# if it's a wall
-		else:
-			# if it's not another object you're hitting a wall, compare your velocity to the previous velocity
-			impact = (previous_velocity - linear_velocity).length()
-			if impact > .01:
-				#impact is very strong, let's make it reasonable
-				impact = pow(impact / 10, 2)
-				emit_signal("static_collision_occurred", impact)
+		# else:
+		# 	# if it's not another object you're hitting a wall, compare your velocity to the previous velocity
+		# 	impact = (previous_velocity - linear_velocity).length()
+		# 	if impact > .01:
+		# 		#impact is very strong, let's make it reasonable
+		# 		impact = pow(impact / 10, 2)
+		# 		emit_signal("static_collision_occurred", impact)
+
+
+			
+	# trying detect static collisions outside the collider
+	var static_impact = (previous_velocity - linear_velocity).length()
+	if static_impact > .05:
+		#impact is very strong, let's make it reasonable
+		static_impact = pow(static_impact / 10, 2)
+		emit_signal("static_collision_occurred", static_impact)
 
 	previous_velocity = linear_velocity
 

@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://diyp0iqyevltm"]
+[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://diyp0iqyevltm"]
 
 [sub_resource type="AudioEffectEQ21" id="AudioEffectEQ21_wingd"]
 resource_name = "EQ21"
@@ -11,6 +11,7 @@ post_gain = 24.0
 
 [sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_s8s6l"]
 resource_name = "Limiter"
+ceiling_db = -2.0
 threshold_db = -4.0
 soft_clip_db = 0.0
 soft_clip_ratio = 5.6
@@ -35,6 +36,12 @@ ceiling_db = -5.8
 threshold_db = -10.7
 soft_clip_ratio = 17.5
 
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_g6v64"]
+resource_name = "Compressor"
+threshold = -60.0
+release_ms = 530.0
+sidechain = &"Truck Ambient"
+
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectEQ21_wingd")
 bus/0/effect/0/enabled = false
@@ -42,11 +49,11 @@ bus/0/effect/1/effect = SubResource("AudioEffectDistortion_8xrqf")
 bus/0/effect/1/enabled = false
 bus/0/effect/2/effect = SubResource("AudioEffectLimiter_s8s6l")
 bus/0/effect/2/enabled = true
-bus/1/name = &"Ambient"
+bus/1/name = &"Truck Ambient"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 1.556
+bus/1/volume_db = -0.0305074
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectCompressor_grcbn")
 bus/1/effect/0/enabled = true
@@ -54,10 +61,10 @@ bus/2/name = &"Impacts"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = -0.0305074
+bus/2/volume_db = -1.2215
 bus/2/send = &"Master"
 bus/2/effect/0/effect = SubResource("AudioEffectEQ21_bn7ff")
-bus/2/effect/0/enabled = true
+bus/2/effect/0/enabled = false
 bus/3/name = &"Spatial"
 bus/3/solo = false
 bus/3/mute = false
@@ -68,3 +75,11 @@ bus/3/effect/0/effect = SubResource("AudioEffectAmplify_3i6lq")
 bus/3/effect/0/enabled = false
 bus/3/effect/1/effect = SubResource("AudioEffectLimiter_v245h")
 bus/3/effect/1/enabled = true
+bus/4/name = &"BG"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = -4.77114
+bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectCompressor_g6v64")
+bus/4/effect/0/enabled = true

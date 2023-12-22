@@ -1,10 +1,7 @@
 res://default_bus_layout.tres
+res://play.tscn
 res://environments/new_environment.tres
 res://materials/everything.tres
-res://ui/dark-container.tres
 res://pt_theme.tres
 res://menu.tscn
-res://scene_menu.gd
-res://scripts/scene_changer.gd
-res://play.tscn
-res://prefabs/scene_changer.tscn
+res://props/prop-tree.tscn

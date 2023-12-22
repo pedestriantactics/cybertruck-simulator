@@ -12,7 +12,7 @@ func _ready():
 	get_parent().object_collision_occurred.connect(_on_object_collision_occurred)
 	get_parent().static_collision_occurred.connect(_on_static_collision_occurred)
 
-func _on_object_collision_occurred(impact):
+func _on_object_collision_occurred(impact, collision_info):
 	if (impact < .1):
 		return
 	

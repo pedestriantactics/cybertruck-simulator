@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=62 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -56,6 +56,8 @@
 [ext_resource type="PackedScene" uid="uid://cnkxhvw1e7xw4" path="res://props/prop-street-light.tscn" id="47_wrdxx"]
 [ext_resource type="PackedScene" uid="uid://di8tafpmrodmy" path="res://props/prop-trash-can.tscn" id="48_13rc4"]
 [ext_resource type="Script" path="res://scripts/lawsuit_counter.gd" id="56_agw6f"]
+[ext_resource type="AudioStream" uid="uid://3sh3j3ey7sv7" path="res://sounds/bg-bird-loop.wav" id="57_v7wme"]
+[ext_resource type="PackedScene" uid="uid://hsax2ngl06sq" path="res://props/prop-tree.tscn" id="58_m0gjy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_15ilr"]
 
@@ -94,14 +96,13 @@ script = ExtResource("3_udmgw")
 stream = ExtResource("4_a2qxl")
 volume_db = -80.0
 autoplay = true
-bus = &"Ambient"
 script = ExtResource("5_mphdo")
 
 [node name="TruckMotorAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
 stream = ExtResource("6_4pby1")
 volume_db = -80.0
 autoplay = true
-bus = &"Ambient"
+bus = &"Truck Ambient"
 script = ExtResource("7_gipd0")
 forward_stream = ExtResource("6_4pby1")
 reverse_stream = ExtResource("8_chimf")
@@ -110,11 +111,11 @@ reverse_stream = ExtResource("8_chimf")
 stream = ExtResource("9_iwxkm")
 volume_db = -80.0
 autoplay = true
-bus = &"Ambient"
+bus = &"Truck Ambient"
 script = ExtResource("10_3eles")
 
 [node name="TruckAccelerateAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
-bus = &"Ambient"
+bus = &"Truck Ambient"
 script = ExtResource("8_d7lu3")
 acceleration_sounds = Array[AudioStream]([ExtResource("9_5syvl"), ExtResource("10_ywl0j"), ExtResource("11_rmkww")])
 soft_acceleration_sounds = Array[AudioStream]([ExtResource("13_3kv7e")])
@@ -792,3 +793,98 @@ horizontal_alignment = 2
 vertical_alignment = 2
 script = ExtResource("56_agw6f")
 car_path = NodePath("../../../../InstancePos/car/Body")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("57_v7wme")
+autoplay = true
+bus = &"BG"
+
+[node name="Tree" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7977, 0, 30.081)
+
+[node name="Tree2" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65533, 0, 26.8099)
+
+[node name="Tree3" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2043, 0, 31.6238)
+
+[node name="Tree4" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3942, 0, 39.2412)
+
+[node name="Tree5" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16482, 0, 38.9802)
+
+[node name="Tree6" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.96433, 0, 34.9248)
+
+[node name="Tree7" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.66487, 0, 32.6585)
+
+[node name="Tree8" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4775, 0, 29.3875)
+
+[node name="Tree9" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92854, 0, 34.2014)
+
+[node name="Tree10" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.26136, 0, 41.8188)
+
+[node name="Tree11" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.29766, 0, 41.5578)
+
+[node name="Tree12" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0972, 0, 37.5023)
+
+[node name="Tree13" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.96063, 0, 36.7846)
+
+[node name="Tree14" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.181742, 0, 33.5136)
+
+[node name="Tree15" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63277, 0, 38.3275)
+
+[node name="Tree16" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.55712, 0, 45.9449)
+
+[node name="Tree17" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.00189, 0, 45.6839)
+
+[node name="Tree18" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8014, 0, 41.6284)
+
+[node name="Tree19" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219066, 0, 32.9008)
+
+[node name="Tree20" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.36144, 0, 29.6297)
+
+[node name="Tree21" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.81247, 0, 34.4436)
+
+[node name="Tree22" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.37742, 0, 42.061)
+
+[node name="Tree23" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.18159, 0, 41.8001)
+
+[node name="Tree24" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9811, 0, 37.7446)
+
+[node name="Tree25" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95965, 9.53674e-07, 33.6817)
+
+[node name="Tree26" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.102, 9.53674e-07, 30.4106)
+
+[node name="Tree27" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5531, 9.53674e-07, 35.2245)
+
+[node name="Tree28" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.363163, 9.53674e-07, 42.8419)
+
+[node name="Tree29" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9222, 9.53674e-07, 42.581)
+
+[node name="Tree30" parent="." instance=ExtResource("58_m0gjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7217, 9.53674e-07, 38.5255)
