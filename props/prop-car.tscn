@@ -1,0 +1,36 @@
+[gd_scene load_steps=9 format=3 uid="uid://dl68hly4kkpgv"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_2s62c"]
+[ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="2_566ov"]
+[ext_resource type="AudioStream" uid="uid://8eddbc3knuva" path="res://sounds/hit-debris-large-1.wav" id="3_wrfw6"]
+[ext_resource type="AudioStream" uid="uid://7kesvwcu6mx1" path="res://sounds/hit-debris-large-2.wav" id="4_6m2nq"]
+[ext_resource type="ArrayMesh" uid="uid://drotyttpa0f20" path="res://meshes/car.obj" id="5_lit8i"]
+[ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="15_jf1rf"]
+[ext_resource type="Script" path="res://scripts/random-human.gd" id="16_mtg4x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_srl0a"]
+size = Vector3(2.18457, 1.71027, 5.45996)
+
+[node name="Car" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_layer = 3
+collision_mask = 3
+mass = 0.03
+physics_material_override = ExtResource("1_2s62c")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 2
+bus = &"Spatial"
+area_mask = 3
+script = ExtResource("2_566ov")
+sounds = Array[AudioStream]([ExtResource("3_wrfw6"), ExtResource("4_6m2nq")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.886015, 2.08165e-12)
+shape = SubResource("BoxShape3D_srl0a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_lit8i")
+surface_material_override/0 = ExtResource("15_jf1rf")
+script = ExtResource("16_mtg4x")
+meshes = Array[Mesh]([ExtResource("5_lit8i")])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=63 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -58,6 +58,7 @@
 [ext_resource type="Script" path="res://scripts/lawsuit_counter.gd" id="56_agw6f"]
 [ext_resource type="AudioStream" uid="uid://3sh3j3ey7sv7" path="res://sounds/bg-bird-loop.wav" id="57_v7wme"]
 [ext_resource type="PackedScene" uid="uid://hsax2ngl06sq" path="res://props/prop-tree.tscn" id="58_m0gjy"]
+[ext_resource type="PackedScene" uid="uid://dl68hly4kkpgv" path="res://props/prop-car.tscn" id="59_2onur"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_15ilr"]
 
@@ -888,3 +889,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9222, 9.53674e-07, 42.581)
 
 [node name="Tree30" parent="." instance=ExtResource("58_m0gjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7217, 9.53674e-07, 38.5255)
+
+[node name="Car" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2554, 0, 32.185)
+
+[node name="Car2" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4887, 9.53674e-07, 25.7212)
+
+[node name="Car3" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99318, 1.90735e-06, 25.0585)
+
+[node name="Car4" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.70518, 9.53674e-07, -0.331318)
+
+[node name="Car5" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1767, 1.90735e-06, -18.8226)
+
+[node name="Car6" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4235, 1.90735e-06, -18.8226)
+
+[node name="Car7" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7393, 1.90735e-06, -18.8226)
+
+[node name="Car8" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8731, 1.90735e-06, -18.8226)
+
+[node name="Car9" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1767, 1.90735e-06, -26.8043)
+
+[node name="Car10" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4235, 1.90735e-06, -26.8043)
+
+[node name="Car11" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7393, 1.90735e-06, -26.8043)
+
+[node name="Car12" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8731, 1.90735e-06, -26.8043)
