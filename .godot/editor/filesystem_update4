@@ -5,3 +5,15 @@ res://materials/everything.tres
 res://pt_theme.tres
 res://menu.tscn
 res://props/prop-car.tscn
+res://props/prop-tree.tscn
+res://props/prop-bin-recycle.tscn
+res://props/prop-bin-trash.tscn
+res://props/prop-cone.tscn
+res://props/prop-dumpster.tscn
+res://props/prop-human.tscn
+res://props/prop-plant-large-1.tscn
+res://props/prop-plant-large-2.tscn
+res://props/prop-plant-small.tscn
+res://props/prop-stop-sign.tscn
+res://props/prop-street-light.tscn
+res://props/prop-trash-can.tscn

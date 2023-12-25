@@ -82,10 +82,10 @@ shadow_enabled = true
 [node name="InstancePos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.465657, -4)
 
-[node name="car" type="Node3D" parent="InstancePos"]
+[node name="Cybertruck" type="Node3D" parent="InstancePos"]
 _import_path = NodePath(".")
 
-[node name="Body" type="VehicleBody3D" parent="InstancePos/car"]
+[node name="Body" type="VehicleBody3D" parent="InstancePos/Cybertruck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00169557, 0.222867, -0.0955184)
 mass = 1000.0
 physics_material_override = SubResource("PhysicsMaterial_15ilr")
@@ -93,13 +93,13 @@ gravity_scale = 1.6
 center_of_mass_mode = 1
 script = ExtResource("3_udmgw")
 
-[node name="WindAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
+[node name="WindAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/Cybertruck/Body"]
 stream = ExtResource("4_a2qxl")
 volume_db = -80.0
 autoplay = true
 script = ExtResource("5_mphdo")
 
-[node name="TruckMotorAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
+[node name="TruckMotorAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/Cybertruck/Body"]
 stream = ExtResource("6_4pby1")
 volume_db = -80.0
 autoplay = true
@@ -108,14 +108,14 @@ script = ExtResource("7_gipd0")
 forward_stream = ExtResource("6_4pby1")
 reverse_stream = ExtResource("8_chimf")
 
-[node name="TruckTiresAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
+[node name="TruckTiresAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/Cybertruck/Body"]
 stream = ExtResource("9_iwxkm")
 volume_db = -80.0
 autoplay = true
 bus = &"Truck Ambient"
 script = ExtResource("10_3eles")
 
-[node name="TruckAccelerateAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/car/Body"]
+[node name="TruckAccelerateAudioStreamPlayer" type="AudioStreamPlayer" parent="InstancePos/Cybertruck/Body"]
 bus = &"Truck Ambient"
 script = ExtResource("8_d7lu3")
 acceleration_sounds = Array[AudioStream]([ExtResource("9_5syvl"), ExtResource("10_ywl0j"), ExtResource("11_rmkww")])
@@ -123,13 +123,13 @@ soft_acceleration_sounds = Array[AudioStream]([ExtResource("13_3kv7e")])
 deceleration_sounds = Array[AudioStream]([ExtResource("14_xf28r")])
 braking_sounds = Array[AudioStream]([ExtResource("13_smw5b")])
 
-[node name="TruckImpactAudio" type="Node" parent="InstancePos/car/Body"]
+[node name="TruckImpactAudio" type="Node" parent="InstancePos/Cybertruck/Body"]
 script = ExtResource("14_fdxpe")
 impact_sounds = Array[AudioStream]([ExtResource("15_exxkq"), ExtResource("16_drpyg"), ExtResource("17_7tem3"), ExtResource("18_n2b5r"), ExtResource("19_p4ae3"), ExtResource("20_x2a7m"), ExtResource("21_fl42q"), ExtResource("22_1umyv")])
 impact_hard_sounds = Array[AudioStream]([ExtResource("27_j4yta"), ExtResource("28_us5pt"), ExtResource("29_anvkl"), ExtResource("30_ahe5v"), ExtResource("31_e00e4")])
 crash_sounds = Array[AudioStream]([ExtResource("32_nx7oq"), ExtResource("33_hytdo"), ExtResource("34_cqoti")])
 
-[node name="FL" type="VehicleWheel3D" parent="InstancePos/car/Body"]
+[node name="FL" type="VehicleWheel3D" parent="InstancePos/Cybertruck/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957798, 0.142565, 2.08265)
 use_as_traction = true
 use_as_steering = true
@@ -143,13 +143,13 @@ suspension_max_force = 8000.0
 damping_compression = 1.9
 damping_relaxation = 10.0
 
-[node name="Wheel1" type="MeshInstance3D" parent="InstancePos/car/Body/FL"]
+[node name="Wheel1" type="MeshInstance3D" parent="InstancePos/Cybertruck/Body/FL"]
 _import_path = NodePath("BODY-vehicle/wheel1-wheel")
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
 mesh = ExtResource("4_cuis8")
 surface_material_override/0 = ExtResource("36_o5co1")
 
-[node name="FR" type="VehicleWheel3D" parent="InstancePos/car/Body"]
+[node name="FR" type="VehicleWheel3D" parent="InstancePos/Cybertruck/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.958, 0.143, 2.083)
 use_as_traction = true
 use_as_steering = true
@@ -163,13 +163,13 @@ suspension_max_force = 8000.0
 damping_compression = 1.9
 damping_relaxation = 10.0
 
-[node name="Wheel1" type="MeshInstance3D" parent="InstancePos/car/Body/FR"]
+[node name="Wheel1" type="MeshInstance3D" parent="InstancePos/Cybertruck/Body/FR"]
 _import_path = NodePath("BODY-vehicle/wheel1-wheel")
 transform = Transform3D(-1, 3.48787e-16, 8.74228e-08, 3.48787e-16, 1, -3.48787e-16, -8.74228e-08, -3.48787e-16, -1, 0, 0, 0)
 mesh = ExtResource("4_cuis8")
 surface_material_override/0 = ExtResource("36_o5co1")
 
-[node name="BL" type="VehicleWheel3D" parent="InstancePos/car/Body"]
+[node name="BL" type="VehicleWheel3D" parent="InstancePos/Cybertruck/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957798, 0.142565, -1.62108)
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.48
@@ -181,13 +181,13 @@ suspension_max_force = 8000.0
 damping_compression = 1.9
 damping_relaxation = 10.0
 
-[node name="Wheel1" type="MeshInstance3D" parent="InstancePos/car/Body/BL"]
+[node name="Wheel1" type="MeshInstance3D" parent="InstancePos/Cybertruck/Body/BL"]
 _import_path = NodePath("BODY-vehicle/wheel1-wheel")
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
 mesh = ExtResource("4_cuis8")
 surface_material_override/0 = ExtResource("36_o5co1")
 
-[node name="BR" type="VehicleWheel3D" parent="InstancePos/car/Body"]
+[node name="BR" type="VehicleWheel3D" parent="InstancePos/Cybertruck/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.958, 0.143, -1.62073)
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.48
@@ -199,26 +199,26 @@ suspension_max_force = 8000.0
 damping_compression = 1.9
 damping_relaxation = 10.0
 
-[node name="Wheel1" type="MeshInstance3D" parent="InstancePos/car/Body/BR"]
+[node name="Wheel1" type="MeshInstance3D" parent="InstancePos/Cybertruck/Body/BR"]
 _import_path = NodePath("BODY-vehicle/wheel1-wheel")
 transform = Transform3D(-1, 3.48787e-16, 8.74228e-08, 3.48787e-16, 1, -3.48787e-16, -8.74228e-08, -3.48787e-16, -1, 0, 0, 0)
 mesh = ExtResource("4_cuis8")
 surface_material_override/0 = ExtResource("36_o5co1")
 
-[node name="Body" type="MeshInstance3D" parent="InstancePos/car/Body"]
+[node name="Body" type="MeshInstance3D" parent="InstancePos/Cybertruck/Body"]
 _import_path = NodePath("BODY-vehicle")
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0.558808, 0)
 mesh = ExtResource("6_5pjgd")
 surface_material_override/0 = ExtResource("36_o5co1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InstancePos/car/Body"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InstancePos/Cybertruck/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769337, 0.0749741)
 shape = SubResource("7")
 
-[node name="CameraBase" type="Node3D" parent="InstancePos/car/Body"]
+[node name="CameraBase" type="Node3D" parent="InstancePos/Cybertruck/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 
-[node name="Camera3D" type="Camera3D" parent="InstancePos/car/Body/CameraBase"]
+[node name="Camera3D" type="Camera3D" parent="InstancePos/Cybertruck/Body/CameraBase"]
 transform = Transform3D(-1, 2.11495e-08, -8.48259e-08, 9.03234e-16, 0.970296, 0.241922, 8.74227e-08, 0.241922, -0.970296, 0, 3.032, -4.394)
 doppler_tracking = 2
 current = true
@@ -228,11 +228,11 @@ min_distance = 6.0
 max_distance = 8.0
 height = 2.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="InstancePos/car/Body"]
+[node name="StaticBody3D" type="StaticBody3D" parent="InstancePos/Cybertruck/Body"]
 collision_layer = 2
 collision_mask = 3
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="InstancePos/car/Body/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="InstancePos/Cybertruck/Body/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.755173, 0.0815091)
 shape = SubResource("BoxShape3D_admae")
 
@@ -761,7 +761,7 @@ theme_override_fonts/font = ExtResource("35_xvq7y")
 theme_override_font_sizes/font_size = 128
 text = "D"
 script = ExtResource("36_iwnde")
-vehicle_node = NodePath("../../../InstancePos/car/Body")
+vehicle_node = NodePath("../../../InstancePos/Cybertruck/Body")
 forward_sound = ExtResource("45_wpc7e")
 reverse_sound = ExtResource("46_e3al3")
 
@@ -783,7 +783,7 @@ theme_override_fonts/font = ExtResource("35_xvq7y")
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 2
 script = ExtResource("2_njc2h")
-car_path = NodePath("../../../../InstancePos/car/Body")
+car_path = NodePath("../../../../InstancePos/Cybertruck/Body")
 speed_unit = 2
 
 [node name="Lawsuits" type="Label" parent="Dash/Margin/VBoxContainer"]
@@ -793,7 +793,7 @@ theme_override_font_sizes/font_size = 64
 horizontal_alignment = 2
 vertical_alignment = 2
 script = ExtResource("56_agw6f")
-car_path = NodePath("../../../../InstancePos/car/Body")
+car_path = NodePath("../../../../InstancePos/Cybertruck/Body")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("57_v7wme")
@@ -890,38 +890,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9222, 9.53674e-07, 42.581)
 [node name="Tree30" parent="." instance=ExtResource("58_m0gjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7217, 9.53674e-07, 38.5255)
 
-[node name="Car" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2554, 0, 32.185)
-
-[node name="Car2" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4887, 9.53674e-07, 25.7212)
-
-[node name="Car3" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99318, 1.90735e-06, 25.0585)
-
-[node name="Car4" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.70518, 9.53674e-07, -0.331318)
-
 [node name="Car5" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1767, 1.90735e-06, -18.8226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1767, 1.90735e-06, -13.8733)
 
 [node name="Car6" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4235, 1.90735e-06, -18.8226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7475, 1.90735e-06, -18.2058)
 
 [node name="Car7" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7393, 1.90735e-06, -18.8226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.7282, 1.90735e-06, -15.1578)
 
 [node name="Car8" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8731, 1.90735e-06, -18.8226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.4581, 1.90735e-06, -23.3237)
 
 [node name="Car9" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1767, 1.90735e-06, -26.8043)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.8914, 1.90735e-06, -18.34)
 
 [node name="Car10" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4235, 1.90735e-06, -26.8043)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.2678, 1.90735e-06, -27.6255)
 
 [node name="Car11" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7393, 1.90735e-06, -26.8043)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4376, 1.36424e-12, -30.592)
 
 [node name="Car12" parent="." instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8731, 1.90735e-06, -26.8043)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9675, 1.36424e-12, -27.1832)
+
+[node name="Car13" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4482, 1.36424e-12, -34.8236)
+
+[node name="Car14" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2695, 1.36424e-12, -33.9077)
+
+[node name="Car15" parent="." instance=ExtResource("59_2onur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.246, 1.36424e-12, -34.1187)
