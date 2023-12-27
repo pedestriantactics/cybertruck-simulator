@@ -3,10 +3,7 @@ res://play.tscn
 res://environments/new_environment.tres
 res://materials/everything.tres
 res://pt_theme.tres
-res://props/prop-bike.tscn
-res://props/prop-bicycle.tscn
-res://props/prop-car.tscn
-res://scripts/random-human.gd
-res://scripts/random_mesh.gd
-res://props/prop-human.tscn
 res://materials/everything_shiny.tres
+res://prefabs/dev_console.tscn
+res://props/prop-car.tscn
+res://materials/grid.tres

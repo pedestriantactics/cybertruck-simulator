@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://hsax2ngl06sq"]
+[gd_scene load_steps=10 format=3 uid="uid://hsax2ngl06sq"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_o60uw"]
 [ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="2_2p4ya"]
@@ -6,10 +6,11 @@
 [ext_resource type="AudioStream" uid="uid://dwb7uvy7pj8mc" path="res://sounds/hit-tree-2.wav" id="4_iowi3"]
 [ext_resource type="ArrayMesh" uid="uid://dt58cg7fni4h6" path="res://meshes/tree.obj" id="5_lp4fl"]
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="6_ean42"]
+[ext_resource type="Script" path="res://scripts/random_mesh.gd" id="7_4tewr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6uvv5"]
-radius = 0.558795
-height = 2.73877
+radius = 0.815204
+height = 3.34983
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gk1u6"]
 height = 1.99938
@@ -36,6 +37,10 @@ shape = SubResource("CapsuleShape3D_6uvv5")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("5_lp4fl")
 surface_material_override/0 = ExtResource("6_ean42")
+script = ExtResource("7_4tewr")
+random_rotate_degrees = 360
+random_rotate_increment_degrees = 90
+random_mirror = true
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.996446, 0)

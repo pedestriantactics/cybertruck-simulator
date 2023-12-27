@@ -7,6 +7,9 @@ var max_torque = 80000.0
 var max_steering = 0.5
 var steering_speed = 5.0
 
+# this allows the burst to be toggled off for development testing
+var toggle_burst = true
+
 var accelerationDelaySeconds = .3
 var accelerationTimer = 0.0
 var previous_acceleration = 0.0
@@ -24,7 +27,43 @@ var previous_velocity = Vector3()
 # for switching the direction
 var forward = true
 
-# todo: fix the double acceleration bug when reversing when still moving forward
+func _ready():
+	DevConsole.command.connect(handle_command)
+
+func handle_command(text_command):
+	var check_command = ""
+
+	# if the command contains set rpm
+	check_command = "rpm"
+	if text_command.contains(check_command):
+		# remove set rpm from the command and remove spaces
+		var rpm = text_command.replace(check_command, "").strip_edges()
+		# if the command is a number
+		if rpm.is_valid_float():
+			# set the max rpm
+			max_rpm = float(rpm)
+		DevConsole.debug_print("rpm set to: " + str(max_rpm))
+
+	# if the command contains set steering
+	check_command = "steering"
+	if text_command.contains(check_command):
+		# remove set steering from the command and remove spaces
+		var steering = text_command.replace(check_command, "").strip_edges()
+		# if the command is a number
+		if steering.is_valid_float():
+			# set the max steering
+			max_steering = float(steering)
+		DevConsole.debug_print("steering set to: " + str(max_steering))
+
+	match text_command:
+		"burst":
+			toggle_burst = !toggle_burst
+			DevConsole.debug_print("burst toggled: " + str(toggle_burst))
+		"?rpm":
+			DevConsole.debug_print("rpm: " + str(max_rpm))
+		"?steering":
+			DevConsole.debug_print("steering: " + str(max_steering))
+
 
 func is_moving_forward() -> bool:
 	# Get the forward vector of the vehicle
@@ -96,8 +135,9 @@ func _physics_process(delta):
 	elif acceleration < 0:
 		acceleration = -1
 
+	# burst
 	# this is where the first start delay happens
-	if (forward and acceleration > 0 and previous_acceleration <= 0 and (linear_velocity.length() < 2 or linear_velocity.length() < 5 and is_moving_forward())):
+	if (toggle_burst and forward and acceleration > 0 and previous_acceleration <= 0 and (linear_velocity.length() < 2 or linear_velocity.length() < 5 and is_moving_forward())):
 		if accelerationTimer == 0:
 			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.acceleration_sounds)
 		# if the timer has ended throttle it

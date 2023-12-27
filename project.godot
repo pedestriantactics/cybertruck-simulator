@@ -23,6 +23,7 @@ config/features=PackedStringArray("4.2")
 [autoload]
 
 SceneChanger="*res://prefabs/scene_changer.tscn"
+DevConsole="*res://prefabs/dev_console.tscn"
 
 [display]
 

@@ -13,6 +13,10 @@ extends MeshInstance3D
 @export var colors: Array[Color] = []
 # This allows you to have the object randomly rotated at spawn
 @export var random_rotate_degrees = 0
+# This restricts the random rotation to increments of this value
+@export var random_rotate_increment_degrees = 0
+# This allows you to have the object randomly mirrored at spawn
+@export var random_mirror = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,7 +33,7 @@ func _ready():
 		# var random_color = colors[randi() % colors.size()]
 		var hue = randf_range(0, 1)
 		var saturation = 0.6
-		var value = randf_range(0.5, 1)
+		var value = randf_range(0.8, 1)
 		var random_color = Color.from_hsv(hue, saturation, value)
 
 		# check how many materials there are on the mesh so you can iterate through them and color each one
@@ -43,7 +47,19 @@ func _ready():
 
 	# Randomly rotate the object
 	if random_rotate_degrees > 0:
-		get_parent().rotate(Vector3(0, 1, 0),deg_to_rad(randf_range(0, random_rotate_degrees)))
+		var final_rotation = randf_range(0, random_rotate_degrees)
+		if random_rotate_increment_degrees > 0:
+			final_rotation = int(final_rotation / random_rotate_increment_degrees) * random_rotate_increment_degrees
+			get_parent().rotate(Vector3(0, 1, 0),deg_to_rad(final_rotation))
+
+	# Randomly mirror the object along the x and z axis
+	if random_mirror:
+		var random_mirror_x = randf_range(0, 1)
+		var random_mirror_z = randf_range(0, 1)
+		if random_mirror_x > 0.5:
+			get_parent().scale.x = -1
+		if random_mirror_z > 0.5:
+			get_parent().scale.z = -1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

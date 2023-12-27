@@ -38,3 +38,4 @@ surface_material_override/1 = ExtResource("7_oy00r")
 script = ExtResource("7_16t6u")
 random_color = true
 random_rotate_degrees = 360
+random_rotate_increment_degrees = 180

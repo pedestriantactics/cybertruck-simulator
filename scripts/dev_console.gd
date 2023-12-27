@@ -8,49 +8,65 @@ extends Control
 # when the line edit is shown, pressing the return key will hide the console and execute the command if there is one
 # the command will printed and a signal will fire with the command as a string argument
 
-signal command(command)
-
 # the line edit to show and hide
-@onready var line_edit = get_child(0)
+@onready var line_edit = get_child(1)
+@onready var console_label = get_child(2)
+
+signal command(text_command)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	command.connect(on_command)
+	visible = false
+
+func on_command(text_command):
+	# add a carriage return and the command to the console
+	debug_print("command entered: " + text_command)
+
+	match text_command:
+		"r":
+			# reload the scene
+			get_tree().reload_current_scene()
+			return
+		"d":
+			# dev mode for truck 
+			command.emit("burst")
+			command.emit("steering .8")
+			command.emit("rpm 300")
+			return
+
+func debug_print(in_text):
+	console_label.text += "\n" + in_text
 
 # when the key is pressed
 func _input(event):
-	if event.is_action_pressed("dev_console"):
+	if event.is_action_released("dev_console"):
 		# TEMPORARY
 		# reload the scene
-		get_tree().reload_current_scene()
-		return
+		# get_tree().reload_current_scene()
+		# return
 
-		if line_edit.visible:
-			line_edit.visible = false
+		if visible:
+			visible = false
 			get_tree().paused = false
 		else:
-			line_edit.visible = true
+			visible = true
 			line_edit.grab_focus()
 			get_tree().paused = true
+			# clear it, otherwise the = ends up in there
+			line_edit.text = ""
 
 	# when the line edit is shown and the return key is pressed
-	if event.is_action_pressed("ui_accept") and line_edit.visible:
-
-		# hide the line edit
-		line_edit.visible = false
-		get_tree().paused = false
+	if event.is_action_released("ui_text_completion_accept") and visible:
 
 		# get the command
-		var command = line_edit.text
+		var text_command = line_edit.text
 
 		# clear the line edit
 		line_edit.text = ""
 
-		# print the command
-		print(command)
-
 		# emit the signal
-		emit_signal("command", command)
+		command.emit(text_command)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

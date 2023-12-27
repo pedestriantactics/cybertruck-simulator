@@ -41,7 +41,9 @@ func _on_vehicle_collision_occurred(impact):
 	# adjust this line based on how you want the impact to affect the shakeStrength
 
 
+
 func _physics_process(_delta):
+
 	var target = get_parent().get_global_transform().origin
 	var pos = get_global_transform().origin
 
@@ -59,10 +61,10 @@ func _physics_process(_delta):
 
 	look_at_from_position(pos, target, Vector3.UP)
 
-	# Turn a little up or down
-	var t = get_transform()
-	t.basis = Basis(t.basis[0], deg_to_rad(angle_v_adjust)) * t.basis
-	set_transform(t)
+	# adjust angle
+	var angle = get_rotation_degrees()
+	angle.x += angle_v_adjust
+	set_rotation_degrees(angle)
 
 	# reduce the shake strength so it goes back to 0 over shakeReturnSeconds
 	shakeStrength = lerp(shakeStrength, 0.0, _delta / shakeReturnSeconds)

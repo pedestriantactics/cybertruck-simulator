@@ -51,4 +51,4 @@ mesh = ExtResource("5_ltspy")
 surface_material_override/0 = ExtResource("6_kfmak")
 script = ExtResource("9_p8ava")
 random_color = true
-random_rotate_degrees = 360
+random_rotate_degrees = 12
