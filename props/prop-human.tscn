@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="1_0hrub"]
 [ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_1sden"]
 [ext_resource type="ArrayMesh" uid="uid://coa82po4n78nb" path="res://meshes/human-tall_001.obj" id="1_4p3fh"]
-[ext_resource type="Script" path="res://scripts/random-human.gd" id="1_s5sge"]
 [ext_resource type="AudioStream" uid="uid://d2r2utrjly253" path="res://sounds/hit-human-1.wav" id="2_37hns"]
 [ext_resource type="ArrayMesh" uid="uid://cvx0o7l7g00is" path="res://meshes/human-short.obj" id="2_mfhou"]
 [ext_resource type="AudioStream" uid="uid://4xjkdruhfbxw" path="res://sounds/hit-human-2.wav" id="3_4hpsv"]
@@ -29,6 +28,7 @@
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="14_h2b5c"]
 [ext_resource type="ArrayMesh" uid="uid://l8r1x1hecd8r" path="res://meshes/human-tall_004.obj" id="14_j2fso"]
 [ext_resource type="ArrayMesh" uid="uid://cnjslnchoyma1" path="res://meshes/human-tall_005.obj" id="15_fw3sw"]
+[ext_resource type="Script" path="res://scripts/random_mesh.gd" id="16_jalih"]
 [ext_resource type="ArrayMesh" uid="uid://7j1mckr40l28" path="res://meshes/human-tall_006.obj" id="16_uy35r"]
 [ext_resource type="ArrayMesh" uid="uid://cn3h8xqxrgg1q" path="res://meshes/human-tall_007.obj" id="17_xtpq6"]
 
@@ -66,5 +66,6 @@ shape = SubResource("CylinderShape3D_qb3iu")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_4p3fh")
 surface_material_override/0 = ExtResource("14_h2b5c")
-script = ExtResource("1_s5sge")
+script = ExtResource("16_jalih")
 meshes = Array[Mesh]([ExtResource("2_mfhou"), ExtResource("3_d72j1"), ExtResource("4_svljm"), ExtResource("5_i8xi8"), ExtResource("6_edj4c"), ExtResource("7_40rx2"), ExtResource("8_a83jm"), ExtResource("9_nxt5p"), ExtResource("10_77lyg"), ExtResource("1_4p3fh"), ExtResource("12_dwh71"), ExtResource("13_jg5m0"), ExtResource("14_j2fso"), ExtResource("15_fw3sw"), ExtResource("16_uy35r"), ExtResource("17_xtpq6")])
+random_color = true

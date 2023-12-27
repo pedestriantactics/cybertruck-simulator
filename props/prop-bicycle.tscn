@@ -1,0 +1,54 @@
+[gd_scene load_steps=13 format=3 uid="uid://djuyjjjtyreaj"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_o1mvj"]
+[ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="2_v6wk5"]
+[ext_resource type="AudioStream" uid="uid://b0s0opl4cvck" path="res://sounds/hit-bike-1.wav" id="3_dvckk"]
+[ext_resource type="AudioStream" uid="uid://bft0b5hbpiojq" path="res://sounds/hit-bike-2.wav" id="4_bi1kw"]
+[ext_resource type="ArrayMesh" uid="uid://2ijtibh74vjt" path="res://meshes/bicycle.obj" id="5_ltspy"]
+[ext_resource type="AudioStream" uid="uid://cdpn1bbllrpvp" path="res://sounds/hit-bike-3.wav" id="5_p6tp2"]
+[ext_resource type="AudioStream" uid="uid://cnsjwn7y0gg7d" path="res://sounds/hit-bike-4.wav" id="6_fnitt"]
+[ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="6_kfmak"]
+[ext_resource type="Script" path="res://scripts/random_mesh.gd" id="9_p8ava"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_srl0a"]
+size = Vector3(0.105469, 0.690346, 1.68262)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tvhjx"]
+size = Vector3(0.105469, 0.366323, 0.895142)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ox05i"]
+size = Vector3(0.579102, 0.0614817, 0.0761719)
+
+[node name="Bicycle" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_layer = 3
+collision_mask = 3
+mass = 0.01
+physics_material_override = ExtResource("1_o1mvj")
+gravity_scale = 2.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 2
+bus = &"Spatial"
+area_mask = 3
+script = ExtResource("2_v6wk5")
+sounds = Array[AudioStream]([ExtResource("3_dvckk"), ExtResource("4_bi1kw"), ExtResource("5_p6tp2"), ExtResource("6_fnitt")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.355463, -0.118652)
+shape = SubResource("BoxShape3D_srl0a")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.835276, -0.0524292)
+shape = SubResource("BoxShape3D_tvhjx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.02567, 0.275901)
+shape = SubResource("BoxShape3D_ox05i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_ltspy")
+surface_material_override/0 = ExtResource("6_kfmak")
+script = ExtResource("9_p8ava")
+random_color = true
+random_rotate_degrees = 360

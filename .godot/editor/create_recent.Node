@@ -1,3 +1,9 @@
+StaticBody3D
+CollisionShape3D
+MeshInstance3D
+CSGMesh3D
+CollisionPolygon3D
+CSGBox3D
 AudioStreamPlayer
 ColorRect
 AnimationPlayer
@@ -6,10 +12,3 @@ Label
 VBoxContainer
 Control
 Node3D
-CollisionShape3D
-StaticBody3D
-RigidBody3D
-Node
-CSGBox3D
-AudioStreamPlayer3D
-AudioListener3D

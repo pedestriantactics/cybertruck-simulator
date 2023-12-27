@@ -15,3 +15,6 @@ sky_material = SubResource("ShaderMaterial_8xux4")
 [resource]
 background_mode = 2
 sky = SubResource("Sky_6k8hk")
+ssr_enabled = true
+ssao_radius = 16.0
+ssao_intensity = 1.7

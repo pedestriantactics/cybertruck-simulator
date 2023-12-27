@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://2ijtibh74vjt"
+path="res://.godot/imported/bicycle.obj-f2b9eb10925149b42349b11bfc648bbe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bicycle.obj-f2b9eb10925149b42349b11bfc648bbe.mesh"]
+
+source_file="res://meshes/bicycle.obj"
+dest_files=["res://.godot/imported/bicycle.obj-f2b9eb10925149b42349b11bfc648bbe.mesh", "res://.godot/imported/bicycle.obj-f2b9eb10925149b42349b11bfc648bbe.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl68hly4kkpgv"]
+[gd_scene load_steps=10 format=3 uid="uid://dl68hly4kkpgv"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_2s62c"]
 [ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="2_566ov"]
 [ext_resource type="AudioStream" uid="uid://8eddbc3knuva" path="res://sounds/hit-debris-large-1.wav" id="3_wrfw6"]
 [ext_resource type="AudioStream" uid="uid://7kesvwcu6mx1" path="res://sounds/hit-debris-large-2.wav" id="4_6m2nq"]
 [ext_resource type="ArrayMesh" uid="uid://drotyttpa0f20" path="res://meshes/car.obj" id="5_lit8i"]
+[ext_resource type="Script" path="res://scripts/random_mesh.gd" id="7_16t6u"]
+[ext_resource type="Material" uid="uid://b51smst5hugdj" path="res://materials/everything_shiny.tres" id="7_oy00r"]
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="15_jf1rf"]
-[ext_resource type="Script" path="res://scripts/random-human.gd" id="16_mtg4x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_srl0a"]
 size = Vector3(2.18457, 1.71027, 5.45996)
@@ -33,5 +34,7 @@ shape = SubResource("BoxShape3D_srl0a")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("5_lit8i")
 surface_material_override/0 = ExtResource("15_jf1rf")
-script = ExtResource("16_mtg4x")
-meshes = Array[Mesh]([ExtResource("5_lit8i")])
+surface_material_override/1 = ExtResource("7_oy00r")
+script = ExtResource("7_16t6u")
+random_color = true
+random_rotate_degrees = 360
