@@ -3,6 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dicxad2hffh57" path="res://textures/grid.png" id="1_0jgia"]
 
 [resource]
+specular_mode = 2
 albedo_color = Color(0.917647, 0.917647, 0.917647, 1)
 albedo_texture = ExtResource("1_0jgia")
-roughness = 0.6

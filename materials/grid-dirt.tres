@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cnliobwt8yale"]
+
+[ext_resource type="Texture2D" uid="uid://bpencm1k50my0" path="res://textures/grid-dirt.png" id="1_qsj4x"]
+
+[resource]
+specular_mode = 2
+albedo_color = Color(0.917647, 0.917647, 0.917647, 1)
+albedo_texture = ExtResource("1_qsj4x")

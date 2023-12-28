@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=68 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -48,13 +48,16 @@
 [ext_resource type="AudioStream" uid="uid://il6apbs2r1uv" path="res://sounds/switch-forward.wav" id="45_wpc7e"]
 [ext_resource type="AudioStream" uid="uid://djcjym3o355th" path="res://sounds/switch-reverse.wav" id="46_e3al3"]
 [ext_resource type="PackedScene" uid="uid://nsp4y1oyoms1" path="res://props/prop-stop-sign.tscn" id="46_yvgax"]
+[ext_resource type="Script" path="res://scripts/impact_phaser.gd" id="47_iks5m"]
 [ext_resource type="PackedScene" uid="uid://drthnjjvl30hm" path="res://props/prop-dumpster.tscn" id="47_mr1bq"]
 [ext_resource type="PackedScene" uid="uid://cnkxhvw1e7xw4" path="res://props/prop-street-light.tscn" id="47_wrdxx"]
 [ext_resource type="Material" uid="uid://c7jqxgj2d5iwj" path="res://materials/grid.tres" id="48_ysmfv"]
 [ext_resource type="PackedScene" uid="uid://vnntjpsyk7ys" path="res://props/prop-tree-3.tscn" id="49_e6ccq"]
+[ext_resource type="Material" uid="uid://n1icwb7corcp" path="res://materials/grid-grass.tres" id="50_aye2k"]
 [ext_resource type="ArrayMesh" uid="uid://bt6ort4fecmkc" path="res://meshes/world.obj" id="50_dd7yw"]
 [ext_resource type="Material" uid="uid://b51smst5hugdj" path="res://materials/everything_shiny.tres" id="51_el1vw"]
 [ext_resource type="PackedScene" uid="uid://bu4dl06fry2tr" path="res://props/prop-tree-2.tscn" id="51_mffka"]
+[ext_resource type="Material" uid="uid://cnliobwt8yale" path="res://materials/grid-dirt.tres" id="51_ns0he"]
 [ext_resource type="PackedScene" uid="uid://bbpaawlx6udfx" path="res://props/prop-cone.tscn" id="55_pcv34"]
 [ext_resource type="Script" path="res://scripts/lawsuit_counter.gd" id="56_agw6f"]
 [ext_resource type="AudioStream" uid="uid://3sh3j3ey7sv7" path="res://sounds/bg-bird-loop.wav" id="57_v7wme"]
@@ -311,6 +314,9 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.755173, 0.0815091)
 shape = SubResource("BoxShape3D_admae")
 
+[node name="Node" type="Node" parent="InstancePos/Cybertruck/Body"]
+script = ExtResource("47_iks5m")
+
 [node name="Environment" type="Node" parent="."]
 
 [node name="wall1" type="CSGBox3D" parent="Environment"]
@@ -337,11 +343,25 @@ size = Vector3(236.222, 2, 0.5)
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 mesh = ExtResource("50_dd7yw")
 skeleton = NodePath("../wall4")
-surface_material_override/0 = ExtResource("48_ysmfv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_erejo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/MeshInstance3D"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mesh = ExtResource("50_dd7yw")
+skeleton = NodePath("../wall4")
+surface_material_override/0 = ExtResource("48_ysmfv")
+surface_material_override/1 = ExtResource("48_ysmfv")
+surface_material_override/2 = ExtResource("48_ysmfv")
+surface_material_override/3 = ExtResource("50_aye2k")
+surface_material_override/4 = ExtResource("51_ns0he")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_erejo")
 
 [node name="StreetLight" parent="." instance=ExtResource("47_wrdxx")]

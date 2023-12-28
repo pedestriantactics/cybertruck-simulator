@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://diyp0iqyevltm"]
+[gd_resource type="AudioBusLayout" load_steps=10 format=3 uid="uid://diyp0iqyevltm"]
 
 [sub_resource type="AudioEffectEQ21" id="AudioEffectEQ21_wingd"]
 resource_name = "EQ21"
@@ -35,6 +35,13 @@ resource_name = "Limiter"
 ceiling_db = -5.8
 threshold_db = -10.7
 soft_clip_ratio = 17.5
+
+[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_vrudx"]
+resource_name = "Phaser"
+range_max_hz = 10000.0
+rate_hz = 3.676
+feedback = 0.1
+depth = 0.1
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_g6v64"]
 resource_name = "Compressor"
@@ -75,6 +82,8 @@ bus/3/effect/0/effect = SubResource("AudioEffectAmplify_3i6lq")
 bus/3/effect/0/enabled = false
 bus/3/effect/1/effect = SubResource("AudioEffectLimiter_v245h")
 bus/3/effect/1/enabled = true
+bus/3/effect/2/effect = SubResource("AudioEffectPhaser_vrudx")
+bus/3/effect/2/enabled = true
 bus/4/name = &"BG"
 bus/4/solo = false
 bus/4/mute = false

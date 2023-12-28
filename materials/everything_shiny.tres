@@ -6,5 +6,6 @@
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
+specular_mode = 2
 albedo_texture = ExtResource("1_0l1ay")
 roughness = 0.0

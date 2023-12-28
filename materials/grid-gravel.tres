@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dcr5hlhp2c51e"]
+
+[ext_resource type="Texture2D" uid="uid://drg57o2yfv0fe" path="res://textures/grid-gravel.png" id="1_xgv7p"]
+
+[resource]
+specular_mode = 2
+albedo_color = Color(0.917647, 0.917647, 0.917647, 1)
+albedo_texture = ExtResource("1_xgv7p")
