@@ -3,13 +3,7 @@ res://play.tscn
 res://environments/new_environment.tres
 res://materials/everything.tres
 res://materials/grid.tres
-res://materials/everything_shiny.tres
 res://materials/grid-grass.tres
-res://materials/grid-gravel.tres
+res://materials/everything_shiny.tres
 res://materials/grid-dirt.tres
-res://scripts/impact_phaser.gd
-res://scripts/audio_truck_tires_loop.gd
-res://scripts/audio_truck_loop.gd
-res://scripts/audio_wind.gd
-res://scripts/dev_console.gd
-res://scripts/follow_camera.gd
+res://props/prop-bench.tscn
