@@ -1,6 +1,7 @@
-Node
-ColorRect
 Label
+ColorRect
+Control
+Node
 StaticBody3D
 CollisionShape3D
 MeshInstance3D
@@ -11,5 +12,3 @@ AudioStreamPlayer
 AnimationPlayer
 Button
 VBoxContainer
-Control
-Node3D

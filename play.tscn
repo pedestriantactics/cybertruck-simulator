@@ -1,7 +1,8 @@
-[gd_scene load_steps=69 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=70 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
+[ext_resource type="Script" path="res://scripts/start_timer.gd" id="2_xgcq1"]
 [ext_resource type="Script" path="res://scripts/vehicle.gd" id="3_udmgw"]
 [ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="4_a2qxl"]
 [ext_resource type="ArrayMesh" uid="uid://cl0hbt18yr3ha" path="res://meshes/cybertruck-wheel.obj" id="4_cuis8"]
@@ -78,6 +79,43 @@ data = PackedVector3Array(40.957, 29.2428, -108.785, 41.894, 29.0166, -108.785, 
 
 [node name="TownScene" type="Node3D"]
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("33_orntt")
+script = ExtResource("2_xgcq1")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.145098)
+
+[node name="TimerLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Timer!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Dash" type="Control" parent="."]
 process_mode = 3
 layout_mode = 3
@@ -141,6 +179,12 @@ horizontal_alignment = 2
 vertical_alignment = 2
 script = ExtResource("56_agw6f")
 car_path = NodePath("../../../../InstancePos/Cybertruck/Body")
+
+[node name="Control" type="Control" parent="Dash"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_608ts")

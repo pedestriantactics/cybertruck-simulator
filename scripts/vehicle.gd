@@ -127,8 +127,11 @@ func _physics_process(delta):
 
 	previous_velocity = linear_velocity
 
-	steering = lerp(steering, Input.get_axis("turn_right", "turn_left") * max_steering, steering_speed * delta)
-	var acceleration = Input.get_axis("move_backward", "move_forward")
+	var acceleration = 0
+	
+	if (InputProcessor.can_process_game_input == true):
+		steering = lerp(steering, Input.get_axis("turn_right", "turn_left") * max_steering, steering_speed * delta)
+		acceleration = Input.get_axis("move_backward", "move_forward")
 
 	if acceleration > 0:
 		acceleration = 1

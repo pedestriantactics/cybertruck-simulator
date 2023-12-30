@@ -7,3 +7,4 @@ res://materials/grid-grass.tres
 res://materials/everything_shiny.tres
 res://materials/grid-dirt.tres
 res://props/prop-bench.tscn
+res://scripts/start_timer.gd
