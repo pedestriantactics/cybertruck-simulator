@@ -1,6 +1,7 @@
-Label
-ColorRect
 Control
+Label
+HBoxContainer
+ColorRect
 Node
 StaticBody3D
 CollisionShape3D
@@ -11,4 +12,3 @@ CSGBox3D
 AudioStreamPlayer
 AnimationPlayer
 Button
-VBoxContainer

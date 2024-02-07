@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdgf8o3jwsgxq"]
+[gd_scene load_steps=5 format=3 uid="uid://cdgf8o3jwsgxq"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_m7t57"]
 [ext_resource type="Script" path="res://scene_menu.gd" id="2_5aap3"]
+[ext_resource type="StyleBox" uid="uid://cbvnyicwi1mdq" path="res://ui/light-container.tres" id="3_b0esn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrmmm"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 1, 0.309804, 1)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_m7t57")
 script = ExtResource("2_5aap3")
-play_button_path = NodePath("VBoxContainer/Button")
+play_button_path = NodePath("Margin/HBoxContainer/Button")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -21,28 +29,72 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.239216, 0.239216, 0.239216, 1)
+color = Color(0, 0, 0, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Margin" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 64
-alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 128
-text = "Cybertruck Simulator 2024"
+[node name="Label" type="Label" parent="Margin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 131.0
+offset_right = -131.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Cybertruck Simulator is a purely fictional game created by Pedestrian Tactics for entertainment purposes only. All content, including vehicles, environments, and scenarios, is entirely imaginative and not affiliated with or endorsed by any real-world entities. This game does not reflect the views or policies of Pedestrian Tactics, its employees, or any associated individuals. Players should be aware that the game's depictions do not encourage or condone any form of reckless, illegal, or unsafe behavior in reality.
+
+Pedestrian Tactics is not liable for any personal, physical, or digital damages resulting from gameplay. This includes but is not limited to injury, damage to devices, or influence on behavior. The game is designed to be an engaging fictional experience, and any resemblance to real-life situations or entities is purely coincidental. Players are responsible for their actions and should not replicate any in-game activity in the real world.
+
+By proceeding beyond this point, you acknowledge and agree to the fictional nature of the game and its content, absolving Pedestrian Tactics of any responsibility for real-world actions inspired by the game. If you experience any adverse effects due to playing this game, consider consulting your healthcare provider."
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Button" type="Button" parent="Margin/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
-text = "Play"
+theme_override_styles/normal = SubResource("StyleBoxFlat_xrmmm")
+text = "Just go"
+
+[node name="Button2" type="Button" parent="Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = ExtResource("3_b0esn")
+text = "Controls"
+
+[node name="Button3" type="Button" parent="Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = ExtResource("3_b0esn")
+text = "Quit"
