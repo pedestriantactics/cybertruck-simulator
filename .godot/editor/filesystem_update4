@@ -1,11 +1,9 @@
 res://default_bus_layout.tres
-res://play.tscn
+res://menu.tscn
 res://environments/new_environment.tres
 res://materials/everything.tres
 res://materials/grid.tres
 res://materials/grid-grass.tres
 res://materials/everything_shiny.tres
 res://materials/grid-dirt.tres
-res://menu.tscn
-res://pt_theme.tres
-res://ui/light-container.tres
+res://play.tscn
