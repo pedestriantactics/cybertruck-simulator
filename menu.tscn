@@ -1,10 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdgf8o3jwsgxq"]
+[gd_scene load_steps=10 format=3 uid="uid://cdgf8o3jwsgxq"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_m7t57"]
 [ext_resource type="Script" path="res://scripts/scene_menu.gd" id="2_5aap3"]
 [ext_resource type="Script" path="res://scripts/toggle_menu.gd" id="3_o8npu"]
 [ext_resource type="Texture2D" uid="uid://doowpjqy2iklh" path="res://Keyboard Guide.svg" id="4_86pho"]
+[ext_resource type="Texture2D" uid="uid://dam6t47vx1dol" path="res://ui/glitch.png" id="4_q3v8p"]
 [ext_resource type="Shader" path="res://materials/offset.gdshader" id="5_pg62n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_43mau"]
+shader = ExtResource("5_pg62n")
+shader_parameter/offset = 0.488
+shader_parameter/dispAmt = 0.1
+shader_parameter/abberationAmt = 0.0
+shader_parameter/dispSize = 0.433
+shader_parameter/displace = ExtResource("4_q3v8p")
 
 [sub_resource type="Animation" id="Animation_0jcxo"]
 resource_name = "transition"
@@ -23,14 +32,23 @@ tracks/0/keys = {
 "method": &"_refresh_current_menu"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect2:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_43mau")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_38wxc"]
 _data = {
 "transition": SubResource("Animation_0jcxo")
 }
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_43mau"]
-shader = ExtResource("5_pg62n")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
