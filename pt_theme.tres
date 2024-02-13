@@ -1,14 +1,31 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c5e7qkd72wxfn"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://c5e7qkd72wxfn"]
 
-[ext_resource type="StyleBox" uid="uid://d2js3s8r07vwe" path="res://ui/dark-container.tres" id="1_ui7o3"]
+[ext_resource type="StyleBox" uid="uid://ewll0nu6usy4" path="res://ui/highlight-container.tres" id="1_6d2qs"]
 [ext_resource type="FontFile" uid="uid://dw8ppg88hpy7d" path="res://fonts/Hyperwalk-Display.otf" id="2_0vmo1"]
+[ext_resource type="StyleBox" uid="uid://cbvnyicwi1mdq" path="res://ui/button-container.tres" id="2_rt758"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oijq6"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.431373, 0.431373, 0.431373, 1)
 
 [resource]
 default_font = ExtResource("2_0vmo1")
 default_font_size = 32
-Button/colors/font_color = Color(1, 1, 1, 1)
-Button/styles/normal = ExtResource("1_ui7o3")
-Label/constants/line_spacing = 21
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 48
+Button/styles/focus = ExtResource("1_6d2qs")
+Button/styles/hover = ExtResource("1_6d2qs")
+Button/styles/normal = ExtResource("2_rt758")
+Button/styles/pressed = ExtResource("1_6d2qs")
+Label/constants/line_spacing = 16
+Label/font_sizes/font_size = 16
 LineEdit/colors/caret_color = Color(1, 1, 1, 1)
 LineEdit/colors/clear_button_color = Color(1, 1, 1, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
@@ -16,8 +33,8 @@ LineEdit/colors/font_color = Color(1, 1, 1, 1)
 LineEdit/colors/font_outline_color = Color(1, 1, 1, 1)
 LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
 LineEdit/colors/selection_color = Color(1, 1, 1, 1)
-LineEdit/styles/focus = ExtResource("1_ui7o3")
-LineEdit/styles/normal = ExtResource("1_ui7o3")
-LineEdit/styles/read_only = ExtResource("1_ui7o3")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_oijq6")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_oijq6")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_oijq6")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
 RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)

@@ -1,8 +1,9 @@
-TextureRect
 Control
+ColorRect
+AnimationPlayer
+TextureRect
 Label
 HBoxContainer
-ColorRect
 Node
 StaticBody3D
 CollisionShape3D
@@ -11,5 +12,3 @@ CSGMesh3D
 CollisionPolygon3D
 CSGBox3D
 AudioStreamPlayer
-AnimationPlayer
-Button

@@ -486,121 +486,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.6409, 0.0492973, -99.2022
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.7105, 0.0493002, -60.8237)
 
 [node name="Human2" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.6501, 0.0493011, -58.0345)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7105, 0.0493002, -35.8237)
 
 [node name="Human3" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.897, 0.0493011, -58.9286)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7105, 0.0493002, -34.8237)
 
 [node name="Human4" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.5141, 0.0493011, -58.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7105, 0.0493002, -31.8237)
 
 [node name="Human10" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5141, 0.0493011, -49.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7105, 0.0493002, -30.8237)
 
 [node name="Human11" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.5141, 0.0493011, -49.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7105, 0.0493002, -27.8237)
 
 [node name="Human17" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5141, -0.950699, -49.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7105, 0.0493002, -26.8237)
 
 [node name="Human18" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5141, 0.0493011, -46.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7105, 0.0493002, -22.8237)
 
 [node name="Human19" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5141, 0.0493011, -46.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7105, 0.0493002, -21.8237)
 
 [node name="Human20" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5141, -0.950699, -46.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7105, 0.0493002, -15.8237)
 
 [node name="Human21" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5141, 0.0493011, -40.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7105, 0.0493002, -14.8237)
 
 [node name="Human22" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5141, 0.0493011, -40.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7105, 0.0493002, -36.8237)
 
 [node name="Human23" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5141, -0.950699, -40.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7105, 0.0493002, -35.8237)
 
 [node name="Human24" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5141, 0.0493011, -35.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7105, 0.0493002, -32.8237)
 
 [node name="Human25" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5141, 0.0493011, -35.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7105, 0.0493002, -31.8237)
 
 [node name="Human26" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5141, 0.049301, -35.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7105, 0.0493002, -28.8237)
 
 [node name="Human27" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5141, 0.0493011, -41.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7105, 0.0493002, -27.8237)
 
 [node name="Human28" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5141, 0.0493011, -41.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7105, 0.0493002, -23.8237)
 
 [node name="Human29" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5141, -0.950699, -41.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7105, 0.0493002, -22.8237)
 
 [node name="Human30" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.5141, 0.0493011, -38.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7105, 0.0493002, -16.8237)
 
 [node name="Human31" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5141, 0.0493011, -38.5907)
-
-[node name="Human32" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5141, -0.950699, -38.5907)
-
-[node name="Human33" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.5141, 0.0493011, -32.5907)
-
-[node name="Human34" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5141, 0.0493011, -32.5907)
-
-[node name="Human35" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5141, -0.950699, -32.5907)
-
-[node name="Human36" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5141, 0.0493011, -27.5907)
-
-[node name="Human37" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5141, 0.0493011, -27.5907)
-
-[node name="Human38" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5141, -0.950699, -27.5907)
-
-[node name="Human39" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5141, 0.0493011, -41.5907)
-
-[node name="Human40" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5141, 0.0493011, -41.5907)
-
-[node name="Human41" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5141, -0.950699, -41.5907)
-
-[node name="Human42" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.5141, 0.0493011, -38.5907)
-
-[node name="Human43" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5141, 0.0493011, -38.5907)
-
-[node name="Human44" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5141, -0.950699, -38.5907)
-
-[node name="Human45" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.5141, 0.0493011, -32.5907)
-
-[node name="Human46" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5141, 0.0493011, -32.5907)
-
-[node name="Human47" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5141, -0.950699, -32.5907)
-
-[node name="Human48" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5141, 0.0493011, -27.5907)
-
-[node name="Human49" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5141, 0.0493011, -27.5907)
-
-[node name="Human50" parent="." instance=ExtResource("4_y1n71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5141, -0.950699, -27.5907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7105, 0.0493002, -15.8237)
 
 [node name="Human5" parent="." instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.7747, 0.0493011, -59.6878)
@@ -720,7 +663,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.3025, 0.155801, -40.4766)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.341, 0.155801, -40.2635)
 
 [node name="Bench" parent="." instance=ExtResource("64_h38n0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.6498, 0.0492997, -55.6077)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.6606, 0.0609879, -55.6197)
 
 [node name="Bench2" parent="." instance=ExtResource("64_h38n0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.0475, 0.0492997, -55.6077)

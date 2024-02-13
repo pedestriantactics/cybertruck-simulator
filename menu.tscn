@@ -1,16 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdgf8o3jwsgxq"]
+[gd_scene load_steps=9 format=3 uid="uid://cdgf8o3jwsgxq"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_m7t57"]
-[ext_resource type="Script" path="res://scene_menu.gd" id="2_5aap3"]
-[ext_resource type="StyleBox" uid="uid://cbvnyicwi1mdq" path="res://ui/light-container.tres" id="3_b0esn"]
+[ext_resource type="Script" path="res://scripts/scene_menu.gd" id="2_5aap3"]
+[ext_resource type="Script" path="res://scripts/toggle_menu.gd" id="3_o8npu"]
 [ext_resource type="Texture2D" uid="uid://doowpjqy2iklh" path="res://Keyboard Guide.svg" id="4_86pho"]
+[ext_resource type="Shader" path="res://materials/offset.gdshader" id="5_pg62n"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrmmm"]
-content_margin_left = 16.0
-content_margin_top = 16.0
-content_margin_right = 16.0
-content_margin_bottom = 16.0
-bg_color = Color(0, 1, 0.309804, 1)
+[sub_resource type="Animation" id="Animation_0jcxo"]
+resource_name = "transition"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_refresh_current_menu"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38wxc"]
+_data = {
+"transition": SubResource("Animation_0jcxo")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_43mau"]
+shader = ExtResource("5_pg62n")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -21,7 +41,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_m7t57")
 script = ExtResource("2_5aap3")
-play_button_path = NodePath("Margin/HBoxContainer/Play")
+play_button_path = NodePath("Buttons/main-play")
+quit_button_path = NodePath("Buttons/quit-yes")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -30,9 +51,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
 
-[node name="Margin" type="Control" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_38wxc")
+}
+script = ExtResource("3_o8npu")
+buttons_container_path = NodePath("../Buttons")
+menus_container_path = NodePath("../Menus")
+animation_player_path = NodePath(".")
+first_menu_name = "main"
+
+[node name="Menus" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="main" type="Label" parent="Menus"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,17 +81,7 @@ offset_right = -64.0
 offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Label" type="Label" parent="Margin"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 131.0
-offset_right = -131.0
-grow_horizontal = 2
-grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Cybertruck Simulator is a purely fictional game created by Pedestrian Tactics for entertainment purposes only. All content, including vehicles, environments, and scenarios, is entirely imaginative and not affiliated with or endorsed by any real-world entities. This game does not reflect the views or policies of Pedestrian Tactics, its employees, or any associated individuals. Players should be aware that the game's depictions do not encourage or condone any form of reckless, illegal, or unsafe behavior in reality.
 
@@ -65,54 +93,15 @@ vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Margin"]
+[node name="controls" type="Control" parent="Menus"]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -88.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 32
-alignment = 1
+grow_vertical = 2
 
-[node name="Play" type="Button" parent="Margin/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = SubResource("StyleBoxFlat_xrmmm")
-text = "Just go"
-
-[node name="Controls" type="Button" parent="Margin/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = ExtResource("3_b0esn")
-text = "Controls"
-
-[node name="Quit" type="Button" parent="Margin/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = ExtResource("3_b0esn")
-text = "Quit"
-
-[node name="Back" type="Button" parent="Margin/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = ExtResource("3_b0esn")
-text = "Back"
-
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="Menus/controls"]
 self_modulate = Color(0.529412, 0.529412, 0.529412, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -120,11 +109,97 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -797.0
-offset_top = -253.0
-offset_right = 796.0
-offset_bottom = 253.0
+offset_left = -491.0
+offset_top = -156.0
+offset_right = 491.0
+offset_bottom = 156.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_86pho")
 expand_mode = 1
+
+[node name="quit" type="Control" parent="Menus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Menus/quit"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="text" type="Label" parent="Menus/quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 432
+text = "Are you sure?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -101.0
+offset_right = 32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="main-play" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Just go"
+
+[node name="main-controls" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Controls"
+
+[node name="main-quit" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+
+[node name="quit-yes" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Yes"
+
+[node name="quit-main" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Oh never mind"
+
+[node name="controls-main" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_43mau")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
