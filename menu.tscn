@@ -1,23 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdgf8o3jwsgxq"]
+[gd_scene load_steps=12 format=3 uid="uid://cdgf8o3jwsgxq"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_m7t57"]
 [ext_resource type="Script" path="res://scripts/scene_menu.gd" id="2_5aap3"]
 [ext_resource type="Script" path="res://scripts/toggle_menu.gd" id="3_o8npu"]
 [ext_resource type="Texture2D" uid="uid://doowpjqy2iklh" path="res://Keyboard Guide.svg" id="4_86pho"]
-[ext_resource type="Texture2D" uid="uid://dam6t47vx1dol" path="res://ui/glitch.png" id="4_q3v8p"]
 [ext_resource type="Shader" path="res://materials/offset.gdshader" id="5_pg62n"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_43mau"]
-shader = ExtResource("5_pg62n")
-shader_parameter/offset = 0.488
-shader_parameter/dispAmt = 0.1
-shader_parameter/abberationAmt = 0.0
-shader_parameter/dispSize = 0.433
-shader_parameter/displace = ExtResource("4_q3v8p")
+[ext_resource type="Texture2D" uid="uid://ckq1o40omrfu6" path="res://textures/glitch.jpg" id="6_do5uf"]
+[ext_resource type="Script" path="res://scripts/shader_glitch.gd" id="7_dnh87"]
 
 [sub_resource type="Animation" id="Animation_0jcxo"]
 resource_name = "transition"
 length = 0.4
+step = 0.05
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -25,7 +19,7 @@ tracks/0/path = NodePath("AnimationPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0.05),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -35,20 +29,43 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect2:material")
+tracks/1/path = NodePath("ColorRect2:material:shader_parameter/dispAmt")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5po4n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:material:shader_parameter/dispAmt")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("ShaderMaterial_43mau")]
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_38wxc"]
 _data = {
+"RESET": SubResource("Animation_5po4n"),
 "transition": SubResource("Animation_0jcxo")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_43mau"]
+shader = ExtResource("5_pg62n")
+shader_parameter/offset = Vector2(2.08165e-12, 2.08165e-12)
+shader_parameter/dispAmt = 0.0
+shader_parameter/dispSize = 0.358
+shader_parameter/displace = ExtResource("6_do5uf")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -221,3 +238,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("7_dnh87")

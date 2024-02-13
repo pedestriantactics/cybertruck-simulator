@@ -1,6 +1,8 @@
 res://default_bus_layout.tres
+res://scripts/shader_glitch.gd
 res://menu.tscn
 res://pt_theme.tres
+res://materials/offset.gdshader
 res://environments/new_environment.tres
 res://materials/everything.tres
 res://materials/grid.tres
@@ -10,7 +12,3 @@ res://materials/grid-dirt.tres
 res://play.tscn
 res://props/prop-human.tscn
 res://props/prop-car.tscn
-res://ui/highlight-container.tres
-res://ui/button-container.tres
-res://scripts/toggle_menu.gd
-res://materials/offset.gdshader
