@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgqdb3ijsk8kx"]
+
+[ext_resource type="Script" path="res://scripts/button_audio_player.gd" id="1_r1x3h"]
+[ext_resource type="AudioStream" uid="uid://cpfjsrjw5kdco" path="res://sounds/ui-button-select-1.wav" id="2_n12ep"]
+[ext_resource type="AudioStream" uid="uid://bnp7q28s2futk" path="res://sounds/ui-button-press.wav" id="3_s22ib"]
+
+[node name="ButtonPlayer" type="AudioStreamPlayer"]
+volume_db = -3.0
+script = ExtResource("1_r1x3h")
+select_sounds = Array[AudioStream]([ExtResource("2_n12ep")])
+press_sound = ExtResource("3_s22ib")

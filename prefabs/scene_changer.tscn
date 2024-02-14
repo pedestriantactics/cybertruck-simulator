@@ -1,37 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl1riwea14le"]
+[gd_scene load_steps=16 format=3 uid="uid://cl1riwea14le"]
 
 [ext_resource type="Script" path="res://scripts/scene_changer.gd" id="1_rbkle"]
+[ext_resource type="Shader" path="res://materials/offset.gdshader" id="2_3l6gy"]
+[ext_resource type="Texture2D" uid="uid://clrbi2xmfe644" path="res://textures/glitch-post.jpg" id="3_u27tc"]
+[ext_resource type="Script" path="res://scripts/shader_glitch.gd" id="4_ks6cd"]
+[ext_resource type="Script" path="res://scripts/random_audio_stream_player.gd" id="5_hp7c1"]
+[ext_resource type="AudioStream" uid="uid://cdw50anqraeov" path="res://sounds/ui-transition-1.wav" id="6_ues18"]
+[ext_resource type="AudioStream" uid="uid://deohy4nhwcnby" path="res://sounds/ui-transition-2.wav" id="7_7qj41"]
+[ext_resource type="AudioStream" uid="uid://dkqi5kkdfolh8" path="res://sounds/ui-transition-3.wav" id="8_akn76"]
+[ext_resource type="AudioStream" uid="uid://ccreunq2k5axq" path="res://sounds/ui-transition-4.wav" id="9_we1md"]
+[ext_resource type="AudioStream" uid="uid://bu7syons7i3yo" path="res://sounds/ui-transition-5.wav" id="10_45ebi"]
+[ext_resource type="AudioStream" uid="uid://bucsamfybpbah" path="res://sounds/ui-transition-6.wav" id="11_y3nj6"]
 
 [sub_resource type="Animation" id="Animation_v78rf"]
 resource_name = "fade_in"
-length = 0.5
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SceneChanger/ColorRect:self_modulate")
+tracks/0/path = NodePath("SceneChanger/CanvasLayer/Glitch:material:shader_parameter/dispAmt")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.378929, 1),
+"update": 1,
+"values": [2.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_flr3g"]
 resource_name = "fade_out"
-length = 0.5
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SceneChanger/ColorRect:self_modulate")
+tracks/0/path = NodePath("SceneChanger/CanvasLayer/Glitch:material:shader_parameter/dispAmt")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(2.82843, 1),
+"update": 1,
+"values": [0.0, 2.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SceneChanger/TransitionSounds")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_random"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dmqu1"]
@@ -40,6 +64,13 @@ _data = {
 "fade_out": SubResource("Animation_flr3g")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e3jgl"]
+shader = ExtResource("2_3l6gy")
+shader_parameter/offset = Vector2(2.08165e-12, 2.08165e-12)
+shader_parameter/dispAmt = 2.0
+shader_parameter/dispSize = 0.416
+shader_parameter/displace = ExtResource("3_u27tc")
+
 [node name="SceneChanger" type="AnimationPlayer"]
 process_mode = 3
 libraries = {
@@ -47,11 +78,20 @@ libraries = {
 }
 script = ExtResource("1_rbkle")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-z_index = 99
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Glitch" type="ColorRect" parent="CanvasLayer"]
+z_index = 999
+material = SubResource("ShaderMaterial_e3jgl")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_ks6cd")
+
+[node name="TransitionSounds" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+script = ExtResource("5_hp7c1")
+sounds = Array[AudioStream]([ExtResource("6_ues18"), ExtResource("7_7qj41"), ExtResource("8_akn76"), ExtResource("9_we1md"), ExtResource("10_45ebi"), ExtResource("11_y3nj6")])

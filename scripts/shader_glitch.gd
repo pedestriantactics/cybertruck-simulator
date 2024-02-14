@@ -1,7 +1,7 @@
 extends ColorRect  # or whatever node type your object is
 
 var time_passed = 0.0
-var interval_seconds = .01
+var interval_seconds = .04
 
 func _process(delta):
 	time_passed += delta

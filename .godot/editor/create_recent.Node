@@ -1,4 +1,8 @@
+Button
+VBoxContainer
 Control
+AudioStreamPlayer
+CanvasLayer
 ColorRect
 AnimationPlayer
 TextureRect
@@ -9,6 +13,3 @@ StaticBody3D
 CollisionShape3D
 MeshInstance3D
 CSGMesh3D
-CollisionPolygon3D
-CSGBox3D
-AudioStreamPlayer
