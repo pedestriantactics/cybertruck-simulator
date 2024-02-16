@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=78 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -71,6 +71,7 @@
 [ext_resource type="PackedScene" uid="uid://di8tafpmrodmy" path="res://props/prop-trash-can.tscn" id="69_hinvj"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="70_t6n0f"]
 [ext_resource type="Shader" path="res://materials/bw.gdshader" id="71_i2cqu"]
+[ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="72_g0p4h"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_15ilr"]
 
@@ -791,11 +792,15 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Resume"
 
+[node name="ButtonPlayer" parent="PauseMenu/VBoxContainer/Resume" instance=ExtResource("72_g0p4h")]
+
 [node name="Restart" type="Button" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Restart"
+
+[node name="ButtonPlayer" parent="PauseMenu/VBoxContainer/Restart" instance=ExtResource("72_g0p4h")]
 
 [node name="MainMenu" type="Button" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
@@ -803,15 +808,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Quit"
 
+[node name="ButtonPlayer" parent="PauseMenu/VBoxContainer/MainMenu" instance=ExtResource("72_g0p4h")]
+
 [node name="Label" type="Label" parent="PauseMenu"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 32.0
-offset_right = -32.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 103.0
+offset_bottom = 29.0
+rotation = -158.65
 text = "Paused"
+vertical_alignment = 1

@@ -49,7 +49,8 @@ func _ready():
 	# set the current menu
 	current_menu_name = first_menu_name
 	animation_player = get_node(animation_player_path)
-	animation_player.play("transition")
+	# animation_player.play("transition")
+	_refresh_current_menu()
 
 func _get_menu_name(full_name: String) -> String:
 	var split_name = full_name.split("-")
