@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://cdgf8o3jwsgxq"]
+[gd_scene load_steps=22 format=3 uid="uid://cdgf8o3jwsgxq"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_m7t57"]
 [ext_resource type="Script" path="res://scripts/scene_menu.gd" id="2_5aap3"]
+[ext_resource type="Shader" path="res://materials/invert.gdshader" id="3_6i4ca"]
 [ext_resource type="Script" path="res://scripts/toggle_menu.gd" id="3_o8npu"]
 [ext_resource type="Texture2D" uid="uid://doowpjqy2iklh" path="res://Keyboard Guide.svg" id="4_86pho"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="4_ru3qn"]
@@ -15,6 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://ccreunq2k5axq" path="res://sounds/ui-transition-4.wav" id="12_noulh"]
 [ext_resource type="AudioStream" uid="uid://bu7syons7i3yo" path="res://sounds/ui-transition-5.wav" id="13_0xc8u"]
 [ext_resource type="AudioStream" uid="uid://bucsamfybpbah" path="res://sounds/ui-transition-6.wav" id="14_w73ap"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ewc3"]
+shader = ExtResource("3_6i4ca")
 
 [sub_resource type="Animation" id="Animation_5po4n"]
 length = 0.001
@@ -152,31 +156,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
-[node name="controls" type="Control" parent="Menus"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="Menus/controls"]
-self_modulate = Color(0.529412, 0.529412, 0.529412, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -491.0
-offset_top = -156.0
-offset_right = 491.0
-offset_bottom = 156.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_86pho")
-expand_mode = 1
-
 [node name="quit" type="Control" parent="Menus"]
 layout_mode = 1
 anchors_preset = 15
@@ -209,8 +188,79 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Buttons" type="HBoxContainer" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="Menus/quit"]
+z_index = 1
+material = SubResource("ShaderMaterial_5ewc3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="controls" type="Control" parent="Menus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="controlsold" type="Control" parent="Menus/controls"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Menus/controls/controlsold"]
+self_modulate = Color(0.529412, 0.529412, 0.529412, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -491.0
+offset_top = -156.0
+offset_right = 491.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_86pho")
+expand_mode = 1
+
+[node name="main" type="Label" parent="Menus/controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 128
+text = "<  ^  >  SHIFT"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="main2" type="Label" parent="Menus/controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 504.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "(These are the controls)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
