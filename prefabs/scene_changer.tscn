@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://cl1riwea14le"]
+[gd_scene load_steps=18 format=3 uid="uid://cl1riwea14le"]
 
 [ext_resource type="Script" path="res://scripts/scene_changer.gd" id="1_rbkle"]
 [ext_resource type="Shader" path="res://materials/offset.gdshader" id="2_3l6gy"]
 [ext_resource type="Texture2D" uid="uid://clrbi2xmfe644" path="res://textures/glitch-post.jpg" id="3_u27tc"]
 [ext_resource type="Script" path="res://scripts/shader_glitch.gd" id="4_ks6cd"]
 [ext_resource type="Script" path="res://scripts/random_audio_stream_player.gd" id="5_hp7c1"]
+[ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="5_pka8a"]
+[ext_resource type="Script" path="res://scripts/loader.gd" id="6_i1vdg"]
 [ext_resource type="AudioStream" uid="uid://cdw50anqraeov" path="res://sounds/ui-transition-1.wav" id="6_ues18"]
 [ext_resource type="AudioStream" uid="uid://deohy4nhwcnby" path="res://sounds/ui-transition-2.wav" id="7_7qj41"]
 [ext_resource type="AudioStream" uid="uid://dkqi5kkdfolh8" path="res://sounds/ui-transition-3.wav" id="8_akn76"]
@@ -15,6 +17,7 @@
 [sub_resource type="Animation" id="Animation_v78rf"]
 resource_name = "fade_in"
 length = 0.15
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -27,10 +30,25 @@ tracks/0/keys = {
 "update": 1,
 "values": [2.0, 0.0]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SceneChanger")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"unpause"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_flr3g"]
 resource_name = "fade_out"
 length = 0.15
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,6 +75,20 @@ tracks/1/keys = {
 "method": &"play_random"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SceneChanger")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animation_change_scene"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dmqu1"]
 _data = {
@@ -81,7 +113,7 @@ script = ExtResource("1_rbkle")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Glitch" type="ColorRect" parent="CanvasLayer"]
-z_index = 999
+z_index = 99
 material = SubResource("ShaderMaterial_e3jgl")
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,6 +122,41 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_ks6cd")
+
+[node name="ProgressScreen" type="Control" parent="CanvasLayer"]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_pka8a")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ProgressScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/ProgressScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+show_percentage = false
+script = ExtResource("6_i1vdg")
 
 [node name="TransitionSounds" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0

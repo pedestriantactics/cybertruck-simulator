@@ -11,3 +11,13 @@ res://materials/grid-dirt.tres
 res://materials/bw.gdshader
 res://materials/invert.gdshader
 res://menu.tscn
+res://intro.tscn
+res://scripts/intro.gd
+res://scripts/pause_menu.gd
+res://scripts/scene_changer.gd
+res://scripts/scene_menu.gd
+res://scripts/archive_code_display.gd
+res://scripts/globals.gd
+res://loader.tscn
+res://scripts/loader.gd
+res://prefabs/scene_changer.tscn

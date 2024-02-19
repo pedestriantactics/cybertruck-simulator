@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=79 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -72,6 +72,7 @@
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="70_t6n0f"]
 [ext_resource type="Shader" path="res://materials/bw.gdshader" id="71_i2cqu"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="72_g0p4h"]
+[ext_resource type="Script" path="res://scripts/archive_code_display.gd" id="73_3she0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_15ilr"]
 
@@ -90,7 +91,7 @@ shader_parameter/hide = false
 shader_parameter/color = Color(0.658824, 0.803922, 0.929412, 1)
 shader_parameter/strength = 0.4
 
-[node name="TownScene" type="Node3D"]
+[node name="World" type="Node3D"]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -109,7 +110,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.145098)
+color = Color(0, 0, 0, 0.615686)
 
 [node name="TimerLabel" type="Label" parent="Control"]
 layout_mode = 1
@@ -124,6 +125,7 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 64
 text = "Timer!"
 horizontal_alignment = 1
@@ -155,6 +157,7 @@ grow_vertical = 2
 layout_mode = 1
 offset_right = 30.0
 offset_bottom = 43.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("35_xvq7y")
 theme_override_font_sizes/font_size = 128
 text = "D"
@@ -177,6 +180,7 @@ grow_vertical = 2
 [node name="Spedometer" type="Label" parent="Dash/Margin/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("35_xvq7y")
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 2
@@ -186,6 +190,7 @@ speed_unit = 2
 
 [node name="Lawsuits" type="Label" parent="Dash/Margin/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("35_xvq7y")
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 2
@@ -422,322 +427,324 @@ surface_material_override/4 = ExtResource("51_ns0he")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_erejo")
 
-[node name="StreetLight" parent="." instance=ExtResource("47_wrdxx")]
+[node name="Props" type="Node" parent="."]
+
+[node name="StreetLight" parent="Props" instance=ExtResource("47_wrdxx")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -45.173, 0.155798, -40.5302)
 
-[node name="StreetLight3" parent="." instance=ExtResource("47_wrdxx")]
+[node name="StreetLight3" parent="Props" instance=ExtResource("47_wrdxx")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -70.173, 0.155798, -40.5302)
 
-[node name="StreetLight4" parent="." instance=ExtResource("47_wrdxx")]
+[node name="StreetLight4" parent="Props" instance=ExtResource("47_wrdxx")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -80.173, 0.155798, -55.5302)
 
-[node name="StreetLight6" parent="." instance=ExtResource("47_wrdxx")]
+[node name="StreetLight6" parent="Props" instance=ExtResource("47_wrdxx")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58.173, 0.155798, -55.5302)
 
-[node name="Tree" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.991, 0.155802, -40.4765)
 
-[node name="Tree2" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree2" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.2268, 0.155802, -40.4765)
 
-[node name="Tree13" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree13" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.4933, 0.155802, -40.4765)
 
-[node name="Tree3" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree3" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.7974, 0.155802, -40.4765)
 
-[node name="Tree4" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree4" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.1517, 0.155802, -40.4765)
 
-[node name="Tree5" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree5" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.0787, 0.155802, -40.4765)
 
-[node name="Tree6" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree6" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.6706, 0.155802, -40.4765)
 
-[node name="Tree7" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree7" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.9035, 0.155802, -56.0883)
 
-[node name="Tree8" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree8" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.7873, 0.155802, -56.0883)
 
-[node name="Tree9" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree9" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.4016, 0.155802, -56.0883)
 
-[node name="Tree10" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree10" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.8779, 0.155802, -56.0883)
 
-[node name="Tree11" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree11" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.404, 0.155802, -56.0883)
 
-[node name="Tree12" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree12" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.0091, 0.155802, -56.0883)
 
-[node name="Tree14" parent="." instance=ExtResource("51_mffka")]
+[node name="Tree14" parent="Props" instance=ExtResource("51_mffka")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.7584, 0.0492983, -63.4451)
 
-[node name="Tree16" parent="." instance=ExtResource("51_mffka")]
+[node name="Tree16" parent="Props" instance=ExtResource("51_mffka")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.2981, 0.0493011, -63.2687)
 
-[node name="Tree17" parent="." instance=ExtResource("51_mffka")]
+[node name="Tree17" parent="Props" instance=ExtResource("51_mffka")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.4612, 0.0492992, -77.4222)
 
-[node name="Tree18" parent="." instance=ExtResource("49_e6ccq")]
+[node name="Tree18" parent="Props" instance=ExtResource("49_e6ccq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.3994, 0.0493011, -88.4324)
 
-[node name="Tree19" parent="." instance=ExtResource("49_e6ccq")]
+[node name="Tree19" parent="Props" instance=ExtResource("49_e6ccq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.8783, 0.049305, -96.1886)
 
-[node name="Tree20" parent="." instance=ExtResource("49_e6ccq")]
+[node name="Tree20" parent="Props" instance=ExtResource("49_e6ccq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.6409, 0.0492973, -99.2022)
 
-[node name="Human" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.7105, 0.0493002, -60.8237)
 
-[node name="Human2" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human2" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7105, 0.0493002, -35.8237)
 
-[node name="Human3" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human3" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7105, 0.0493002, -34.8237)
 
-[node name="Human4" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human4" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7105, 0.0493002, -31.8237)
 
-[node name="Human10" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human10" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7105, 0.0493002, -30.8237)
 
-[node name="Human11" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human11" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7105, 0.0493002, -27.8237)
 
-[node name="Human17" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human17" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7105, 0.0493002, -26.8237)
 
-[node name="Human18" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human18" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7105, 0.0493002, -22.8237)
 
-[node name="Human19" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human19" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7105, 0.0493002, -21.8237)
 
-[node name="Human20" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human20" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7105, 0.0493002, -15.8237)
 
-[node name="Human21" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human21" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7105, 0.0493002, -14.8237)
 
-[node name="Human22" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human22" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7105, 0.0493002, -36.8237)
 
-[node name="Human23" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human23" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7105, 0.0493002, -35.8237)
 
-[node name="Human24" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human24" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7105, 0.0493002, -32.8237)
 
-[node name="Human25" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human25" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7105, 0.0493002, -31.8237)
 
-[node name="Human26" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human26" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7105, 0.0493002, -28.8237)
 
-[node name="Human27" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human27" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7105, 0.0493002, -27.8237)
 
-[node name="Human28" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human28" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7105, 0.0493002, -23.8237)
 
-[node name="Human29" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human29" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7105, 0.0493002, -22.8237)
 
-[node name="Human30" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human30" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7105, 0.0493002, -16.8237)
 
-[node name="Human31" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human31" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7105, 0.0493002, -15.8237)
 
-[node name="Human5" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human5" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.7747, 0.0493011, -59.6878)
 
-[node name="Human6" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human6" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.4681, 0.0492992, -57.8518)
 
-[node name="Human7" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human7" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.482, 0.0492992, -60.3754)
 
-[node name="Human8" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human8" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.3157, 0.0492973, -69.153)
 
-[node name="Human9" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human9" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.4031, 0.0492973, -29.6662)
 
-[node name="Human12" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human12" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.3519, 0.0492973, -21.7205)
 
-[node name="Human13" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human13" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.5235, 0.0492973, -38.1131)
 
-[node name="Human14" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human14" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.6836, 0.0492973, -36.1728)
 
-[node name="Cone" parent="." instance=ExtResource("55_pcv34")]
+[node name="Cone" parent="Props" instance=ExtResource("55_pcv34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3127, -9.53672e-07, -53.1594)
 
-[node name="Cone2" parent="." instance=ExtResource("55_pcv34")]
+[node name="Cone2" parent="Props" instance=ExtResource("55_pcv34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.3569, 2.08165e-12, -53.1422)
 
-[node name="Cone3" parent="." instance=ExtResource("55_pcv34")]
+[node name="Cone3" parent="Props" instance=ExtResource("55_pcv34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.2571, 2.08165e-12, -51.5901)
 
-[node name="Cone4" parent="." instance=ExtResource("55_pcv34")]
+[node name="Cone4" parent="Props" instance=ExtResource("55_pcv34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.3171, 2.08165e-12, -51.6422)
 
-[node name="Car" parent="." instance=ExtResource("59_2onur")]
+[node name="Car" parent="Props" instance=ExtResource("59_2onur")]
 transform = Transform3D(0.00856945, 0, 0.999963, 0, 1, 0, -0.999963, 0, 0.00856945, -52.3422, 1.90735e-06, -52.3196)
 
-[node name="Car2" parent="." instance=ExtResource("59_2onur")]
+[node name="Car2" parent="Props" instance=ExtResource("59_2onur")]
 transform = Transform3D(0.00856945, 0, 0.999963, 0, 1, 0, -0.999963, 0, 0.00856945, -59.8738, 1.90735e-06, -52.184)
 
-[node name="Car3" parent="." instance=ExtResource("59_2onur")]
+[node name="Car3" parent="Props" instance=ExtResource("59_2onur")]
 transform = Transform3D(0.00856945, 0, 0.999963, 0, 1, 0, -0.999963, 0, 0.00856945, -71.711, 9.53676e-07, -52.3182)
 
-[node name="Car4" parent="." instance=ExtResource("59_2onur")]
+[node name="Car4" parent="Props" instance=ExtResource("59_2onur")]
 transform = Transform3D(0.00856945, 0, 0.999963, 0, 1, 0, -0.999963, 0, 0.00856945, -80.8151, 2.04636e-12, -52.481)
 
-[node name="Car5" parent="." instance=ExtResource("59_2onur")]
+[node name="Car5" parent="Props" instance=ExtResource("59_2onur")]
 transform = Transform3D(0.00856945, 0, 0.999963, 0, 1, 0, -0.999963, 0, 0.00856945, -72.963, 2.04636e-12, -43.4854)
 
-[node name="Car7" parent="." instance=ExtResource("59_2onur")]
+[node name="Car7" parent="Props" instance=ExtResource("59_2onur")]
 transform = Transform3D(0.00856945, 0, 0.999963, 0, 1, 0, -0.999963, 0, 0.00856945, -84.0623, 2.04636e-12, -43.4464)
 
-[node name="Car6" parent="." instance=ExtResource("59_2onur")]
+[node name="Car6" parent="Props" instance=ExtResource("59_2onur")]
 transform = Transform3D(0.00856945, 0, 0.999963, 0, 1, 0, -0.999963, 0, 0.00856945, -50.3819, 2.04636e-12, -43.438)
 
-[node name="BinTrash" parent="." instance=ExtResource("40_1i7nb")]
+[node name="BinTrash" parent="Props" instance=ExtResource("40_1i7nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.6327, 0.155799, -55.4881)
 
-[node name="BinTrash2" parent="." instance=ExtResource("40_1i7nb")]
+[node name="BinTrash2" parent="Props" instance=ExtResource("40_1i7nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.337, 0.1558, -55.4477)
 
-[node name="BinRecycle" parent="." instance=ExtResource("39_io1s0")]
+[node name="BinRecycle" parent="Props" instance=ExtResource("39_io1s0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.16, 0.1558, -55.4761)
 
-[node name="BinTrash3" parent="." instance=ExtResource("40_1i7nb")]
+[node name="BinTrash3" parent="Props" instance=ExtResource("40_1i7nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.5769, 0.1558, -55.7975)
 
-[node name="BinTrash4" parent="." instance=ExtResource("40_1i7nb")]
+[node name="BinTrash4" parent="Props" instance=ExtResource("40_1i7nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.719, 0.1558, -55.82)
 
-[node name="Cone5" parent="." instance=ExtResource("55_pcv34")]
+[node name="Cone5" parent="Props" instance=ExtResource("55_pcv34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.1173, 0.1558, -55.6021)
 
-[node name="StopSign" parent="." instance=ExtResource("46_yvgax")]
+[node name="StopSign" parent="Props" instance=ExtResource("46_yvgax")]
 transform = Transform3D(-0.0850344, 0, -0.996378, 0, 1, 0, 0.996378, 0, -0.0850344, -91.6014, 0.155799, -41.4017)
 
-[node name="Human15" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human15" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.2529, 0.0992994, -57.8964)
 
-[node name="Human16" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human16" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.2635, 0.0493007, -59.2722)
 
-[node name="Dumpster" parent="." instance=ExtResource("47_mr1bq")]
+[node name="Dumpster" parent="Props" instance=ExtResource("47_mr1bq")]
 transform = Transform3D(0.00895341, 0, -0.99996, 0, 1, 0, 0.99996, 0, 0.00895341, -69.494, 0.0493002, -19.9666)
 
-[node name="Dumpster2" parent="." instance=ExtResource("47_mr1bq")]
+[node name="Dumpster2" parent="Props" instance=ExtResource("47_mr1bq")]
 transform = Transform3D(0.00895341, 0, -0.99996, 0, 1, 0, 0.99996, 0, 0.00895341, -69.494, 0.0493002, -17.5222)
 
-[node name="Bicycle" parent="." instance=ExtResource("60_r3j3l")]
+[node name="Bicycle" parent="Props" instance=ExtResource("60_r3j3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.5953, 0.0493002, -35.7713)
 
-[node name="Bicycle2" parent="." instance=ExtResource("60_r3j3l")]
+[node name="Bicycle2" parent="Props" instance=ExtResource("60_r3j3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.4513, 0.0493002, -65.1122)
 
-[node name="Bicycle3" parent="." instance=ExtResource("60_r3j3l")]
+[node name="Bicycle3" parent="Props" instance=ExtResource("60_r3j3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.1535, 0.1558, -55.5766)
 
-[node name="Bicycle4" parent="." instance=ExtResource("60_r3j3l")]
+[node name="Bicycle4" parent="Props" instance=ExtResource("60_r3j3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.8292, 0.1558, -55.4856)
 
-[node name="Bicycle5" parent="." instance=ExtResource("60_r3j3l")]
+[node name="Bicycle5" parent="Props" instance=ExtResource("60_r3j3l")]
 transform = Transform3D(0.937434, 0, 0.348163, 0, 1, 0, -0.348163, 0, 0.937434, -48.713, 0.0848185, -60.6054)
 
-[node name="BinRecycle2" parent="." instance=ExtResource("39_io1s0")]
+[node name="BinRecycle2" parent="Props" instance=ExtResource("39_io1s0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.898, 0.155799, -40.5506)
 
-[node name="BinRecycle3" parent="." instance=ExtResource("39_io1s0")]
+[node name="BinRecycle3" parent="Props" instance=ExtResource("39_io1s0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.5884, 0.155799, -40.5292)
 
-[node name="BinTrash5" parent="." instance=ExtResource("40_1i7nb")]
+[node name="BinTrash5" parent="Props" instance=ExtResource("40_1i7nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.3025, 0.155801, -40.4766)
 
-[node name="BinTrash6" parent="." instance=ExtResource("40_1i7nb")]
+[node name="BinTrash6" parent="Props" instance=ExtResource("40_1i7nb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.341, 0.155801, -40.2635)
 
-[node name="Bench" parent="." instance=ExtResource("64_h38n0")]
+[node name="Bench" parent="Props" instance=ExtResource("64_h38n0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.6606, 0.0609879, -55.6197)
 
-[node name="Bench2" parent="." instance=ExtResource("64_h38n0")]
+[node name="Bench2" parent="Props" instance=ExtResource("64_h38n0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.0475, 0.0492997, -55.6077)
 
-[node name="Bench3" parent="." instance=ExtResource("64_h38n0")]
+[node name="Bench3" parent="Props" instance=ExtResource("64_h38n0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.8093, 0.0492997, -55.6077)
 
-[node name="Bench4" parent="." instance=ExtResource("64_h38n0")]
+[node name="Bench4" parent="Props" instance=ExtResource("64_h38n0")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -67.4625, 0.0492997, -40.4809)
 
-[node name="Bench5" parent="." instance=ExtResource("64_h38n0")]
+[node name="Bench5" parent="Props" instance=ExtResource("64_h38n0")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -48.4625, 0.0492997, -40.4809)
 
-[node name="Bench6" parent="." instance=ExtResource("64_h38n0")]
+[node name="Bench6" parent="Props" instance=ExtResource("64_h38n0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -50)
 
-[node name="Bicycle6" parent="." instance=ExtResource("60_r3j3l")]
+[node name="Bicycle6" parent="Props" instance=ExtResource("60_r3j3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -44)
 
-[node name="BinRecycle4" parent="." instance=ExtResource("39_io1s0")]
+[node name="BinRecycle4" parent="Props" instance=ExtResource("39_io1s0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -48)
 
-[node name="Dumpster3" parent="." instance=ExtResource("47_mr1bq")]
+[node name="Dumpster3" parent="Props" instance=ExtResource("47_mr1bq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -45)
 
-[node name="Dumpster4" parent="." instance=ExtResource("47_mr1bq")]
+[node name="Dumpster4" parent="Props" instance=ExtResource("47_mr1bq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -45)
 
-[node name="Dumpster5" parent="." instance=ExtResource("47_mr1bq")]
+[node name="Dumpster5" parent="Props" instance=ExtResource("47_mr1bq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -45)
 
-[node name="Human51" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human51" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -50)
 
-[node name="Human52" parent="." instance=ExtResource("4_y1n71")]
+[node name="Human52" parent="Props" instance=ExtResource("4_y1n71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -43)
 
-[node name="PlantLarge2" parent="." instance=ExtResource("66_3oiph")]
+[node name="PlantLarge2" parent="Props" instance=ExtResource("66_3oiph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -43)
 
-[node name="PlantLarge1" parent="." instance=ExtResource("67_d1lrm")]
+[node name="PlantLarge1" parent="Props" instance=ExtResource("67_d1lrm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -44)
 
-[node name="PlantLarge3" parent="." instance=ExtResource("66_3oiph")]
+[node name="PlantLarge3" parent="Props" instance=ExtResource("66_3oiph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -47)
 
-[node name="PlantSmall" parent="." instance=ExtResource("68_s3jtk")]
+[node name="PlantSmall" parent="Props" instance=ExtResource("68_s3jtk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -43)
 
-[node name="StreetLight2" parent="." instance=ExtResource("47_wrdxx")]
+[node name="StreetLight2" parent="Props" instance=ExtResource("47_wrdxx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -52)
 
-[node name="TrashCan" parent="." instance=ExtResource("69_hinvj")]
+[node name="TrashCan" parent="Props" instance=ExtResource("69_hinvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -50)
 
-[node name="TrashCan2" parent="." instance=ExtResource("69_hinvj")]
+[node name="TrashCan2" parent="Props" instance=ExtResource("69_hinvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -51)
 
-[node name="Tree15" parent="." instance=ExtResource("51_mffka")]
+[node name="Tree15" parent="Props" instance=ExtResource("51_mffka")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -49)
 
-[node name="Tree21" parent="." instance=ExtResource("49_e6ccq")]
+[node name="Tree21" parent="Props" instance=ExtResource("49_e6ccq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -47)
 
-[node name="Tree22" parent="." instance=ExtResource("40_7n3um")]
+[node name="Tree22" parent="Props" instance=ExtResource("40_7n3um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -45)
 
 [node name="PauseMenu" type="Control" parent="."]
@@ -810,10 +817,36 @@ text = "Quit"
 
 [node name="ButtonPlayer" parent="PauseMenu/VBoxContainer/MainMenu" instance=ExtResource("72_g0p4h")]
 
-[node name="Label" type="Label" parent="PauseMenu"]
+[node name="Margin" type="Control" parent="PauseMenu"]
+z_index = 2
 layout_mode = 1
-offset_right = 103.0
-offset_bottom = 29.0
-rotation = -158.65
-text = "Paused"
-vertical_alignment = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Version" type="Label" parent="PauseMenu/Margin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PT-G3"
+script = ExtResource("73_3she0")
+
+[node name="PT" type="Label" parent="PauseMenu/Margin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pedestrian Tactics"
+horizontal_alignment = 2
+vertical_alignment = 2

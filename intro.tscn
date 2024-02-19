@@ -1,0 +1,198 @@
+[gd_scene load_steps=14 format=3 uid="uid://c0w54vuhioluj"]
+
+[ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_lcq4r"]
+[ext_resource type="Script" path="res://scripts/intro.gd" id="2_cg7yh"]
+[ext_resource type="Script" path="res://scripts/archive_code_display.gd" id="3_yuwjn"]
+[ext_resource type="AudioStream" uid="uid://smcudvmlgnc0" path="res://sounds/ui-pt-beep.wav" id="6_eebui"]
+[ext_resource type="Shader" path="res://materials/offset.gdshader" id="7_c4upa"]
+[ext_resource type="Texture2D" uid="uid://clrbi2xmfe644" path="res://textures/glitch-post.jpg" id="8_38rwr"]
+[ext_resource type="Script" path="res://scripts/shader_glitch.gd" id="9_ip6jj"]
+[ext_resource type="AudioStream" uid="uid://cdw50anqraeov" path="res://sounds/ui-transition-1.wav" id="11_jergu"]
+[ext_resource type="AudioStream" uid="uid://bucsamfybpbah" path="res://sounds/ui-transition-6.wav" id="16_7tbj2"]
+
+[sub_resource type="Animation" id="Animation_5po4n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/CanvasLayer/Glitch:material:shader_parameter/dispAmt")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0jcxo"]
+resource_name = "start"
+length = 3.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/CanvasLayer/Glitch:material:shader_parameter/dispAmt")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.31, 0.35, 0.4, 0.43, 2.02, 2.06, 2.11, 2.14),
+"transitions": PackedFloat32Array(1, 3.73213, 1, 0.324901, 1, 3.73213, 1, 0.324901, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.2, 0.2, 0.0, 0.0, 0.2, 0.2, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("title:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.39, 2.09),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sounds")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0867333,
+"start_offset": 0.117728,
+"stream": ExtResource("11_jergu")
+}, {
+"end_offset": 0.15842,
+"start_offset": 0.0935093,
+"stream": ExtResource("16_7tbj2")
+}],
+"times": PackedFloat32Array(0.38, 2.05)
+}
+tracks/2/use_blend = true
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.63),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_change_scene"
+}]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sounds2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_eebui")
+}],
+"times": PackedFloat32Array(0.38)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("version:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38wxc"]
+_data = {
+"RESET": SubResource("Animation_5po4n"),
+"start": SubResource("Animation_0jcxo")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_43mau"]
+shader = ExtResource("7_c4upa")
+shader_parameter/offset = Vector2(2.08165e-12, 2.08165e-12)
+shader_parameter/dispAmt = 0.0
+shader_parameter/dispSize = 0.416
+shader_parameter/displace = ExtResource("8_38rwr")
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lcq4r")
+script = ExtResource("2_cg7yh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 96
+text = "Pedestrian Tactics"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="version" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 96
+text = "PT-G3"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_yuwjn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_38wxc")
+}
+autoplay = "start"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="AnimationPlayer"]
+
+[node name="Glitch" type="ColorRect" parent="AnimationPlayer/CanvasLayer"]
+material = SubResource("ShaderMaterial_43mau")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_ip6jj")
+
+[node name="sounds" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
+[node name="sounds2" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0

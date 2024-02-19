@@ -133,38 +133,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="main" type="Label" parent="Menus"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = 64.0
-offset_right = -64.0
-offset_bottom = -64.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "Cybertruck Simulator is a purely fictional game created by Pedestrian Tactics for entertainment purposes only. All content, including vehicles, environments, and scenarios, is entirely imaginative and not affiliated with or endorsed by any real-world entities. This game does not reflect the views or policies of Pedestrian Tactics, its employees, or any associated individuals. Players should be aware that the game's depictions do not encourage or condone any form of reckless, illegal, or unsafe behavior in reality.
-
-Pedestrian Tactics is not liable for any personal, physical, or digital damages resulting from gameplay. This includes but is not limited to injury, damage to devices, or influence on behavior. The game is designed to be an engaging fictional experience, and any resemblance to real-life situations or entities is purely coincidental. Players are responsible for their actions and should not replicate any in-game activity in the real world.
-
-By proceeding beyond this point, you acknowledge and agree to the fictional nature of the game and its content, absolving Pedestrian Tactics of any responsibility for real-world actions inspired by the game. If you experience any adverse effects due to playing this game, consider consulting your healthcare provider."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-uppercase = true
-
 [node name="quit" type="Control" parent="Menus"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Menus/quit"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -172,7 +141,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
 
 [node name="text" type="Label" parent="Menus/quit"]
 layout_mode = 1
@@ -199,6 +167,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="controls" type="Control" parent="Menus"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -260,6 +229,37 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="main" type="Control" parent="Menus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="disclaimer" type="Label" parent="Menus/main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = -128.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Cybertruck Simulator is a purely fictional game created by Pedestrian Tactics for entertainment purposes only. All content, including vehicles, environments, and scenarios, is entirely imaginative and not affiliated with or endorsed by any real-world entities. This game does not reflect the views or policies of Pedestrian Tactics, its employees, or any associated individuals. Players should be aware that the game's depictions do not encourage or condone any form of reckless, illegal, or unsafe behavior in reality.
+
+Pedestrian Tactics is not liable for any personal, physical, or digital damages resulting from gameplay. This includes but is not limited to injury, damage to devices, or influence on behavior. The game is designed to be an engaging fictional experience, and any resemblance to real-life situations or entities is purely coincidental. Players are responsible for their actions and should not replicate any in-game activity in the real world.
+
+By proceeding beyond this point, you acknowledge and agree to the fictional nature of the game and its content, absolving Pedestrian Tactics of any responsibility for real-world actions inspired by the game. If you experience any adverse effects due to playing this game, consider consulting your healthcare provider."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
 [node name="Buttons" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
@@ -297,6 +297,7 @@ text = "Quit"
 [node name="ButtonPlayer" parent="Buttons/main-quit" instance=ExtResource("4_ru3qn")]
 
 [node name="quit-yes" type="Button" parent="Buttons"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Yes"
@@ -304,6 +305,7 @@ text = "Yes"
 [node name="ButtonPlayer" parent="Buttons/quit-yes" instance=ExtResource("4_ru3qn")]
 
 [node name="quit-main" type="Button" parent="Buttons"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Oh never mind"
