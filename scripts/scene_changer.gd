@@ -15,7 +15,7 @@ var current_scene: Node
 
 # timer to show the progress var
 var timer = 0.0
-var time_limit_seconds = 0.4
+var time_limit_seconds = 0.1
 
 # this handles changing scenes and transitioning between each scene using the ColorRect
 # when the scene change function is called, the game is paused, the ColorRect is faded using the Animation, and then the scene is changed
