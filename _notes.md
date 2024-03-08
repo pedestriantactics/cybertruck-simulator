@@ -1,6 +1,7 @@
 Cybertruck simulator
 
 - End screen with stats
+- Start screen, press shift to get out of Park
 - Menu glitch with displacement map
 - All links for menu
 - PT intro

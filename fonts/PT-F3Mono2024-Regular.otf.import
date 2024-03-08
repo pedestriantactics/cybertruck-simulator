@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dgfsjp8hbj3ht"
-path="res://.godot/imported/PT-F3Mono-Medium.otf-91b056ef65da209236bc0169e7e52c4b.fontdata"
+uid="uid://cf6nvrgw1f3by"
+path="res://.godot/imported/PT-F3Mono2024-Regular.otf-051d4edc13f111218168ae2406b1d202.fontdata"
 
 [deps]
 
-source_file="res://fonts/PT-F3Mono-Medium.otf"
-dest_files=["res://.godot/imported/PT-F3Mono-Medium.otf-91b056ef65da209236bc0169e7e52c4b.fontdata"]
+source_file="res://fonts/PT-F3Mono2024-Regular.otf"
+dest_files=["res://.godot/imported/PT-F3Mono2024-Regular.otf-051d4edc13f111218168ae2406b1d202.fontdata"]
 
 [params]
 

@@ -3,7 +3,6 @@
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
 [ext_resource type="Script" path="res://scripts/start_timer.gd" id="2_xgcq1"]
-[ext_resource type="FontFile" uid="uid://dgfsjp8hbj3ht" path="res://fonts/PT-F3Mono-Medium.otf" id="3_bit43"]
 [ext_resource type="Script" path="res://scripts/vehicle.gd" id="3_udmgw"]
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="3_waqbr"]
 [ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="4_a2qxl"]
@@ -19,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://w8jb6122t5dt" path="res://sounds/truck-accelerate-1.wav" id="9_5syvl"]
 [ext_resource type="AudioStream" uid="uid://dvp715uvnrkbw" path="res://sounds/truck-tires-loop.wav" id="9_iwxkm"]
 [ext_resource type="Script" path="res://scripts/audio_truck_tires_loop.gd" id="10_3eles"]
+[ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="10_oy7ox"]
 [ext_resource type="AudioStream" uid="uid://ds4qcis8va4du" path="res://sounds/truck-accelerate-2.wav" id="10_ywl0j"]
 [ext_resource type="AudioStream" uid="uid://duqm07bh20482" path="res://sounds/truck-accelerate-3.wav" id="11_rmkww"]
 [ext_resource type="AudioStream" uid="uid://b64vsub0d5sqr" path="res://sounds/truck-soft-accelerate.wav" id="13_3kv7e"]
@@ -164,7 +164,7 @@ offset_right = 79.5
 offset_bottom = 56.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_bit43")
+theme_override_fonts/font = ExtResource("10_oy7ox")
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -230,7 +230,7 @@ speed_unit = 2
 [node name="Lawsuits" type="Label" parent="Dash/Margin/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_bit43")
+theme_override_fonts/font = ExtResource("10_oy7ox")
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 2
 vertical_alignment = 2
