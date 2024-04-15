@@ -8,7 +8,7 @@ extends Label
 var started = false
 
 var timer = 0.00
-var timer_start_seconds = 60*2
+var timer_start_seconds = 1
 
 func _ready():
 	timer = timer_start_seconds
@@ -27,4 +27,4 @@ func _process(delta):
 		str_seconds = "0" + str_seconds
 	text = str(minutes) + ":" + str_seconds
 	if timer <= 0:
-		scene_changer.change_scene("menu")
+		scene_changer.change_scene("end")

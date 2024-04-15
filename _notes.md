@@ -1,5 +1,9 @@
 Cybertruck simulator
 
+Just implemented the blackboard
+- Make sure that's working
+
+
 - End screen with stats
 - Start screen, press shift to get out of Park
 - Menu glitch with displacement map

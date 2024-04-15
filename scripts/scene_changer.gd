@@ -4,8 +4,6 @@ var next_scene_name = ""
 var base_path = "res://"
 var file_extension = ".tscn"
 
-# TODO: add time limit
-
 # var loading = false
 
 var progress_screen: Node

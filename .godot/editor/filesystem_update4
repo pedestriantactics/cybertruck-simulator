@@ -1,6 +1,5 @@
 res://default_bus_layout.tres
-res://scripts/game_timer.gd
-res://scripts/start_timer.gd
+res://scripts/toggle_menu.gd
 res://play.tscn
 res://materials/offset.gdshader
 res://pt_theme.tres
@@ -12,3 +11,15 @@ res://materials/everything_shiny.tres
 res://materials/grid-dirt.tres
 res://materials/bw.gdshader
 res://materials/invert.gdshader
+res://end.tscn
+res://scripts/scene_menu.gd
+res://scripts/scene_end.gd
+res://menu.tscn
+res://scripts/game_timer.gd
+res://scripts/pause_menu.gd
+res://scripts/dev_console.gd
+res://prefabs/dev_console.tscn
+res://scripts/lawsuit_counter.gd
+res://scripts/blackboard.gd
+res://scripts/vehicle.gd
+res://scripts/audio_truck_tires_loop.gd

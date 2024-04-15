@@ -23,6 +23,7 @@ func on_command(text_command):
 	# add a carriage return and the command to the console
 	debug_print("command entered: " + text_command)
 
+	# exact dev console commands go here
 	match text_command:
 		"r":
 			# reload the scene
@@ -34,6 +35,45 @@ func on_command(text_command):
 			command.emit("steering .8")
 			command.emit("rpm 300")
 			return
+
+		"cbb": 
+			text_command = "checkblackboard"
+		"checkblackboard":
+			var blackboard = get_node("/root/Blackboard")
+			debug_print("blackboard contents:")
+			for key in blackboard.kvps:
+				debug_print(key + " " + blackboard.kvps[key]) 
+	
+	# contains dev console commands go here
+	var keyword = ""
+
+	# change the scene shortcut
+	keyword = "cs"
+	if text_command.begins_with(keyword):
+		text_command = text_command.replace(keyword, "changescene")
+
+	# change the scene
+	keyword = "changescene"
+	if text_command.begins_with(keyword):
+		var keyword_result = text_command.replace(keyword, "").replace(" ", "")
+		var scene_changer = get_node("/root/SceneChanger")
+		scene_changer.change_scene(keyword_result)
+		return
+
+	# add to the blackboard
+	keyword = "bb"
+	if text_command.begins_with(keyword):
+		text_command = text_command.replace(keyword, "blackboard")
+	keyword = "blackboard"
+	if text_command.begins_with(keyword):
+		if !text_command.contains(","):
+			debug_print("not enough arguments for blackboard")
+			debug_print("use a comma to separate arguments")
+			return
+		var keyword_result = text_command.replace(keyword, "").replace(" ", "").split(",")
+		var blackboard = get_node("/root/Blackboard")
+		blackboard.kvps[keyword_result[0]] = keyword_result[1]
+		return
 
 func debug_print(in_text):
 	console_label.text += "\n" + in_text

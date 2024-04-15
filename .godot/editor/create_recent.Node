@@ -1,14 +1,14 @@
+Control
+CanvasLayer
 Node
 ProgressBar
 ColorRect
-Control
 HBoxContainer
 BoxContainer
 Label
 Button
 VBoxContainer
 AudioStreamPlayer
-CanvasLayer
 AnimationPlayer
 TextureRect
 StaticBody3D
