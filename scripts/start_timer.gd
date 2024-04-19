@@ -7,7 +7,7 @@ extends Control
 @onready var timer_label = get_node("TimerLabel")
 
 var timer = 0
-var timer_max = 3
+var timer_max = 0
 var timer_running = false
 
 func _ready():

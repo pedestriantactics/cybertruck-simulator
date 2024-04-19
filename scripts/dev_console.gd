@@ -37,12 +37,13 @@ func on_command(text_command):
 			return
 
 		"cbb": 
-			text_command = "checkblackboard"
+			on_command("checkblackboard")
+			return
 		"checkblackboard":
 			var blackboard = get_node("/root/Blackboard")
 			debug_print("blackboard contents:")
 			for key in blackboard.kvps:
-				debug_print(key + " " + blackboard.kvps[key]) 
+				debug_print(key + " " + str(blackboard.kvps[key])) 
 	
 	# contains dev console commands go here
 	var keyword = ""

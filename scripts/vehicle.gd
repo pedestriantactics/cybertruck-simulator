@@ -1,5 +1,13 @@
 extends VehicleBody3D
 
+# for stats
+var total_distance_traveled_meters = 0
+var maximum_speed_achieved_meters_per_second = 0
+@onready var blackboard = $"/root/Blackboard"
+
+# for the beginning
+var parked = true
+
 # extends VehicleBody
 var max_rpm = 600.0
 var max_rpm_reverse = 200.0
@@ -75,6 +83,30 @@ func is_moving_forward() -> bool:
 
 func _physics_process(delta):
 
+	if parked:
+		if Input.is_action_just_pressed("toggle_reverse"):
+			parked = false
+			return
+		else:
+			return
+
+	# add to distance traveled only if the car is moving
+	if linear_velocity.length() > 0.5:
+		total_distance_traveled_meters += linear_velocity.length() * delta
+		# add to the blackboard
+		if blackboard:
+			blackboard.kvps["total_distance_traveled_meters"] = total_distance_traveled_meters
+
+	# get the current speed
+	var current_speed = linear_velocity.length()
+	# if the current speed is greater than the maximum speed
+	if current_speed > maximum_speed_achieved_meters_per_second:
+		# set the maximum speed to the current speed
+		maximum_speed_achieved_meters_per_second = current_speed
+		# add to the blackboard
+		if blackboard:
+			blackboard.kvps["maximum_speed_achieved_meters_per_second"] = maximum_speed_achieved_meters_per_second
+
 	# toggle the bool if the reverse switchc is pressed
 	if Input.is_action_just_pressed("toggle_reverse"):
 		forward = !forward
@@ -132,6 +164,9 @@ func _physics_process(delta):
 	if (InputProcessor.can_process_game_input == true):
 		steering = lerp(steering, Input.get_axis("turn_right", "turn_left") * max_steering, steering_speed * delta)
 		acceleration = Input.get_axis("move_backward", "move_forward")
+		# prevent glitchy things when pressing back
+		if acceleration < 0:
+			acceleration = 0
 
 	if acceleration > 0:
 		acceleration = 1

@@ -1,8 +1,7 @@
-[gd_scene load_steps=81 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=80 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
-[ext_resource type="Script" path="res://scripts/start_timer.gd" id="2_xgcq1"]
 [ext_resource type="Script" path="res://scripts/vehicle.gd" id="3_udmgw"]
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="3_waqbr"]
 [ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="4_a2qxl"]
@@ -95,7 +94,7 @@ shader_parameter/strength = 0.4
 
 [node name="World" type="Node3D"]
 
-[node name="BeginningTimer" type="Control" parent="."]
+[node name="TutorialOverlay" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,9 +102,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("33_orntt")
-script = ExtResource("2_xgcq1")
 
-[node name="ColorRect" type="ColorRect" parent="BeginningTimer"]
+[node name="ColorRect" type="ColorRect" parent="TutorialOverlay"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,7 +112,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.615686)
 
-[node name="TimerLabel" type="Label" parent="BeginningTimer"]
+[node name="TimerLabel" type="Label" parent="TutorialOverlay"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -129,7 +127,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 64
-text = "Timer!"
+text = "Press \"Shift\" to switch drive modes"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -204,6 +202,7 @@ script = ExtResource("36_iwnde")
 vehicle_node = NodePath("../../../InstancePos/Cybertruck/Body")
 forward_sound = ExtResource("45_wpc7e")
 reverse_sound = ExtResource("46_e3al3")
+tutorial_overlay_path = NodePath("../../../TutorialOverlay")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dash/Margin/Drive"]
 volume_db = -8.065
@@ -789,6 +788,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -45)
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

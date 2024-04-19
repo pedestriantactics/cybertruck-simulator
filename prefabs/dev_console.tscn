@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://de2xfhhv7yew8"]
+[gd_scene load_steps=3 format=3 uid="uid://de2xfhhv7yew8"]
 
+[ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_2cv5u"]
 [ext_resource type="Script" path="res://scripts/dev_console.gd" id="2_ukh42"]
 
 [node name="DevConsole" type="Control"]
 process_mode = 3
+z_index = 999
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2cv5u")
 script = ExtResource("2_ukh42")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -34,13 +41,15 @@ placeholder_text = "Enter command"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 42.0
-offset_top = 20.0
-offset_right = -42.0
-offset_bottom = -45.0
+offset_left = 51.0
+offset_top = -1036.0
+offset_right = -51.0
+offset_bottom = -61.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 vertical_alignment = 2
+autowrap_mode = 2
