@@ -11,15 +11,16 @@ extends Label
 var targets_hit = []
 
 func _ready():
+	# add it to the blackboard
+	blackboard.kvps["lawsuits"] = 0
 	car.object_collision_occurred.connect(_on_collision_occurred)
 	pass
 
 func _on_collision_occurred(impact, collision_info):
 	var collision_name = collision_info.get_collider().get_name()
-	if (targets_hit.find(collision_name) == -1):
+	if (targets_hit.find(collision_name) == - 1):
 		targets_hit.append(collision_name)
 		print("hit " + collision_name)
 		text = "Lawsuits " + str(targets_hit.size())
 		# add it to the blackboard
 		blackboard.kvps["lawsuits"] = targets_hit.size()
-		

@@ -37,6 +37,8 @@ var forward = true
 
 func _ready():
 	DevConsole.command.connect(handle_command)
+	if blackboard:
+		blackboard.kvps["total_distance_traveled_meters"] = 0
 
 func handle_command(text_command):
 	var check_command = ""

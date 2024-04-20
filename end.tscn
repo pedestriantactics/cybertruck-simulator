@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp2io41fhtno3"]
+[gd_scene load_steps=5 format=3 uid="uid://dp2io41fhtno3"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_63vjl"]
 [ext_resource type="Script" path="res://scripts/scene_end.gd" id="2_df16n"]
+[ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="4_pl2kf"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="5_2k7py"]
 
 [node name="End" type="Control"]
@@ -15,6 +16,8 @@ theme = ExtResource("1_63vjl")
 script = ExtResource("2_df16n")
 retry_button_path = NodePath("Buttons/retry")
 menu_button_path = NodePath("Buttons/menu")
+key_container_path = NodePath("HBoxContainer/VBoxContainer")
+value_container_path = NodePath("HBoxContainer/VBoxContainer2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -32,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 32.0
 offset_top = -101.0
-offset_right = 32.0
+offset_right = -32.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -52,3 +55,54 @@ size_flags_horizontal = 4
 text = "Menu"
 
 [node name="ButtonPlayer" parent="Buttons/menu" instance=ExtResource("5_2k7py")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -459.0
+offset_top = -114.0
+offset_right = 459.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(640, 2.08165e-12)
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="lawsuits" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "Lawsuits"
+uppercase = true
+
+[node name="total_distance_traveled_meters" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "Meters traveled"
+uppercase = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(128, 2.08165e-12)
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "0"

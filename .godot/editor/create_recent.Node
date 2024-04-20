@@ -1,13 +1,13 @@
+HBoxContainer
+Label
+Button
+VBoxContainer
 Control
 CanvasLayer
 Node
 ProgressBar
 ColorRect
-HBoxContainer
 BoxContainer
-Label
-Button
-VBoxContainer
 AudioStreamPlayer
 AnimationPlayer
 TextureRect
