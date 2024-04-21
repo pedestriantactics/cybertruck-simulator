@@ -63,17 +63,24 @@ func _on_timeout():
 		0:
 			key_labels[current_label_index].show()
 			value_labels[current_label_index].show()
-			timer = .5
+			timer = 0.3
 			timer_state = 1
+			return
 		1:
 			var value_label = value_labels[current_label_index]
-			if value_label.text.to_int() < blackboard.kvps[key_labels[current_label_index].name]:
-				value_label.text = str(value_label.text.to_int() + 1)
-				timer = 0.02
-			else:
-				timer_state = 0
-				current_label_index += 1
-				timer = 1
+			var blackboard_value = blackboard.kvps.get(key_labels[current_label_index].name)
+			if blackboard_value != null:
+				var blackboard_value_int = int(floor(blackboard_value))
+				var current_value = value_label.text.to_int()
+				if current_value < blackboard_value_int:
+					value_label.text = str(current_value + 1)
+					timer = 0.02
+					return
+			
+			timer_state = 0
+			current_label_index += 1
+			timer = 0.3
+			return
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

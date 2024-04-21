@@ -2,7 +2,9 @@ extends VehicleBody3D
 
 # for stats
 var total_distance_traveled_meters = 0
+var total_distance_traveled_miles = 0
 var maximum_speed_achieved_meters_per_second = 0
+var maximum_speed_achieved_miles_per_hour = 0
 @onready var blackboard = $"/root/Blackboard"
 
 # for the beginning
@@ -95,9 +97,12 @@ func _physics_process(delta):
 	# add to distance traveled only if the car is moving
 	if linear_velocity.length() > 0.5:
 		total_distance_traveled_meters += linear_velocity.length() * delta
+		# convert to miles
+		total_distance_traveled_miles = total_distance_traveled_meters * 0.000621371
 		# add to the blackboard
 		if blackboard:
 			blackboard.kvps["total_distance_traveled_meters"] = total_distance_traveled_meters
+			blackboard.kvps["total_distance_traveled_miles"] = total_distance_traveled_miles
 
 	# get the current speed
 	var current_speed = linear_velocity.length()
@@ -105,9 +110,12 @@ func _physics_process(delta):
 	if current_speed > maximum_speed_achieved_meters_per_second:
 		# set the maximum speed to the current speed
 		maximum_speed_achieved_meters_per_second = current_speed
+		# convert to miles per hour
+		maximum_speed_achieved_miles_per_hour = maximum_speed_achieved_meters_per_second * 2.23694
 		# add to the blackboard
 		if blackboard:
 			blackboard.kvps["maximum_speed_achieved_meters_per_second"] = maximum_speed_achieved_meters_per_second
+			blackboard.kvps["maximum_speed_achieved_miles_per_hour"] = maximum_speed_achieved_miles_per_hour
 
 	# toggle the bool if the reverse switchc is pressed
 	if Input.is_action_just_pressed("toggle_reverse"):

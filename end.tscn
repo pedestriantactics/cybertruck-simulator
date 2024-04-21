@@ -72,22 +72,29 @@ grow_vertical = 2
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(640, 2.08165e-12)
+custom_minimum_size = Vector2(960, 2.08165e-12)
 layout_mode = 2
 theme_override_constants/separation = 32
+
+[node name="total_distance_traveled_miles" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "Miles traveled"
+uppercase = true
+
+[node name="maximum_speed_achieved_miles_per_hour" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "Maximum speed achieved (MPH)"
+uppercase = true
 
 [node name="lawsuits" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pl2kf")
 theme_override_font_sizes/font_size = 48
 text = "Lawsuits"
-uppercase = true
-
-[node name="total_distance_traveled_meters" type="Label" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_pl2kf")
-theme_override_font_sizes/font_size = 48
-text = "Meters traveled"
 uppercase = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
@@ -102,6 +109,12 @@ theme_override_font_sizes/font_size = 48
 text = "0"
 
 [node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pl2kf")
 theme_override_font_sizes/font_size = 48
