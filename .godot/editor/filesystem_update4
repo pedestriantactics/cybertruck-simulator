@@ -14,3 +14,8 @@ res://materials/everything_shiny.tres
 res://materials/grid-dirt.tres
 res://scripts/scene_end.gd
 res://scripts/vehicle.gd
+res://scripts/scene_menu.gd
+res://scripts/random_audio_stream_player.gd
+res://scripts/button_audio_player.gd
+res://prefabs/button_sound_player.tscn
+res://menu.tscn

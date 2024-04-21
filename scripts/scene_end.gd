@@ -13,6 +13,10 @@ extends Control
 @export var menu_button_path: NodePath
 @onready var menu_button = get_node(menu_button_path)
 
+@export var show_sound: AudioStream
+@export var end_sound: AudioStream 
+@onready var random_audio_stream_player = get_node("AudioStreamPlayer")
+
 # containers for key labels
 @export var key_container_path: NodePath
 @onready var key_labels = get_node(key_container_path).get_children()
@@ -65,6 +69,8 @@ func _on_timeout():
 			value_labels[current_label_index].show()
 			timer = 0.3
 			timer_state = 1
+			random_audio_stream_player.stream = show_sound
+			random_audio_stream_player.play()
 			return
 		1:
 			var value_label = value_labels[current_label_index]
@@ -75,11 +81,15 @@ func _on_timeout():
 				if current_value < blackboard_value_int:
 					value_label.text = str(current_value + 1)
 					timer = 0.02
+					random_audio_stream_player.play_random()
 					return
 			
 			timer_state = 0
 			current_label_index += 1
 			timer = 0.3
+			if (value_label.text.to_int() > 0):
+				random_audio_stream_player.stream = end_sound
+				random_audio_stream_player.play()
 			return
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

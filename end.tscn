@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp2io41fhtno3"]
+[gd_scene load_steps=10 format=3 uid="uid://dp2io41fhtno3"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_63vjl"]
 [ext_resource type="Script" path="res://scripts/scene_end.gd" id="2_df16n"]
+[ext_resource type="AudioStream" uid="uid://bnp7q28s2futk" path="res://sounds/ui-button-press.wav" id="3_v7emf"]
+[ext_resource type="AudioStream" uid="uid://cyms3rnusvhya" path="res://sounds/hit-pole-1.wav" id="4_hho1i"]
 [ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="4_pl2kf"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="5_2k7py"]
+[ext_resource type="Script" path="res://scripts/random_audio_stream_player.gd" id="6_vsyj0"]
+[ext_resource type="AudioStream" uid="uid://d4aupvv6gj1ka" path="res://sounds/ui-button-select-2.wav" id="9_pwyvs"]
+[ext_resource type="AudioStream" uid="uid://clhgm5pp62hhs" path="res://sounds/ui-button-select-3.wav" id="10_d3x2n"]
 
 [node name="End" type="Control"]
 layout_mode = 3
@@ -16,6 +21,8 @@ theme = ExtResource("1_63vjl")
 script = ExtResource("2_df16n")
 retry_button_path = NodePath("Buttons/retry")
 menu_button_path = NodePath("Buttons/menu")
+show_sound = ExtResource("3_v7emf")
+end_sound = ExtResource("4_hho1i")
 key_container_path = NodePath("HBoxContainer/VBoxContainer")
 value_container_path = NodePath("HBoxContainer/VBoxContainer2")
 
@@ -119,3 +126,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pl2kf")
 theme_override_font_sizes/font_size = 48
 text = "0"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("6_vsyj0")
+sounds = Array[AudioStream]([ExtResource("9_pwyvs"), ExtResource("10_d3x2n")])

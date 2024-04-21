@@ -1,3 +1,4 @@
+AudioStreamPlayer
 HBoxContainer
 Label
 Button
@@ -8,7 +9,6 @@ Node
 ProgressBar
 ColorRect
 BoxContainer
-AudioStreamPlayer
 AnimationPlayer
 TextureRect
 StaticBody3D
