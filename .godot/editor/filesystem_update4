@@ -5,6 +5,9 @@ res://pt_theme.tres
 res://materials/invert.gdshader
 res://materials/bw.gdshader
 res://end.tscn
+res://menu.tscn
+res://prefabs/button_sound_player.tscn
+res://scripts/input_processor.gd
 res://play.tscn
 res://environments/new_environment.tres
 res://materials/everything.tres
@@ -12,10 +15,4 @@ res://materials/grid.tres
 res://materials/grid-grass.tres
 res://materials/everything_shiny.tres
 res://materials/grid-dirt.tres
-res://scripts/scene_end.gd
-res://scripts/vehicle.gd
-res://scripts/scene_menu.gd
-res://scripts/random_audio_stream_player.gd
-res://scripts/button_audio_player.gd
-res://prefabs/button_sound_player.tscn
-res://menu.tscn
+res://scripts/pause_menu.gd

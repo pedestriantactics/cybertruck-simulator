@@ -1,17 +1,17 @@
 Cybertruck simulator
 
-Just implemented the blackboard
-- Make sure that's working
+Implemented the blackboard
+Added the end screen with stats
 
-
-- End screen with stats
-- Start screen, press shift to get out of Park
-- Menu glitch with displacement map
-- All links for menu
-- PT intro
-- Scene transition to game
-- Pause menu
+- Make boom sound for the end screen
+- Settings with master volume
 - Town design
 
 Ideas
+- Invisible achievements that pop up when you get them
+	- Doge coins to collect
+	- Find Elon
+	- Don't move at all
+	- Travel a mile without hitting anything
+	- Hit over X amount of objects (lots of lawsuits)
 - Billboard that says it hurts in Japanese
