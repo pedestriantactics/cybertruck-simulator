@@ -21,6 +21,7 @@ physics_material_override = ExtResource("1_2s62c")
 gravity_scale = 2.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = -4.103
 max_polyphony = 2
 bus = &"Spatial"
 area_mask = 3

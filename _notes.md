@@ -10,6 +10,7 @@ Added the end screen with stats
 - Town design
 
 Ideas
+- Title screen
 - Invisible achievements that pop up when you get them
 	- Doge coins to collect
 	- Find Elon

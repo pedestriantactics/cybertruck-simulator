@@ -18,3 +18,4 @@ res://scripts/vehicle.gd
 res://scripts/lawsuit_counter.gd
 res://scripts/blackboard.gd
 res://scripts/game_timer.gd
+res://props/prop-car.tscn
