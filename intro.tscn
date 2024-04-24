@@ -193,6 +193,8 @@ script = ExtResource("9_ip6jj")
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0
+bus = &"UI"
 
 [node name="sounds2" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0
+bus = &"UI"

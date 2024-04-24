@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://by42jxcsm6nrp"]
+
+[ext_resource type="Shader" path="res://materials/offset.gdshader" id="1_0ifsb"]
+[ext_resource type="Texture2D" uid="uid://clrbi2xmfe644" path="res://textures/glitch-post.jpg" id="2_xbngq"]
+
+[resource]
+shader = ExtResource("1_0ifsb")
+shader_parameter/offset = Vector2(2.08165e-12, 2.08165e-12)
+shader_parameter/dispAmt = 0.000566283
+shader_parameter/dispSize = 0.416
+shader_parameter/displace = ExtResource("2_xbngq")

@@ -15,7 +15,8 @@ extends Control
 
 @export var show_sound: AudioStream
 @export var end_sound: AudioStream 
-@onready var random_audio_stream_player = get_node("AudioStreamPlayer")
+@onready var click_sound_audiostream_player = get_node("Click")
+@onready var impact_sound_audiostream_player = get_node("Impact")
 
 # containers for key labels
 @export var key_container_path: NodePath
@@ -24,6 +25,8 @@ extends Control
 # containers for value labels
 @export var value_container_path: NodePath
 @onready var value_labels = get_node(value_container_path).get_children()
+
+@onready var animation_player = get_node("AnimationPlayer")
 
 # blackboard
 @onready var blackboard = get_node("/root/Blackboard")
@@ -69,8 +72,9 @@ func _on_timeout():
 			value_labels[current_label_index].show()
 			timer = 0.3
 			timer_state = 1
-			random_audio_stream_player.stream = show_sound
-			random_audio_stream_player.play()
+			click_sound_audiostream_player.stream = show_sound
+			click_sound_audiostream_player.play()
+			animation_player.play("glitch")
 			return
 		1:
 			var value_label = value_labels[current_label_index]
@@ -81,15 +85,15 @@ func _on_timeout():
 				if current_value < blackboard_value_int:
 					value_label.text = str(current_value + 1)
 					timer = 0.02
-					random_audio_stream_player.play_random()
+					click_sound_audiostream_player.play_random()
 					return
 			
 			timer_state = 0
 			current_label_index += 1
 			timer = 0.3
 			if (value_label.text.to_int() > 0):
-				random_audio_stream_player.stream = end_sound
-				random_audio_stream_player.play()
+				impact_sound_audiostream_player.play_random()
+				animation_player.play("glitch_impact")
 			return
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

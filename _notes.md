@@ -3,7 +3,6 @@ Cybertruck simulator
 Implemented the blackboard
 Added the end screen with stats
 
-- Make boom sound for the end screen
 - Settings with master volume
 - Town design
 

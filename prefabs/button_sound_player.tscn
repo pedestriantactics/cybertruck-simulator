@@ -6,6 +6,7 @@
 
 [node name="ButtonPlayer" type="AudioStreamPlayer"]
 volume_db = -3.0
+bus = &"UI"
 script = ExtResource("1_r1x3h")
 select_sounds = Array[AudioStream]([ExtResource("2_n12ep")])
 press_sound = ExtResource("3_s22ib")

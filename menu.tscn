@@ -343,5 +343,6 @@ script = ExtResource("7_dnh87")
 
 [node name="TransitionSounds" type="AudioStreamPlayer" parent="AnimationPlayer"]
 volume_db = -5.0
+bus = &"UI"
 script = ExtResource("8_o5hrv")
 sounds = Array[AudioStream]([ExtResource("9_yq8pa"), ExtResource("10_uyus1"), ExtResource("11_yk0wh"), ExtResource("12_noulh"), ExtResource("13_0xc8u"), ExtResource("14_w73ap")])
