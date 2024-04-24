@@ -9,6 +9,7 @@ extends Label
 @onready var blackboard = get_node("/root/Blackboard")
 
 var targets_hit = []
+var trees_hit = 0
 
 func _ready():
 	# add it to the blackboard
@@ -24,3 +25,7 @@ func _on_collision_occurred(impact, collision_info):
 		text = "Lawsuits " + str(targets_hit.size())
 		# add it to the blackboard
 		blackboard.kvps["lawsuits"] = targets_hit.size()
+		# trees!
+		if (collision_name.find("Tree") != -1):
+			trees_hit += 1
+			blackboard.kvps["trees_hit"] = trees_hit

@@ -66,35 +66,52 @@ func _on_timeout():
 		retry_button.grab_focus()
 		return
 
+	var key_label = key_labels[current_label_index]
+	var value_label = value_labels[current_label_index]
+
+	# if the value contains a space split it into two 
+	var names = key_label.name.split(" ")
+	var skip = false
+	# if names is greater than one and the second name is skip, change skip to false
+	if names.size() > 1 and names[1] == "skip":
+		skip = true
+
+	var blackboard_value = blackboard.kvps.get(names[0])
+	var blackboard_value_int = 0
+	if blackboard_value != null:
+		blackboard_value_int = int(floor(blackboard_value))
+
+	var current_value = int(value_label.text)
+
 	match timer_state:
 		0:
-			key_labels[current_label_index].show()
-			value_labels[current_label_index].show()
-			timer = 0.3
-			timer_state = 1
+			key_label.show()
+			value_label.show()
 			click_sound_audiostream_player.stream = show_sound
 			click_sound_audiostream_player.play()
 			animation_player.play("glitch")
-			return
+
+			if skip or current_value == blackboard_value_int:
+				# if the value is the same as blackboard or skip
+				value_label.text = str(blackboard_value_int)
+			else:
+				# break after the name appears to when it starts counting up
+				timer_state = 1
+				timer = 0.4
+				return
 		1:
-			var value_label = value_labels[current_label_index]
-			var blackboard_value = blackboard.kvps.get(key_labels[current_label_index].name)
-			if blackboard_value != null:
-				var blackboard_value_int = int(floor(blackboard_value))
-				var current_value = value_label.text.to_int()
-				if current_value < blackboard_value_int:
-					value_label.text = str(current_value + 1)
-					timer = 0.02
-					click_sound_audiostream_player.play_random()
-					return
-			
-			timer_state = 0
-			current_label_index += 1
-			timer = 0.3
-			if (value_label.text.to_int() > 0):
-				impact_sound_audiostream_player.play_random()
-				animation_player.play("glitch_impact")
-			return
+			if current_value < blackboard_value_int:
+				value_label.text = str(current_value + 1)
+				timer = 0.02
+				click_sound_audiostream_player.play_random()
+				return
+
+	timer_state = 0
+	impact_sound_audiostream_player.play_random()
+	animation_player.play("glitch_impact")
+	current_label_index += 1
+	timer = 0.4
+	return
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

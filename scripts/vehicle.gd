@@ -7,6 +7,8 @@ var maximum_speed_achieved_meters_per_second = 0
 var maximum_speed_achieved_miles_per_hour = 0
 @onready var blackboard = $"/root/Blackboard"
 
+var pedal_stomps = 0
+
 # for the beginning
 var parked = true
 
@@ -40,6 +42,8 @@ var forward = true
 func _ready():
 	DevConsole.command.connect(handle_command)
 	if blackboard:
+		# clear the blackboard
+		blackboard.kvps = {}
 		blackboard.kvps["total_distance_traveled_meters"] = 0
 
 func handle_command(text_command):
@@ -193,6 +197,8 @@ func _physics_process(delta):
 			accelerationTimer = 0
 			emit_signal("shake_occurred", 5)
 			previous_acceleration = acceleration
+			pedal_stomps += 1
+			blackboard.kvps["pedal_stomps"] = pedal_stomps
 		else:
 			accelerationTimer += delta
 			acceleration = 0

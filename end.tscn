@@ -139,10 +139,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -459.0
-offset_top = -114.0
-offset_right = 459.0
-offset_bottom = 114.0
+offset_left = -546.0
+offset_top = -183.0
+offset_right = 546.0
+offset_bottom = 183.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -159,6 +159,13 @@ theme_override_font_sizes/font_size = 48
 text = "Miles traveled"
 uppercase = true
 
+[node name="pedal_stomps" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "Accelerator stomps"
+uppercase = true
+
 [node name="maximum_speed_achieved_miles_per_hour" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pl2kf")
@@ -171,6 +178,13 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pl2kf")
 theme_override_font_sizes/font_size = 48
 text = "Lawsuits"
+uppercase = true
+
+[node name="trees_hit" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "Trees destroyed"
 uppercase = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
@@ -191,6 +205,18 @@ theme_override_font_sizes/font_size = 48
 text = "0"
 
 [node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="Label5" type="Label" parent="HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pl2kf")
 theme_override_font_sizes/font_size = 48

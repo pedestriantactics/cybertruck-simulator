@@ -4,6 +4,9 @@ Implemented the blackboard
 Added the end screen with stats
 
 - Settings with master volume
+- Countown timer final seconds sound and appearance change
+- Achievements that pop up after the tally
+- Achievements page
 - Town design
 
 Ideas
