@@ -120,3 +120,18 @@ func _process(delta):
 		if timer <= 0:
 			_on_timeout()
 
+func _input(event):
+	if event.is_action_released("ui_accept"):
+		if (current_label_index >= key_labels.size()):
+			return
+		timer_state = 0
+		timer = 0
+		var key_label = key_labels[current_label_index]
+		var names = key_label.name.split(" ")
+		var blackboard_value = blackboard.kvps.get(names[0])
+		var blackboard_value_int = 0
+		if blackboard_value != null:
+			blackboard_value_int = int(floor(blackboard_value))
+		var value_label = value_labels[current_label_index]
+		value_label.text = str(blackboard_value_int)
+		_on_timeout()
