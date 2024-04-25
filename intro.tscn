@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0w54vuhioluj"]
+[gd_scene load_steps=16 format=3 uid="uid://c0w54vuhioluj"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_lcq4r"]
 [ext_resource type="Script" path="res://scripts/intro.gd" id="2_cg7yh"]
 [ext_resource type="Script" path="res://scripts/archive_code_display.gd" id="3_yuwjn"]
 [ext_resource type="AudioStream" uid="uid://smcudvmlgnc0" path="res://sounds/ui-pt-beep.wav" id="6_eebui"]
 [ext_resource type="Shader" path="res://materials/offset.gdshader" id="7_c4upa"]
+[ext_resource type="AudioStream" uid="uid://dro1q0lw5yoid" path="res://sounds/intro-music-2.wav" id="7_h78vk"]
 [ext_resource type="Texture2D" uid="uid://clrbi2xmfe644" path="res://textures/glitch-post.jpg" id="8_38rwr"]
 [ext_resource type="Script" path="res://scripts/shader_glitch.gd" id="9_ip6jj"]
+[ext_resource type="Texture2D" uid="uid://bwn4vogm27iw2" path="res://textures/title.png" id="10_yp3oi"]
 [ext_resource type="AudioStream" uid="uid://cdw50anqraeov" path="res://sounds/ui-transition-1.wav" id="11_jergu"]
 [ext_resource type="AudioStream" uid="uid://bucsamfybpbah" path="res://sounds/ui-transition-6.wav" id="16_7tbj2"]
 
@@ -27,7 +29,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_0jcxo"]
 resource_name = "start"
-length = 3.0
+length = 5.0
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -36,15 +38,15 @@ tracks/0/path = NodePath("AnimationPlayer/CanvasLayer/Glitch:material:shader_par
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.31, 0.35, 0.4, 0.43, 2.02, 2.06, 2.11, 2.14),
-"transitions": PackedFloat32Array(1, 3.73213, 1, 0.324901, 1, 3.73213, 1, 0.324901, 1),
+"times": PackedFloat32Array(0, 0.31, 0.35, 0.4, 0.43, 2.02, 2.06, 2.11, 2.14, 2.89, 2.93, 2.98, 3.01, 3.2, 3.82, 3.99),
+"transitions": PackedFloat32Array(1, 3.73213, 1, 0.324901, 1, 3.73213, 1, 0.324901, 1, 3.73213, 1, 0.324901, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.2, 0.2, 0.0, 0.0, 0.2, 0.2, 0.0]
+"values": [0.0, 0.0, 0.2, 0.2, 0.0, 0.0, 0.2, 0.2, 0.0, 0.0, 0.2, 0.2, 0.005, 0.0, 0.0, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("title:visible")
+tracks/1/path = NodePath("pt title:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -68,8 +70,12 @@ tracks/2/keys = {
 "end_offset": 0.15842,
 "start_offset": 0.0935093,
 "stream": ExtResource("16_7tbj2")
+}, {
+"end_offset": 0.0404089,
+"start_offset": 0.00886587,
+"stream": ExtResource("11_jergu")
 }],
-"times": PackedFloat32Array(0.38, 2.05)
+"times": PackedFloat32Array(0.38, 2.05, 2.84)
 }
 tracks/2/use_blend = true
 tracks/3/type = "method"
@@ -79,7 +85,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2.63),
+"times": PackedFloat32Array(3.99),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -97,8 +103,12 @@ tracks/4/keys = {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": ExtResource("6_eebui")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_h78vk")
 }],
-"times": PackedFloat32Array(0.38)
+"times": PackedFloat32Array(0.38, 2.72)
 }
 tracks/4/use_blend = true
 tracks/5/type = "value"
@@ -108,7 +118,19 @@ tracks/5/path = NodePath("version:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.12),
+"times": PackedFloat32Array(0, 2.12, 2.93),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("title:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.93),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -145,7 +167,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="title" type="Label" parent="."]
+[node name="pt title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -198,3 +220,31 @@ bus = &"UI"
 [node name="sounds2" type="AudioStreamPlayer" parent="."]
 volume_db = -5.0
 bus = &"UI"
+
+[node name="title" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="title/Control"]
+scale = Vector2(0.509, 0.509)
+texture = ExtResource("10_yp3oi")
