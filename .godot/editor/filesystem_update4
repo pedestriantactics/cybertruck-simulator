@@ -1,8 +1,9 @@
 res://default_bus_layout.tres
-res://scripts/scene_end.gd
-res://scripts/intro.gd
 res://intro.tscn
 res://materials/offset.gdshader
 res://pt_theme.tres
 res://materials/invert.gdshader
 res://materials/bw.gdshader
+res://scripts/intro.gd
+res://scripts/scene_end.gd
+res://scripts/scene_menu.gd

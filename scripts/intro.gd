@@ -13,3 +13,7 @@ func _process(delta):
 
 func _change_scene():
 	scene_changer.change_scene("menu");
+
+func _input(event):
+	if event.is_action_released("ui_accept"):
+		_change_scene()
