@@ -11,6 +11,8 @@ Added the end screen with stats
 - Achievements page
 
 Ideas
+- Boombox with Pedestrian Tactics music
+- House with muffled PT music
 - Title screen
 - Invisible achievements that pop up when you get them
 	- Doge coins to collect
