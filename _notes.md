@@ -3,10 +3,13 @@ Cybertruck simulator
 Implemented the blackboard
 Added the end screen with stats
 
+Must happen
+- Camera needs to slowly rotate to behind the vehicle
 - Settings with master volume
 - Countown timer final seconds sound and appearance change
 - Town design
 
+Possibly must happen
 - Achievements that pop up after the tally
 - Achievements page
 
