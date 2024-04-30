@@ -14,6 +14,7 @@ Possibly must happen
 - Achievements page
 
 Ideas
+- Controller support
 - Boombox with Pedestrian Tactics music
 - House with muffled PT music
 - Title screen
