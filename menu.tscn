@@ -360,5 +360,10 @@ offset_right = -233.0
 offset_bottom = 487.0
 grow_horizontal = 2
 grow_vertical = 2
+max_value = 1.0
+step = 0.1
 tick_count = 10
+ticks_on_borders = true
 script = ExtResource("17_8fdba")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VolumeSlider"]
