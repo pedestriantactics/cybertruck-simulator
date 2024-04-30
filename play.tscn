@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=83 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="3_waqbr"]
 [ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="4_a2qxl"]
 [ext_resource type="ArrayMesh" uid="uid://cl0hbt18yr3ha" path="res://meshes/cybertruck-wheel.obj" id="4_cuis8"]
+[ext_resource type="AudioStream" uid="uid://smcudvmlgnc0" path="res://sounds/ui-pt-beep.wav" id="4_i86lr"]
 [ext_resource type="PackedScene" uid="uid://hc1ywbfhiaym" path="res://props/prop-human.tscn" id="4_y1n71"]
 [ext_resource type="Script" path="res://scripts/audio_wind.gd" id="5_mphdo"]
 [ext_resource type="AudioStream" uid="uid://daae6fl14bxpr" path="res://sounds/truck-acceleration-loop.wav" id="6_4pby1"]
@@ -74,6 +75,42 @@
 [ext_resource type="Shader" path="res://materials/bw.gdshader" id="71_i2cqu"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="72_g0p4h"]
 [ext_resource type="Script" path="res://scripts/archive_code_display.gd" id="73_3she0"]
+
+[sub_resource type="Animation" id="Animation_7oekd"]
+resource_name = "timer_warn"
+length = 0.75
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_i86lr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.929563, 0.0877168, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xbmtc"]
+_data = {
+"timer_warn": SubResource("Animation_7oekd")
+}
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_15ilr"]
 
@@ -161,12 +198,19 @@ offset_left = -79.5
 offset_right = 79.5
 offset_bottom = 56.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_oy7ox")
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_waqbr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameTimer/Margin/TimerLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_xbmtc")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameTimer/Margin/TimerLabel"]
 
 [node name="Dash" type="Control" parent="."]
 process_mode = 3
@@ -217,7 +261,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Spedometer" type="Label" parent="Dash/Margin/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("35_xvq7y")

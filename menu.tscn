@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cdgf8o3jwsgxq"]
+[gd_scene load_steps=23 format=3 uid="uid://cdgf8o3jwsgxq"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_m7t57"]
 [ext_resource type="Script" path="res://scripts/scene_menu.gd" id="2_5aap3"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://ccreunq2k5axq" path="res://sounds/ui-transition-4.wav" id="12_noulh"]
 [ext_resource type="AudioStream" uid="uid://bu7syons7i3yo" path="res://sounds/ui-transition-5.wav" id="13_0xc8u"]
 [ext_resource type="AudioStream" uid="uid://bucsamfybpbah" path="res://sounds/ui-transition-6.wav" id="14_w73ap"]
+[ext_resource type="Script" path="res://scripts/volume_slider.gd" id="17_8fdba"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ewc3"]
 shader = ExtResource("3_6i4ca")
@@ -346,3 +347,23 @@ volume_db = -5.0
 bus = &"UI"
 script = ExtResource("8_o5hrv")
 sounds = Array[AudioStream]([ExtResource("9_yq8pa"), ExtResource("10_uyus1"), ExtResource("11_yk0wh"), ExtResource("12_noulh"), ExtResource("13_0xc8u"), ExtResource("14_w73ap")])
+
+[node name="VolumeSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1437.0
+offset_top = 421.0
+offset_right = -233.0
+offset_bottom = 487.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.1
+tick_count = 10
+ticks_on_borders = true
+script = ExtResource("17_8fdba")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VolumeSlider"]
