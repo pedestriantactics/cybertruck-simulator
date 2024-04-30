@@ -1,9 +1,0 @@
-res://default_bus_layout.tres
-res://intro.tscn
-res://materials/offset.gdshader
-res://pt_theme.tres
-res://materials/invert.gdshader
-res://materials/bw.gdshader
-res://scripts/dev_console.gd
-res://scripts/vehicle.gd
-res://scripts/follow_camera.gd

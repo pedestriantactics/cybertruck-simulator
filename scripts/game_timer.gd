@@ -4,27 +4,39 @@ extends Label
 # once the timer runs out, it changes to the desired scene
 
 @onready var scene_changer = get_node("/root/SceneChanger")
+@onready var timer_animation = $"./AnimationPlayer"
 
 var started = false
 
 var timer = 0.00
-var timer_start_seconds = 60*3
+var timer_start_seconds = 15 # 60 * 3
+var seconds = 0
 
 func _ready():
 	timer = timer_start_seconds
+	seconds = int(timer)
 
 func _process(delta):
-	if !started && (!InputProcessor.can_process_game_input || Input.get_axis("move_backward", "move_forward") == 0):
-		return;
+	if !started&&(!InputProcessor.can_process_game_input||Input.get_axis("move_backward", "move_forward") == 0):
+		return ;
 		
 	started = true
 	timer -= delta
-	# convert the float of seconds into minutes and seconds
-	var minutes = int(timer / 60.0)
-	var seconds = int(timer) % 60
-	var str_seconds = str(seconds)
-	if seconds < 10:
-		str_seconds = "0" + str_seconds
-	text = str(minutes) + ":" + str_seconds
-	if timer <= 0:
-		scene_changer.change_scene("end")
+
+	# check if we've hit the next second in our timer
+	var next_seconds = int(timer)
+	if next_seconds != seconds:
+		seconds = next_seconds
+		
+		# update the label for the timer
+		var fmt_minutes = int(timer / 60.0)
+		var fmt_seconds = int(timer) % 60
+		text = str(fmt_minutes) + ":" + str(fmt_seconds).pad_zeros(2)
+
+		# if we're at zero seconds, change the scene
+		if seconds == 0:
+			scene_changer.change_scene("end")
+			set_process(false)
+			return
+		elif seconds <= 10:
+			timer_animation.play("timer_warn")
