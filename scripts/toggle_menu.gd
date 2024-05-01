@@ -1,3 +1,6 @@
+# toggle menu stretegically creates a multi-page menu by toggling the visibility of different ui elements
+# menus are created by naming a button and a menu with the same name
+
 # this script takes in an exported list of buttons and an exported list of menus, along with a universal back button, and a main menu
 # by default the back button is hidden at the start
 # when one of the buttons is clicked, the corresponding menu with the same name is set to visible, the main menu is hidden, the menu buttons are hidden, and the back button is visible
