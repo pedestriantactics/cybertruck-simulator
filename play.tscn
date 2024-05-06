@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="3_waqbr"]
 [ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="4_a2qxl"]
 [ext_resource type="ArrayMesh" uid="uid://cl0hbt18yr3ha" path="res://meshes/cybertruck-wheel.obj" id="4_cuis8"]
-[ext_resource type="AudioStream" uid="uid://smcudvmlgnc0" path="res://sounds/ui-pt-beep.wav" id="4_i86lr"]
+[ext_resource type="AudioStream" uid="uid://bj366ttv2gund" path="res://sounds/ui-timer-low.wav" id="4_d6pfb"]
 [ext_resource type="PackedScene" uid="uid://hc1ywbfhiaym" path="res://props/prop-human.tscn" id="4_y1n71"]
 [ext_resource type="Script" path="res://scripts/audio_wind.gd" id="5_mphdo"]
 [ext_resource type="AudioStream" uid="uid://daae6fl14bxpr" path="res://sounds/truck-acceleration-loop.wav" id="6_4pby1"]
@@ -89,7 +89,7 @@ tracks/0/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("4_i86lr")
+"stream": ExtResource("4_d6pfb")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -104,7 +104,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.929563, 0.0877168, 0, 1), Color(0, 0, 0, 1)]
+"values": [Color(0.929563, 0.0877168, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xbmtc"]
@@ -198,7 +198,7 @@ offset_left = -79.5
 offset_right = 79.5
 offset_bottom = 56.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("10_oy7ox")
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
@@ -211,6 +211,8 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameTimer/Margin/TimerLabel"]
+volume_db = -5.914
+bus = &"UI"
 
 [node name="Dash" type="Control" parent="."]
 process_mode = 3
@@ -261,6 +263,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Spedometer" type="Label" parent="Dash/Margin/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("35_xvq7y")
@@ -896,7 +899,7 @@ text = "Restart"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Quit"
+text = "Menu"
 
 [node name="ButtonPlayer" parent="PauseMenu/VBoxContainer/MainMenu" instance=ExtResource("72_g0p4h")]
 
