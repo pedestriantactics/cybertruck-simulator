@@ -50,6 +50,7 @@ release_ms = 530.0
 sidechain = &"Truck Ambient"
 
 [resource]
+bus/0/volume_db = -2.01475
 bus/0/effect/0/effect = SubResource("AudioEffectEQ21_wingd")
 bus/0/effect/0/enabled = false
 bus/0/effect/1/effect = SubResource("AudioEffectDistortion_8xrqf")
