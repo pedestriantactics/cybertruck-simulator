@@ -492,7 +492,6 @@ size = Vector3(236.222, 2, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
-visible = false
 mesh = ExtResource("50_dd7yw")
 skeleton = NodePath("../wall4")
 
@@ -518,6 +517,7 @@ shape = SubResource("ConcavePolygonShape3D_erejo")
 
 [node name="Node3D" type="Node3D" parent="Environment"]
 transform = Transform3D(1, 0, 2.13162e-14, 0, 1, 0, -2.13162e-14, 0, 1, 4.1633e-12, 4.1633e-12, 4.1633e-12)
+visible = false
 script = ExtResource("56_igpxa")
 spawn_path = NodePath("../../Props")
 
