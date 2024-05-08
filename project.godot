@@ -41,6 +41,10 @@ window/width=1280
 
 project/assembly_name="Truck Town"
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 move_forward={
