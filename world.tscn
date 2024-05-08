@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnmtjg2qvfq76"]
+
+[ext_resource type="PackedScene" uid="uid://7qha2ysqyi3e" path="res://world-textured.glb" id="1_krgxy"]
+[ext_resource type="Material" uid="uid://c7jqxgj2d5iwj" path="res://materials/grid.tres" id="2_av618"]
+[ext_resource type="Material" uid="uid://n1icwb7corcp" path="res://materials/grid-grass.tres" id="3_u6nin"]
+[ext_resource type="Material" uid="uid://cnliobwt8yale" path="res://materials/grid-dirt.tres" id="4_6575q"]
+
+[node name="world-textured" instance=ExtResource("1_krgxy")]
+
+[node name="Cube_024" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_av618")
+surface_material_override/1 = ExtResource("2_av618")
+surface_material_override/2 = ExtResource("3_u6nin")
+surface_material_override/3 = ExtResource("4_6575q")

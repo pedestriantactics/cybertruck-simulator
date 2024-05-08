@@ -1,7 +1,14 @@
 Cybertruck simulator
 
-Implemented the blackboard
-Added the end screen with stats
+Latest changes:
+Just tested a system to create spawn points from empties in blender. This is tested in the world_spawner script which is attached to the parent scene, which is being tested in the play screen. 
+- Select all the objects including the empties in Blender
+- Join the objects so they form one mesh, this will ensure all the material slots are intact
+- Export the world as a glb
+- Import in Blender
+- The script can target the empties by name and spawn an object there
+Moved volume to it's own settings screen
+New countdown timer and animation
 
 Must happen
 - Camera needs to slowly rotate to behind the vehicle
