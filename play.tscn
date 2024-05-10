@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=84 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -64,7 +64,6 @@
 [ext_resource type="PackedScene" uid="uid://bbpaawlx6udfx" path="res://props/prop-cone.tscn" id="55_pcv34"]
 [ext_resource type="Script" path="res://scripts/lawsuit_counter.gd" id="56_agw6f"]
 [ext_resource type="PackedScene" uid="uid://bnmtjg2qvfq76" path="res://world.tscn" id="56_f4blr"]
-[ext_resource type="Script" path="res://scripts/world_spawner.gd" id="56_igpxa"]
 [ext_resource type="AudioStream" uid="uid://3sh3j3ey7sv7" path="res://sounds/bg-bird-loop.wav" id="57_v7wme"]
 [ext_resource type="PackedScene" uid="uid://dl68hly4kkpgv" path="res://props/prop-car.tscn" id="59_2onur"]
 [ext_resource type="PackedScene" uid="uid://djuyjjjtyreaj" path="res://props/prop-bicycle.tscn" id="60_r3j3l"]
@@ -518,8 +517,6 @@ shape = SubResource("ConcavePolygonShape3D_erejo")
 [node name="Node3D" type="Node3D" parent="Environment"]
 transform = Transform3D(1, 0, 2.13162e-14, 0, 1, 0, -2.13162e-14, 0, 1, 4.1633e-12, 4.1633e-12, 4.1633e-12)
 visible = false
-script = ExtResource("56_igpxa")
-spawn_path = NodePath("../../Props")
 
 [node name="world-textured" parent="Environment/Node3D" instance=ExtResource("56_f4blr")]
 
