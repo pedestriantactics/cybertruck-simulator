@@ -15,9 +15,13 @@ Must happen
 - Town design
 - Selection sound for volume slider
 
-Possibly must happen
+Possibly
 - Achievements that pop up after the tally
 - Achievements page
+
+Stretch goal
+- Cars move
+- People move
 
 Ideas
 - Gas pedal stuck, tap to reset
