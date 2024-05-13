@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://7qha2ysqyi3e"
-path="res://.godot/imported/world-textured.glb-81096057bef89733e51c071eee4b6597.scn"
+uid="uid://dibpf77ruq4kj"
+path="res://.godot/imported/cybertruck assets.glb-e039def4249a0f0f5db2c89b4ad45246.scn"
 
 [deps]
 
-source_file="res://world-textured.glb"
-dest_files=["res://.godot/imported/world-textured.glb-81096057bef89733e51c071eee4b6597.scn"]
+source_file="res://world/cybertruck assets.glb"
+dest_files=["res://.godot/imported/cybertruck assets.glb-e039def4249a0f0f5db2c89b4ad45246.scn"]
 
 [params]
 
