@@ -10,8 +10,18 @@ func _ready():
 	for child in children:
 		# log the name
 		print(child.name)
-		# if the child name includes "prop-" destroy it
-		if child.name.find("prop_") != -1:
+		# if the child name includes "prop_" replace the underscore with a dash, then load the prefab from the props folder with the same name and spawn it
+		if child.name.contains("prop-"):
+			# blender objects contain an _ followed by numbers after the name, split by that name and remove everything after and also the period
+			var final_name = child.name.split("_")[0]
+			var prop = load("res://props/" + final_name + ".tscn")
+			if prop == null:
+				print("Could not load prop: " + final_name)
+				continue
+			var instance = prop.instantiate()
+			instance.position = child.position;
+			instance.rotation = child.rotation;
+			add_child(instance)
 			child.queue_free()
 
 

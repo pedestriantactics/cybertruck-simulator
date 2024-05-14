@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=63 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -44,15 +44,14 @@
 [ext_resource type="FontFile" uid="uid://dw8ppg88hpy7d" path="res://fonts/Hyperwalk-Display.otf" id="35_xvq7y"]
 [ext_resource type="Script" path="res://scripts/gear_shift_indicator.gd" id="36_iwnde"]
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="36_o5co1"]
-[ext_resource type="PackedScene" uid="uid://hsax2ngl06sq" path="res://props/prop-tree.tscn" id="40_7n3um"]
 [ext_resource type="AudioStream" uid="uid://il6apbs2r1uv" path="res://sounds/switch-forward.wav" id="45_wpc7e"]
 [ext_resource type="AudioStream" uid="uid://djcjym3o355th" path="res://sounds/switch-reverse.wav" id="46_e3al3"]
 [ext_resource type="Script" path="res://scripts/impact_phaser.gd" id="47_iks5m"]
 [ext_resource type="Material" uid="uid://b51smst5hugdj" path="res://materials/everything_shiny.tres" id="51_el1vw"]
+[ext_resource type="Script" path="res://scripts/world_spawner.gd" id="52_w6bf3"]
 [ext_resource type="PackedScene" uid="uid://7jhjfbi3x80u" path="res://world/world.tscn" id="55_17vea"]
 [ext_resource type="Script" path="res://scripts/lawsuit_counter.gd" id="56_agw6f"]
 [ext_resource type="AudioStream" uid="uid://3sh3j3ey7sv7" path="res://sounds/bg-bird-loop.wav" id="57_v7wme"]
-[ext_resource type="PackedScene" uid="uid://dl68hly4kkpgv" path="res://props/prop-car.tscn" id="59_2onur"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="70_t6n0f"]
 [ext_resource type="Shader" path="res://materials/bw.gdshader" id="71_i2cqu"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="72_g0p4h"]
@@ -449,100 +448,9 @@ script = ExtResource("47_iks5m")
 
 [node name="Node3D" type="Node3D" parent="Environment"]
 transform = Transform3D(1, 0, 2.13162e-14, 0, 1, 0, -2.13162e-14, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+script = ExtResource("52_w6bf3")
 
-[node name="cybertruck assets" parent="Environment/Node3D" instance=ExtResource("55_17vea")]
-
-[node name="Props" type="Node" parent="."]
-
-[node name="Tree" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88025, -1.90735e-06, 10.6241)
-
-[node name="Tree2" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88025, -1.90735e-06, 14.9217)
-
-[node name="Tree3" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88025, -1.90735e-06, 20.6519)
-
-[node name="Tree4" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88025, -1.90735e-06, 27.8888)
-
-[node name="Tree5" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88025, -1.90735e-06, 35.1366)
-
-[node name="Tree6" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88025, -1.90735e-06, 42.2829)
-
-[node name="Tree7" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88025, -1.90735e-06, 46.5805)
-
-[node name="Tree8" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88025, -1.90735e-06, 52.3108)
-
-[node name="Tree9" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88025, -1.90735e-06, 59.5477)
-
-[node name="Tree10" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88025, -1.90735e-06, 66.7955)
-
-[node name="Tree11" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82634, -1.90735e-06, 10.6241)
-
-[node name="Tree12" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82634, -1.90735e-06, 14.9217)
-
-[node name="Tree13" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82634, -1.90735e-06, 20.6519)
-
-[node name="Tree14" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82634, -1.90735e-06, 27.8888)
-
-[node name="Tree15" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82634, -1.90735e-06, 35.1366)
-
-[node name="Tree16" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82634, -1.90735e-06, 42.2829)
-
-[node name="Tree17" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82634, -1.90735e-06, 46.5805)
-
-[node name="Tree18" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82634, -1.90735e-06, 52.3108)
-
-[node name="Tree19" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82634, -1.90735e-06, 59.5477)
-
-[node name="Tree20" parent="Props" instance=ExtResource("40_7n3um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82634, -1.90735e-06, 66.7955)
-
-[node name="Car" parent="Props" instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96098, -0.0999985, 14.2674)
-
-[node name="Car2" parent="Props" instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96098, -0.0999985, 22.4637)
-
-[node name="Car3" parent="Props" instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96098, -0.0999985, 37.4908)
-
-[node name="Car4" parent="Props" instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96098, -0.0999985, 50.8586)
-
-[node name="Car5" parent="Props" instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96098, -0.0999985, 70.1184)
-
-[node name="Car6" parent="Props" instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64845, -0.0999985, 42.0682)
-
-[node name="Car7" parent="Props" instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64845, -0.0999985, 50.2645)
-
-[node name="Car8" parent="Props" instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64845, -0.0999985, 65.2916)
-
-[node name="Car9" parent="Props" instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64845, -0.0999985, 78.6594)
-
-[node name="Car10" parent="Props" instance=ExtResource("59_2onur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64845, -0.0999985, 97.9192)
+[node name="World" parent="Environment/Node3D" instance=ExtResource("55_17vea")]
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
