@@ -25,7 +25,7 @@ func _on_collision_occurred(impact, collision_info):
 		text = "Lawsuits " + str(targets_hit.size())
 		# add it to the blackboard
 		blackboard.kvps["lawsuits"] = targets_hit.size()
-		# trees!
-		if (collision_name.find("Tree") != -1):
+		# trees! find tree and exclude the case of the text
+		if (collision_name.contains("tree")):
 			trees_hit += 1
 			blackboard.kvps["trees_hit"] = trees_hit

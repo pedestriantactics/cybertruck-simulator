@@ -8,8 +8,6 @@ func _ready():
 	# get the first child of the node and get the children of it
 	var children = get_child(0).get_children()
 	for child in children:
-		# log the name
-		print(child.name)
 		# if the child name includes "prop_" replace the underscore with a dash, then load the prefab from the props folder with the same name and spawn it
 		if child.name.contains("prop-"):
 			# blender objects contain an _ followed by numbers after the name, split by that name and remove everything after and also the period
