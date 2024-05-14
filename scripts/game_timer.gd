@@ -9,7 +9,7 @@ extends Label
 var started = false
 
 var timer = 0.00
-var timer_start_seconds = 20
+var timer_start_seconds = 180
 var seconds = 0
 
 func _ready():
