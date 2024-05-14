@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://7jhjfbi3x80u"]
 
-[ext_resource type="PackedScene" uid="uid://dibpf77ruq4kj" path="res://world/cybertruck assets.glb" id="1_h5cxb"]
+[ext_resource type="PackedScene" uid="uid://dibpf77ruq4kj" path="res://world/world.glb" id="1_h5cxb"]
 [ext_resource type="Material" uid="uid://c7jqxgj2d5iwj" path="res://materials/grid.tres" id="2_n1754"]
 [ext_resource type="Material" uid="uid://dcr5hlhp2c51e" path="res://materials/grid-gravel.tres" id="3_csdy0"]
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="4_a4ydf"]
