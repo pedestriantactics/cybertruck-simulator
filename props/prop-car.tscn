@@ -6,11 +6,13 @@
 [ext_resource type="AudioStream" uid="uid://7kesvwcu6mx1" path="res://sounds/hit-debris-large-2.wav" id="4_6m2nq"]
 [ext_resource type="ArrayMesh" uid="uid://drotyttpa0f20" path="res://meshes/car.obj" id="5_lit8i"]
 [ext_resource type="Script" path="res://scripts/random_mesh.gd" id="7_16t6u"]
-[ext_resource type="Material" uid="uid://b51smst5hugdj" path="res://materials/everything_shiny.tres" id="7_oy00r"]
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="15_jf1rf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_srl0a"]
-size = Vector3(2.18457, 1.71027, 5.45996)
+size = Vector3(1.93066, 1.04166, 4.50836)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2gok6"]
+size = Vector3(1.50391, 1.0686, 2.34094)
 
 [node name="Car" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
@@ -28,15 +30,18 @@ area_mask = 3
 script = ExtResource("2_566ov")
 sounds = Array[AudioStream]([ExtResource("3_wrfw6"), ExtResource("4_6m2nq")])
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.886015, 2.08165e-12)
-shape = SubResource("BoxShape3D_srl0a")
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("5_lit8i")
 surface_material_override/0 = ExtResource("15_jf1rf")
-surface_material_override/1 = ExtResource("7_oy00r")
 script = ExtResource("7_16t6u")
 random_color = true
 random_rotate_degrees = 360
 random_rotate_increment_degrees = 180
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.551709, 0.121918)
+shape = SubResource("BoxShape3D_srl0a")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06384, -0.670471)
+shape = SubResource("BoxShape3D_2gok6")
