@@ -3,16 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://dibpf77ruq4kj" path="res://world/world.glb" id="1_h5cxb"]
 [ext_resource type="Material" uid="uid://c7jqxgj2d5iwj" path="res://materials/grid.tres" id="2_n1754"]
 [ext_resource type="Material" uid="uid://dcr5hlhp2c51e" path="res://materials/grid-gravel.tres" id="3_csdy0"]
-[ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="4_a4ydf"]
+[ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="4_adguf"]
 [ext_resource type="Material" uid="uid://n1icwb7corcp" path="res://materials/grid-grass.tres" id="5_tmtux"]
 [ext_resource type="Material" uid="uid://cnliobwt8yale" path="res://materials/grid-dirt.tres" id="6_ly1hg"]
 
-[node name="cybertruck assets" instance=ExtResource("1_h5cxb")]
+[node name="world" instance=ExtResource("1_h5cxb")]
 
-[node name="world" parent="." index="1"]
+[node name="world" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_n1754")
-surface_material_override/1 = ExtResource("2_n1754")
-surface_material_override/2 = ExtResource("3_csdy0")
-surface_material_override/3 = ExtResource("4_a4ydf")
+surface_material_override/1 = ExtResource("4_adguf")
+surface_material_override/2 = ExtResource("2_n1754")
+surface_material_override/3 = ExtResource("3_csdy0")
 surface_material_override/4 = ExtResource("5_tmtux")
 surface_material_override/5 = ExtResource("6_ly1hg")
