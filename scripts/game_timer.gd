@@ -17,8 +17,8 @@ func _ready():
 	seconds = int(timer)
 
 func _process(delta):
-	if !started&&(!InputProcessor.can_process_game_input||Input.get_axis("move_backward", "move_forward") == 0):
-		return ;
+	if !started&&(!InputProcessor.can_process_game_input||!Input.is_action_just_pressed("toggle_reverse")):
+		return;
 		
 	started = true
 	timer -= delta

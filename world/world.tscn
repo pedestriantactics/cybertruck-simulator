@@ -9,7 +9,7 @@
 
 [node name="world" instance=ExtResource("1_h5cxb")]
 
-[node name="world" parent="." index="0"]
+[node name="world" parent="." index="790"]
 surface_material_override/0 = ExtResource("2_n1754")
 surface_material_override/1 = ExtResource("4_adguf")
 surface_material_override/2 = ExtResource("2_n1754")
