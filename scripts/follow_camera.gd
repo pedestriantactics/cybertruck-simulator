@@ -14,6 +14,8 @@ var shakeReturnSeconds = 0.05
 
 var shakeTimer = 0
 
+var relative_start_position: Vector3
+
 
 func _ready():
 	# Find collision exceptions for ray.
@@ -27,6 +29,10 @@ func _ready():
 
 	# This detaches the camera transform from the parent spatial node.
 	set_as_top_level(true)
+
+	# Save the relative start position but it needs to be relative to the target's rotation too
+	relative_start_position = get_global_transform().origin - get_parent().get_global_transform().origin
+
 
 	# Assuming vehicle is a reference to your VehicleBody3D instance
 	get_parent().get_parent().object_collision_occurred.connect(_on_object_collision_occurred)
@@ -58,6 +64,20 @@ func _physics_process(_delta):
 	from_target.y = height
 
 	pos = target + from_target
+
+	# @nick this is where it's not working
+	# the camera gets separated from the vehicle on the ready function
+	# i tried to capture the offset between the camera and the vehicle at the start
+	# it then lerps to the original position before performing the other functions
+	# but the original position doesn't take into account the rotation of the vehicle
+	# so the camera is always on the south side of the vehicle but not behind it per se
+	# can you look at this and see if you can fix it?
+	
+	# rotate the pos based on the target's y rotation
+	var rotated_pos = target + relative_start_position.rotated(Vector3.UP, get_parent().get_rotation().y)
+	
+	# lerp the camera's position to the goal
+	pos = pos.lerp(rotated_pos, 0.1)
 
 	look_at_from_position(pos, target, Vector3.UP)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=62 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -46,7 +46,6 @@
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="36_o5co1"]
 [ext_resource type="AudioStream" uid="uid://il6apbs2r1uv" path="res://sounds/switch-forward.wav" id="45_wpc7e"]
 [ext_resource type="AudioStream" uid="uid://djcjym3o355th" path="res://sounds/switch-reverse.wav" id="46_e3al3"]
-[ext_resource type="Script" path="res://scripts/impact_phaser.gd" id="47_iks5m"]
 [ext_resource type="Material" uid="uid://b51smst5hugdj" path="res://materials/everything_shiny.tres" id="51_el1vw"]
 [ext_resource type="Script" path="res://scripts/world_spawner.gd" id="52_w6bf3"]
 [ext_resource type="PackedScene" uid="uid://7jhjfbi3x80u" path="res://world/world.tscn" id="55_17vea"]
@@ -441,9 +440,6 @@ collision_mask = 3
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="InstancePos/Cybertruck/Body/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.755173, 0.0815091)
 shape = SubResource("BoxShape3D_admae")
-
-[node name="Node" type="Node" parent="InstancePos/Cybertruck/Body"]
-script = ExtResource("47_iks5m")
 
 [node name="Environment" type="Node" parent="."]
 
