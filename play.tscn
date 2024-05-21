@@ -1,7 +1,8 @@
-[gd_scene load_steps=62 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=65 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
+[ext_resource type="Script" path="res://scripts/toggle_ui.gd" id="2_uyho2"]
 [ext_resource type="Script" path="res://scripts/vehicle.gd" id="3_udmgw"]
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="3_waqbr"]
 [ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="4_a2qxl"]
@@ -46,6 +47,7 @@
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="36_o5co1"]
 [ext_resource type="AudioStream" uid="uid://il6apbs2r1uv" path="res://sounds/switch-forward.wav" id="45_wpc7e"]
 [ext_resource type="AudioStream" uid="uid://djcjym3o355th" path="res://sounds/switch-reverse.wav" id="46_e3al3"]
+[ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="49_ifvba"]
 [ext_resource type="Material" uid="uid://b51smst5hugdj" path="res://materials/everything_shiny.tres" id="51_el1vw"]
 [ext_resource type="Script" path="res://scripts/world_spawner.gd" id="52_w6bf3"]
 [ext_resource type="PackedScene" uid="uid://7jhjfbi3x80u" path="res://world/world.tscn" id="55_17vea"]
@@ -55,6 +57,22 @@
 [ext_resource type="Shader" path="res://materials/bw.gdshader" id="71_i2cqu"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="72_g0p4h"]
 [ext_resource type="Script" path="res://scripts/archive_code_display.gd" id="73_3she0"]
+
+[sub_resource type="Animation" id="Animation_6klkl"]
+resource_name = "timer_default"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_7oekd"]
 resource_name = "timer_warn"
@@ -89,6 +107,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xbmtc"]
 _data = {
+"timer_default": SubResource("Animation_6klkl"),
 "timer_warn": SubResource("Animation_7oekd")
 }
 
@@ -145,53 +164,6 @@ text = "Press \"Shift\" to switch drive modes"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameTimer" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("33_orntt")
-
-[node name="Margin" type="Control" parent="GameTimer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 23.0
-offset_right = -22.0
-offset_bottom = -23.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TimerLabel" type="Label" parent="GameTimer/Margin"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -79.5
-offset_right = 79.5
-offset_bottom = 56.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.929563, 0.0877168, 0, 1)
-theme_override_fonts/font = ExtResource("10_oy7ox")
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("3_waqbr")
-timer_start_seconds = 60
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GameTimer/Margin/TimerLabel"]
-libraries = {
-"": SubResource("AnimationLibrary_xbmtc")
-}
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameTimer/Margin/TimerLabel"]
-volume_db = -5.914
-bus = &"UI"
-
 [node name="Dash" type="Control" parent="."]
 process_mode = 3
 layout_mode = 3
@@ -201,6 +173,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("33_orntt")
+script = ExtResource("2_uyho2")
 
 [node name="Margin" type="Control" parent="Dash"]
 layout_mode = 1
@@ -262,11 +235,32 @@ uppercase = true
 script = ExtResource("56_agw6f")
 car_path = NodePath("../../../../InstancePos/Cybertruck/Body")
 
-[node name="Control" type="Control" parent="Dash"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="TimerLabel" type="Label" parent="Dash/Margin"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.5
+offset_right = 79.5
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_oy7ox")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_waqbr")
+timer_start_seconds = 60
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dash/Margin/TimerLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_xbmtc")
+}
+autoplay = "timer_default"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dash/Margin/TimerLabel"]
+volume_db = -5.914
+bus = &"UI"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_608ts")
@@ -553,3 +547,9 @@ grow_vertical = 2
 text = "Pedestrian Tactics"
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="FreeLookCamera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 2.11495e-08, -8.48259e-08, 9.03234e-16, 0.970296, 0.241922, 8.74227e-08, 0.241922, -0.970296, 0, 9.48444, -4.394)
+doppler_tracking = 2
+fov = 60.0
+script = ExtResource("49_ifvba")

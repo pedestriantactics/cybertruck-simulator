@@ -41,6 +41,10 @@ var forward = true
 
 func _ready():
 	DevConsole.command.connect(handle_command)
+	DevConsole.help_text["burst"] = "Toggles the burst feature on and off."
+	DevConsole.help_text["rpm"] = "rpm <number> - Sets the max rpm, or no number to check the current value"
+	DevConsole.help_text["steering"] = "steering <number> - Sets the max steering, or no number to check the current value"
+
 	if blackboard:
 		# clear the blackboard
 		blackboard.kvps = {}
@@ -75,9 +79,9 @@ func handle_command(text_command):
 		"burst":
 			toggle_burst = !toggle_burst
 			DevConsole.debug_print("burst toggled: " + str(toggle_burst))
-		"?rpm":
+		"rpm":
 			DevConsole.debug_print("rpm: " + str(max_rpm))
-		"?steering":
+		"steering":
 			DevConsole.debug_print("steering: " + str(max_steering))
 
 
@@ -92,7 +96,7 @@ func is_moving_forward() -> bool:
 func _physics_process(delta):
 
 	if parked:
-		if Input.is_action_just_pressed("toggle_reverse"):
+		if Input.is_action_just_pressed("toggle_reverse") and InputProcessor.can_process_game_input:
 			parked = false
 			return
 		else:
@@ -122,7 +126,7 @@ func _physics_process(delta):
 			blackboard.kvps["maximum_speed_achieved_miles_per_hour"] = maximum_speed_achieved_miles_per_hour
 
 	# toggle the bool if the reverse switchc is pressed
-	if Input.is_action_just_pressed("toggle_reverse"):
+	if Input.is_action_just_pressed("toggle_reverse") && InputProcessor.can_process_game_input:
 		forward = !forward
 
 	var collision_info = move_and_collide(linear_velocity * delta)

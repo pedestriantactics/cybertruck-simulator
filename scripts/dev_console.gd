@@ -12,6 +12,10 @@ extends Control
 @onready var line_edit = get_child(1)
 @onready var console_label = get_child(2)
 
+# create a dictionary called glossary
+# this will have key value pairs. The key will be the command and the value will be the description
+var help_text: Dictionary = {}
+
 signal command(text_command)
 
 # Called when the node enters the scene tree for the first time.
@@ -19,12 +23,30 @@ func _ready():
 	command.connect(on_command)
 	visible = false
 
+	# add the help text
+	help_text["r"] = "reload the scene"
+	help_text["d"] = "dev mode for truck"
+	help_text["cs"] = "change the scene"
+	help_text["bb"] = "add to blackboard if there's a command after, otherwise check the blackboard"
+
 func on_command(text_command):
 	# add a carriage return and the command to the console
 	debug_print("command entered: " + text_command)
 
 	# exact dev console commands go here
 	match text_command:
+		"help":
+			debug_print("dev console commands:")
+			for key in help_text:
+				# get the character count of the key
+				var key_length = key.length()
+				var space = 12
+				var space_count = space - key_length
+				var space_string = ""
+				for i in range(space_count):
+					space_string += " "
+				debug_print(key + space_string + help_text[key])
+			return
 		"r":
 			# reload the scene
 			get_tree().reload_current_scene()
@@ -35,37 +57,26 @@ func on_command(text_command):
 			command.emit("steering .8")
 			command.emit("rpm 300")
 			return
-
-		"cbb": 
-			on_command("checkblackboard")
-			return
-		"checkblackboard":
+		"bb":
 			var blackboard = get_node("/root/Blackboard")
 			debug_print("blackboard contents:")
 			for key in blackboard.kvps:
 				debug_print(key + " " + str(blackboard.kvps[key])) 
+			return
 	
 	# contains dev console commands go here
 	var keyword = ""
 
-	# change the scene shortcut
-	keyword = "cs"
-	if text_command.begins_with(keyword):
-		text_command = text_command.replace(keyword, "changescene")
-
 	# change the scene
-	keyword = "changescene"
+	keyword = "cs"
 	if text_command.begins_with(keyword):
 		var keyword_result = text_command.replace(keyword, "").replace(" ", "")
 		var scene_changer = get_node("/root/SceneChanger")
 		scene_changer.change_scene(keyword_result)
 		return
 
-	# add to the blackboard
+	# add to blackboard
 	keyword = "bb"
-	if text_command.begins_with(keyword):
-		text_command = text_command.replace(keyword, "blackboard")
-	keyword = "blackboard"
 	if text_command.begins_with(keyword):
 		if !text_command.contains(","):
 			debug_print("not enough arguments for blackboard")
@@ -82,11 +93,6 @@ func debug_print(in_text):
 # when the key is pressed
 func _input(event):
 	if event.is_action_released("dev_console"):
-		# TEMPORARY
-		# reload the scene
-		# get_tree().reload_current_scene()
-		# return
-
 		if visible:
 			visible = false
 			get_tree().paused = false

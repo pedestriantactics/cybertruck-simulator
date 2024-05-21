@@ -15,6 +15,32 @@ var seconds = 0
 func _ready():
 	timer = timer_start_seconds
 	seconds = int(timer)
+	DevConsole.command.connect(handle_command)
+	DevConsole.help_text["timer"] = "timer <number> - set the timer to the given number of seconds, or no number to check the current value"
+	DevConsole.help_text["stoptimer"] = "stop the timer"
+	DevConsole.help_text["starttimer"] = "start the timer"
+
+func handle_command(text_command):
+	var check_command = ""
+
+	check_command = "timer"
+	if text_command.begins_with(check_command):
+		var checked_number = text_command.replace(check_command, "").strip_edges()
+		if checked_number.is_valid_float():
+			timer = float(checked_number)
+		DevConsole.debug_print("timer set to: " + str(checked_number))
+
+	match text_command:
+		"stoptimer":
+			started = false
+			DevConsole.debug_print("timer stopped")
+
+		"starttimer":
+			started = false
+			DevConsole.debug_print("timer started")
+
+		"timer":
+			DevConsole.debug_print("timer: " + str(timer))
 
 func _process(delta):
 	if !started&&(!InputProcessor.can_process_game_input||!Input.is_action_just_pressed("toggle_reverse")):
