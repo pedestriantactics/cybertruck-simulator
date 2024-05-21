@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://de2xfhhv7yew8"]
+[gd_scene load_steps=4 format=3 uid="uid://de2xfhhv7yew8"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_2cv5u"]
 [ext_resource type="Script" path="res://scripts/dev_console.gd" id="2_ukh42"]
+[ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="3_vb6i2"]
 
 [node name="DevConsole" type="Control"]
 process_mode = 3
@@ -37,6 +38,7 @@ offset_right = 235.0
 offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vb6i2")
 placeholder_text = "Enter command"
 
 [node name="Label" type="Label" parent="."]
@@ -51,5 +53,7 @@ offset_right = -51.0
 offset_bottom = -61.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_vb6i2")
+theme_override_font_sizes/font_size = 24
 vertical_alignment = 2
 autowrap_mode = 2

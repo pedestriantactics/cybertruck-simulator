@@ -92,6 +92,10 @@ pause={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_2="UI"
+
 [rasterizer]
 
 shadow_filter=3
