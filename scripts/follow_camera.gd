@@ -51,6 +51,7 @@ func _on_vehicle_collision_occurred(impact):
 func _physics_process(_delta):
 
 	var target = get_parent().get_global_transform().origin
+	var target_rot = get_parent().get_global_transform().basis
 	var pos = get_global_transform().origin
 
 	var from_target = pos - target
@@ -65,19 +66,7 @@ func _physics_process(_delta):
 
 	pos = target + from_target
 
-	# @nick this is where it's not working
-	# the camera gets separated from the vehicle on the ready function
-	# i tried to capture the offset between the camera and the vehicle at the start
-	# it then lerps to the original position before performing the other functions
-	# but the original position doesn't take into account the rotation of the vehicle
-	# so the camera is always on the south side of the vehicle but not behind it per se
-	# can you look at this and see if you can fix it?
-	
-	# rotate the pos based on the target's y rotation
-	var rotated_pos = target + relative_start_position.rotated(Vector3.UP, get_parent().get_rotation().y)
-	
-	# lerp the camera's position to the goal
-	pos = pos.lerp(rotated_pos, 0.1)
+	# code to rotate to the back of the vehicle goes here
 
 	look_at_from_position(pos, target, Vector3.UP)
 
