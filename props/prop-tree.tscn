@@ -23,6 +23,8 @@ collision_mask = 3
 mass = 0.01
 physics_material_override = ExtResource("1_o60uw")
 gravity_scale = 2.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(2.08167e-16, 0.3, 2.08167e-16)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 max_polyphony = 2

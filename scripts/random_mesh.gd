@@ -32,8 +32,8 @@ func _ready():
 	if random_color:
 		# var random_color = colors[randi() % colors.size()]
 		var hue = randf_range(0, 1)
-		var saturation = 0.6
-		var value = randf_range(0.8, 1)
+		var saturation = .55
+		var value = randf_range(.9, 1)
 		var random_color = Color.from_hsv(hue, saturation, value)
 
 		# check how many materials there are on the mesh so you can iterate through them and color each one

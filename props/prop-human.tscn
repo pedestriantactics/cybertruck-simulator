@@ -1,10 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://hc1ywbfhiaym"]
+[gd_scene load_steps=35 format=3 uid="uid://hc1ywbfhiaym"]
 
 [ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="1_0hrub"]
 [ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_1sden"]
 [ext_resource type="ArrayMesh" uid="uid://coa82po4n78nb" path="res://meshes/human-tall_001.obj" id="1_4p3fh"]
 [ext_resource type="AudioStream" uid="uid://d2r2utrjly253" path="res://sounds/hit-human-1.wav" id="2_37hns"]
 [ext_resource type="ArrayMesh" uid="uid://cvx0o7l7g00is" path="res://meshes/human-short.obj" id="2_mfhou"]
+[ext_resource type="Script" path="res://scripts/random_movement_npc.gd" id="2_xklj2"]
 [ext_resource type="AudioStream" uid="uid://4xjkdruhfbxw" path="res://sounds/hit-human-2.wav" id="3_4hpsv"]
 [ext_resource type="ArrayMesh" uid="uid://bq56717l4wh2j" path="res://meshes/human-short_001.obj" id="3_d72j1"]
 [ext_resource type="AudioStream" uid="uid://bgiwxwng2bjvu" path="res://sounds/hit-human-3.wav" id="4_r3h4m"]
@@ -47,6 +48,9 @@ collision_mask = 3
 mass = 0.01
 physics_material_override = ExtResource("1_1sden")
 gravity_scale = 2.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(2.08167e-16, 2.08167e-16, 2.08167e-16)
+script = ExtResource("2_xklj2")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 max_polyphony = 2
