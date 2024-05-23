@@ -14,8 +14,6 @@ Must happen
 - Camera needs to slowly rotate to behind the vehicle
 - Neighborhood design
 - Updated car hit sound with random horn noise
-- Random movement of NPCs
-	- Random direction selection with a timer with a random time
 
 Possibly
 - Doge coin that randomly instantiates every game, game logs how many you've collected in the save file
