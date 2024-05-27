@@ -11,6 +11,7 @@ Moved volume to it's own settings screen
 New countdown timer and animation
 
 Must happen
+- The counter at the end screen needs to be shortened, it's taking too long
 - Camera needs to slowly rotate to behind the vehicle
 - Neighborhood design
 - Updated car hit sound with random horn noise
