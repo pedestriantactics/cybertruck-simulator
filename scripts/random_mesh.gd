@@ -38,7 +38,7 @@ func _ready():
 
 		# check how many materials there are on the mesh so you can iterate through them and color each one
 		var material_count = get_surface_override_material_count()
-		print("material_count for "+ get_parent().name + ": " + str(material_count))
+		# print("material_count for "+ get_parent().name + ": " + str(material_count))
 		# Assign the random color to the material
 		for i in range(material_count):
 			var material = get_surface_override_material(i).duplicate()
