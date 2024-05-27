@@ -20,6 +20,7 @@ func _ready():
 			instance.position = child.position;
 			instance.rotation = child.rotation;
 			add_child(instance)
+			instance.name = final_name
 			child.queue_free()
 
 
