@@ -4,9 +4,8 @@ Latest changes:
 New world with complete walls
 
 Must happen
-- The counter at the end screen needs to be shortened, it's taking too long
 - Camera needs to slowly rotate to behind the vehicle
-- Neighborhood design
+- Finish neighborhood design
 - Updated car hit sound with random horn noise
 
 Possibly
