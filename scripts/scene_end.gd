@@ -41,6 +41,9 @@ var timer_state = 0
 
 var current_label_index = 0
 
+# amount of numbers to skip for speed sake
+var skip_numbers = 2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	retry_button.hide()
@@ -91,7 +94,7 @@ func _on_timeout():
 			click_sound_audiostream_player.play()
 			animation_player.play("glitch")
 
-			if skip or current_value == blackboard_value_int:
+			if skip or current_value >= blackboard_value_int:
 				# if the value is the same as blackboard or skip
 				value_label.text = str(blackboard_value_int)
 			else:
@@ -101,7 +104,12 @@ func _on_timeout():
 				return
 		1:
 			if current_value < blackboard_value_int:
-				value_label.text = str(current_value + 1)
+				# check if it's worth skipping some numbers
+				var check_value = current_value + (1*skip_numbers)
+				if check_value < blackboard_value_int:
+					value_label.text = str(check_value)
+				else:
+					value_label.text = str(current_value + 1)
 				timer = 0.02
 				click_sound_audiostream_player.play_random()
 				return
