@@ -142,9 +142,9 @@ func _physics_process(delta):
 		if collider is RigidBody3D:
 			other_velocity = collider.linear_velocity
 			impact = (linear_velocity - other_velocity).length()
-			if impact > .01:
+			if impact > 20:
 				#impact is very strong, let's make it reasonable
-				impact = pow(impact / 30, 2)
+				impact = pow(impact / 40, 2)
 				emit_signal("object_collision_occurred", impact, collision_info)
 			
 			# move the other object up about half a meter and then recalculate the collision
