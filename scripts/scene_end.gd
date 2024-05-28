@@ -105,7 +105,7 @@ func _on_timeout():
 		1:
 			if current_value < blackboard_value_int:
 				# check if it's worth skipping some numbers
-				var check_value = current_value + (1*skip_numbers)
+				var check_value = current_value + (1 * skip_numbers)
 				if check_value < blackboard_value_int:
 					value_label.text = str(check_value)
 				else:
