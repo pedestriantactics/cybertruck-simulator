@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://fwhm5yyfa15x"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_31xsq"]
+[ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="2_sptg8"]
+[ext_resource type="AudioStream" uid="uid://bmv7p5wm7merl" path="res://sounds/hit-dumpster-1.wav" id="3_egr4x"]
+[ext_resource type="AudioStream" uid="uid://bqb70skyprkxn" path="res://sounds/hit-dumpster-2.wav" id="4_j2chl"]
+[ext_resource type="AudioStream" uid="uid://cl74x6y1homp6" path="res://sounds/hit-dumpster-3.wav" id="5_kf83i"]
+[ext_resource type="ArrayMesh" uid="uid://bgy6b222ha1o4" path="res://meshes/food-stand.obj" id="6_rr2i5"]
+[ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="7_yr56a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xdxja"]
+size = Vector3(2.19885, 1.41467, 1.03625)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7jj44"]
+height = 0.647476
+radius = 1.0458
+
+[node name="Dumpster" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_layer = 3
+collision_mask = 3
+mass = 0.01
+physics_material_override = ExtResource("1_31xsq")
+gravity_scale = 2.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 2
+bus = &"Spatial"
+script = ExtResource("2_sptg8")
+sounds = Array[AudioStream]([ExtResource("3_egr4x"), ExtResource("4_j2chl"), ExtResource("5_kf83i")])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("6_rr2i5")
+surface_material_override/0 = ExtResource("7_yr56a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00262463, 0.707337, -0.138123)
+shape = SubResource("BoxShape3D_xdxja")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851235, 2.24022, -0.402196)
+shape = SubResource("CylinderShape3D_7jj44")
