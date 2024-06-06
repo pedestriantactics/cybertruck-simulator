@@ -38,16 +38,17 @@ func _process(delta):
 	# get the wheels by getting nodes FL, FR, BL, BR which are siblings
 	var wheels = []
 	for child in parent.get_children():
-		if child.name == "FL" or child.name == "FR" or child.name == "BL" or child.name == "BR":
+		if child.name == "BL" or child.name == "BR":
 			wheels.append(child)
-	var skid = 4
+	# lower is less sensitive
+	var skid_threshold = 3
 	for wheel in wheels:
-		skid -= wheel.get_skidinfo()
+		skid_threshold -= wheel.get_skidinfo()
 		# if the wheel is moving laterally, add to the skid
 	# divide the skid by the number of wheels
-	skid /= 4
+	skid_threshold /= wheels.size()
 
-	var calculated_volume = -80 + (skid * 180)
+	var calculated_volume = -80 + (skid_threshold * 180)
 	if calculated_volume > 0:
 		calculated_volume = 0
 

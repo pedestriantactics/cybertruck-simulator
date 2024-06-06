@@ -53,6 +53,7 @@ center_of_mass = Vector3(2.08167e-16, 2.08167e-16, 2.08167e-16)
 script = ExtResource("2_xklj2")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = 9.655
 max_polyphony = 2
 bus = &"Spatial"
 area_mask = 3

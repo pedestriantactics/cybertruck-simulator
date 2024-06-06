@@ -116,8 +116,8 @@ _data = {
 [sub_resource type="BoxShape3D" id="7"]
 size = Vector3(2.28125, 1.54492, 5.64902)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_admae"]
-size = Vector3(2.06152, 3.59378, 5.52096)
+[sub_resource type="BoxShape3D" id="BoxShape3D_15w67"]
+size = Vector3(2.61157, 2.00073, 6.21069)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0vktu"]
 shader = ExtResource("71_i2cqu")
@@ -283,9 +283,8 @@ _import_path = NodePath(".")
 
 [node name="Body" type="VehicleBody3D" parent="InstancePos/Cybertruck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00169557, 0.222867, -0.0955184)
-mass = 1000.0
+mass = 3000.0
 physics_material_override = SubResource("PhysicsMaterial_15ilr")
-gravity_scale = 1.6
 center_of_mass_mode = 1
 script = ExtResource("3_udmgw")
 
@@ -332,12 +331,10 @@ use_as_steering = true
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.48
 wheel_rest_length = 2.08165e-12
-wheel_friction_slip = 4.0
-suspension_travel = 0.15
-suspension_stiffness = 200.0
-suspension_max_force = 8000.0
-damping_compression = 1.9
-damping_relaxation = 10.0
+suspension_travel = 0.143
+suspension_stiffness = 100.0
+suspension_max_force = 90000.0
+damping_relaxation = 900.0
 
 [node name="Wheel1" type="MeshInstance3D" parent="InstancePos/Cybertruck/Body/FL"]
 _import_path = NodePath("BODY-vehicle/wheel1-wheel")
@@ -352,12 +349,10 @@ use_as_steering = true
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.48
 wheel_rest_length = 2.08165e-12
-wheel_friction_slip = 4.0
-suspension_travel = 0.15
-suspension_stiffness = 200.0
-suspension_max_force = 8000.0
-damping_compression = 1.9
-damping_relaxation = 10.0
+suspension_travel = 0.143
+suspension_stiffness = 100.0
+suspension_max_force = 90000.0
+damping_relaxation = 900.0
 
 [node name="Wheel1" type="MeshInstance3D" parent="InstancePos/Cybertruck/Body/FR"]
 _import_path = NodePath("BODY-vehicle/wheel1-wheel")
@@ -370,12 +365,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957798, 0.142565, -1.62108)
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.48
 wheel_rest_length = 2.08165e-12
-wheel_friction_slip = 3.0
-suspension_travel = 0.15
-suspension_stiffness = 200.0
-suspension_max_force = 8000.0
-damping_compression = 1.9
-damping_relaxation = 10.0
+suspension_travel = 0.143
+suspension_stiffness = 100.0
+suspension_max_force = 90000.0
+damping_relaxation = 900.0
 
 [node name="Wheel1" type="MeshInstance3D" parent="InstancePos/Cybertruck/Body/BL"]
 _import_path = NodePath("BODY-vehicle/wheel1-wheel")
@@ -388,12 +381,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.958, 0.143, -1.62073)
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.48
 wheel_rest_length = 2.08165e-12
-wheel_friction_slip = 3.0
-suspension_travel = 0.15
-suspension_stiffness = 200.0
-suspension_max_force = 8000.0
-damping_compression = 1.9
-damping_relaxation = 10.0
+suspension_travel = 0.143
+suspension_stiffness = 100.0
+suspension_max_force = 90000.0
+damping_relaxation = 900.0
 
 [node name="Wheel1" type="MeshInstance3D" parent="InstancePos/Cybertruck/Body/BR"]
 _import_path = NodePath("BODY-vehicle/wheel1-wheel")
@@ -426,13 +417,12 @@ max_distance = 8.0
 angle_v_adjust = 10.0
 height = 2.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="InstancePos/Cybertruck/Body"]
-collision_layer = 2
-collision_mask = 3
+[node name="Area3D" type="Area3D" parent="InstancePos/Cybertruck/Body"]
+collision_mask = 2
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="InstancePos/Cybertruck/Body/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.755173, 0.0815091)
-shape = SubResource("BoxShape3D_admae")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InstancePos/Cybertruck/Body/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.708424, 0.0749741)
+shape = SubResource("BoxShape3D_15w67")
 
 [node name="Environment" type="Node" parent="."]
 
