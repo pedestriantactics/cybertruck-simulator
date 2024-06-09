@@ -17,8 +17,8 @@ func _ready():
 	car.object_collision_occurred.connect(_on_collision_occurred)
 	pass
 
-func _on_collision_occurred(impact, collision_info):
-	var collision_name = collision_info.get_collider().get_name()
+func _on_collision_occurred(impact, colliding_body):
+	var collision_name = colliding_body.get_name()
 	if (targets_hit.find(collision_name) == - 1):
 		targets_hit.append(collision_name)
 		print("hit " + collision_name)

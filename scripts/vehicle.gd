@@ -15,12 +15,12 @@ var parked = true
 # extends VehicleBody
 var max_rpm = 2000
 # var max_rpm_reverse = 200.0
-var max_torque = 50000
-var max_steering = 0.3
-var steering_speed = 5.0
+var max_torque = 30000
+var max_steering = 0.4
+var steering_speed = 20.0
 
-var forward_force = 1000000
-var reverse_force = -30000
+var forward_force = 800000
+var reverse_force = -100000
 var brake_force = 3000	
 var regen_brake_force = 1000
 
@@ -32,7 +32,7 @@ var accelerationTimer = 0.0
 var previous_acceleration = 0.0
 
 # for collisions
-signal object_collision_occurred(impact, collision_info)
+signal object_collision_occurred(impact, colliding_body)
 signal static_collision_occurred(impact)
 # for shakes when accelerating
 signal shake_occurred(impact)
@@ -47,10 +47,15 @@ var previous_velocity = Vector3()
 @onready var fl = $FL
 @onready var fr = $FR
 
+var previous_y = 0
+
 # for switching the direction
 var forward = true
 
 func _ready():
+	contact_monitor = true
+	max_contacts_reported = 3
+	previous_y = global_transform.origin.y
 	DevConsole.command.connect(handle_command)
 	DevConsole.help_text["burst"] = "Toggles the burst feature on and off."
 	DevConsole.help_text["rpm"] = "rpm <number> - Sets the max rpm, or no number to check the current value"
@@ -106,12 +111,57 @@ func is_moving_forward() -> bool:
 
 func _physics_process(delta):
 
+	# keep the car on the ground
+	# if (get_contact_count() > 0):
+	# 	if global_transform.origin.y > previous_y:
+	# 		global_transform.origin.y = previous_y
+	# else:
+	# 	previous_y = global_transform.origin.y
+
+	# extra collision
+	var colliding_bodies = get_colliding_bodies()
+	if colliding_bodies.size() > 0:
+		# get the first one
+		var collider = colliding_bodies[0]
+		if collider is RigidBody3D:
+			# get an idea of the strength of the collision and determine if it's significant
+			var impact = (linear_velocity - collider.linear_velocity).length()
+			if impact > 1:
+				# get a vector between the center of the vehicle and the body
+				var direction = collider.global_transform.origin - global_transform.origin
+				# add an impulse force greater than the current velocity
+				var impulse_multiplier = .003
+				var impulse = direction.normalized() * linear_velocity.length() * impulse_multiplier
+				collider.apply_impulse(impulse)
+				# print("impulse: " + str(impulse))
+				impact = impact*.01
+				emit_signal("object_collision_occurred", impact, collider)
+		# TODO enable and test this
+		else:
+			var static_impact = (previous_velocity - linear_velocity).length()
+			if static_impact > .05:
+				#impact is very strong, let's make it reasonable
+				static_impact = static_impact*.1
+				emit_signal("static_collision_occurred", static_impact)
+	
+
+	# keep the car on the ground by checking the previous_y versus the current and adding an impulse force equivelant to it
+	var new_y = global_transform.origin.y
+	if (new_y > previous_y):
+		var impulse = Vector3(0, -10000, 0) * (new_y - previous_y)
+		apply_impulse(impulse)
+		# print("impulse: " + str(impulse))
+	previous_y = new_y
+
+
 	if parked:
 		if Input.is_action_just_pressed("toggle_reverse") and InputProcessor.can_process_game_input:
 			parked = false
 			return
 		else:
 			return
+
+	# determine if the vehicle is colliding
 
 	# toggle the bool if the reverse switchc is pressed
 	if Input.is_action_just_pressed("toggle_reverse") && InputProcessor.can_process_game_input:
@@ -162,16 +212,6 @@ func _physics_process(delta):
 	# 		collider.apply_central_impulse(new_velocity)
 	# 		return
 
-
-			
-	# TODO rewrite this as an actual collision detection
-	# trying detect static collisions outside the collider
-	# var static_impact = (previous_velocity - linear_velocity).length()
-	# if static_impact > .05:
-	# 	#impact is very strong, let's make it reasonable
-	# 	static_impact = pow(static_impact / 10, 2)
-	# 	emit_signal("static_collision_occurred", static_impact)
-
 	previous_velocity = linear_velocity
 
 	var acceleration = 0
@@ -197,7 +237,7 @@ func _physics_process(delta):
 		if accelerationTimer > accelerationDelaySeconds:
 			accelerationTimer = 0
 			# burst accelerate by adding impulse to the car in it's normal direction
-			var impule_multiplier = 80000
+			var impule_multiplier = 40000
 			apply_impulse(transform.basis.z * impule_multiplier)
 			emit_signal("shake_occurred", 5)
 			previous_acceleration = acceleration
@@ -255,8 +295,8 @@ func _physics_process(delta):
 		# engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
 		bl.use_as_traction = false
 		br.use_as_traction = false
-		if rpm < 1000:
-			print("rpm: " + str(rpm))
+		# if linear velocity is greater than 100mph
+		if linear_velocity.length() < 44.704:
 			# set the back wheels to not have traction
 			# fr.use_as_traction = true
 			# fl.use_as_traction = true
@@ -267,7 +307,7 @@ func _physics_process(delta):
 			# br.use_as_traction = true
 			# fr.use_as_traction = false
 			# fl.use_as_traction = false
-			engine_force = 0
+			engine_force = 22000
 		# engine_force = 50000
 		previous_acceleration = acceleration
 		return

@@ -13,14 +13,17 @@ func _ready():
 	get_parent().static_collision_occurred.connect(_on_static_collision_occurred)
 
 func _on_object_collision_occurred(impact, collision_info):
-	if (impact < .1):
-		return
+	# if (impact < .1):
+		# return
 	
 	var final_sounds = impact_sounds
 	if (impact > .75):
 		final_sounds = impact_hard_sounds
-	# scale the volume to be -80 for an impact of 0 and 0 for an impact of 2
-	var calculated_volume = impact * 40 - 20
+	# scale the volume to be -80 for an impact of 0 and 0 for an impact of .KEY_5
+	var calculated_volume = impact * 100 - 30
+	print(calculated_volume)
+	# temp
+	# calculated_volume = 0
 	# if the volume is over 0 cap it at 0
 	if (calculated_volume > 0):
 		calculated_volume = 0

@@ -12,7 +12,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	# if below a volume stop playing at all
 	if (playing and parent.get_linear_velocity().length() < 1) or mute:
 		stop()
@@ -29,10 +29,10 @@ func _process(delta):
 	var velocity = parent.get_linear_velocity()
 
 	# if the velocity is below a certain threshold or the parent is not moving forward
-	if velocity.length() < 4 or !parent.is_moving_forward():
-		# set the volume to 0
-		set_volume_db(-80)
-		return
+	# if velocity.length() < 4 or !parent.is_moving_forward():
+	# 	# set the volume to 0
+	# 	set_volume_db(-80)
+	# 	return
 
 	# set the volume of the tire screech based on the skid of the wheels
 	# get the wheels by getting nodes FL, FR, BL, BR which are siblings
@@ -40,17 +40,23 @@ func _process(delta):
 	for child in parent.get_children():
 		if child.name == "BL" or child.name == "BR":
 			wheels.append(child)
-	# lower is less sensitive
-	var skid_threshold = 3
+	# 0 is lost control, 1 is grip
+	var skid_sum = 0
 	for wheel in wheels:
-		skid_threshold -= wheel.get_skidinfo()
-		# if the wheel is moving laterally, add to the skid
-	# divide the skid by the number of wheels
-	skid_threshold /= wheels.size()
+		skid_sum += wheel.get_skidinfo()
+		# we should end up with a number between 0 and 1
+		# 0 means skidding and 1 means not skidding
+	skid_sum /= wheels.size()
+	# invert the number so it's between 1 and 0, 0 being no skid and 1 being skid
+	skid_sum = 1 - skid_sum
+	var calculated_volume = -80.00
+	var lerp_speed = 0.5
+	var current_volume = get_volume_db()
+	if skid_sum > 0.5:
+		# lerp the current volume to 0
+		calculated_volume = lerp(current_volume, 0.0, lerp_speed)
+	else:
+		# lerp the current volume to -80
+		calculated_volume = lerp(current_volume, -80.0, lerp_speed)
 
-	var calculated_volume = -80 + (skid_threshold * 180)
-	if calculated_volume > 0:
-		calculated_volume = 0
-
-	# set the volume based on the skid
 	set_volume_db(calculated_volume)
