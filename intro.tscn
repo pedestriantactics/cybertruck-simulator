@@ -168,6 +168,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="pt title" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,6 +223,7 @@ volume_db = -5.0
 bus = &"UI"
 
 [node name="title" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

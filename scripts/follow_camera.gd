@@ -87,4 +87,7 @@ func _physics_process(_delta):
 	# create a shake effect that wiggles randomly on the x and y axis times the shake strength
 	var shake = Vector3(randf_range(-shakeStrength, shakeStrength), randf_range(-shakeStrength, shakeStrength), randf_range(-shakeStrength, shakeStrength)/2)
 	# add the shake to the camera's position
-	get_parent().position = shake
+
+	var new_position = shake
+
+	get_parent().position = new_position

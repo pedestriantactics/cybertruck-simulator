@@ -7,9 +7,10 @@ extends Label
 @onready var timer_animation = $"./AnimationPlayer"
 
 var started = false
+var blocked = false
 
 var timer = 0.00
-@export var timer_start_seconds = 120
+@export var timer_start_seconds = 90
 var seconds = 0
 
 func _ready():
@@ -33,16 +34,20 @@ func handle_command(text_command):
 	match text_command:
 		"stoptimer":
 			started = false
+			blocked = true
 			DevConsole.debug_print("timer stopped")
 
 		"starttimer":
 			started = false
+			blocked = false
 			DevConsole.debug_print("timer started")
 
 		"timer":
 			DevConsole.debug_print("timer: " + str(timer))
 
 func _process(delta):
+	if blocked:
+		return;
 	if !started&&(!InputProcessor.can_process_game_input||!Input.is_action_just_pressed("toggle_reverse")):
 		return;
 		

@@ -13,11 +13,16 @@ var pedal_stomps = 0
 var parked = true
 
 # extends VehicleBody
-var max_rpm = 600.0
-var max_rpm_reverse = 200.0
-var max_torque = 80000.0
-var max_steering = 0.5
-var steering_speed = 5.0
+var max_rpm = 2000
+# var max_rpm_reverse = 200.0
+var max_torque = 30000
+var max_steering = 0.4
+var steering_speed = 20.0
+
+var forward_force = 800000
+var reverse_force = -100000
+var brake_force = 3000	
+var regen_brake_force = 1000
 
 # this allows the burst to be toggled off for development testing
 var toggle_burst = true
@@ -27,7 +32,7 @@ var accelerationTimer = 0.0
 var previous_acceleration = 0.0
 
 # for collisions
-signal object_collision_occurred(impact, collision_info)
+signal object_collision_occurred(impact, colliding_body)
 signal static_collision_occurred(impact)
 # for shakes when accelerating
 signal shake_occurred(impact)
@@ -35,11 +40,22 @@ signal shake_occurred(impact)
 var previous_velocity = Vector3()
 
 @onready var accelerate_audio_stream_player = $TruckAccelerateAudioStreamPlayer
+@onready var area_3d = $Area3D
+
+@onready var bl = $BL
+@onready var br = $BR
+@onready var fl = $FL
+@onready var fr = $FR
+
+var previous_y = 0
 
 # for switching the direction
 var forward = true
 
 func _ready():
+	contact_monitor = true
+	max_contacts_reported = 3
+	previous_y = global_transform.origin.y
 	DevConsole.command.connect(handle_command)
 	DevConsole.help_text["burst"] = "Toggles the burst feature on and off."
 	DevConsole.help_text["rpm"] = "rpm <number> - Sets the max rpm, or no number to check the current value"
@@ -95,12 +111,61 @@ func is_moving_forward() -> bool:
 
 func _physics_process(delta):
 
+	# keep the car on the ground
+	# if (get_contact_count() > 0):
+	# 	if global_transform.origin.y > previous_y:
+	# 		global_transform.origin.y = previous_y
+	# else:
+	# 	previous_y = global_transform.origin.y
+
+	# extra collision
+	var colliding_bodies = get_colliding_bodies()
+	if colliding_bodies.size() > 0:
+		# get the first one
+		var collider = colliding_bodies[0]
+		if collider is RigidBody3D:
+			# get an idea of the strength of the collision and determine if it's significant
+			var impact = (linear_velocity - collider.linear_velocity).length()
+			if impact > 1:
+				# get a vector between the center of the vehicle and the body
+				var direction = collider.global_transform.origin - global_transform.origin
+				# add an impulse force greater than the current velocity
+				var impulse_multiplier = .003
+				var impulse = direction.normalized() * linear_velocity.length() * impulse_multiplier
+				collider.apply_impulse(impulse)
+				# print("impulse: " + str(impulse))
+				impact = impact*.01
+				emit_signal("object_collision_occurred", impact, collider)
+		# TODO enable and test this
+		else:
+			var static_impact = (previous_velocity - linear_velocity).length()
+			if static_impact > .05:
+				#impact is very strong, let's make it reasonable
+				static_impact = static_impact*.1
+				emit_signal("static_collision_occurred", static_impact)
+	
+
+	# keep the car on the ground by checking the previous_y versus the current and adding an impulse force equivelant to it
+	var new_y = global_transform.origin.y
+	if (new_y > previous_y):
+		var impulse = Vector3(0, -10000, 0) * (new_y - previous_y)
+		apply_impulse(impulse)
+		# print("impulse: " + str(impulse))
+	previous_y = new_y
+
+
 	if parked:
 		if Input.is_action_just_pressed("toggle_reverse") and InputProcessor.can_process_game_input:
 			parked = false
 			return
 		else:
 			return
+
+	# determine if the vehicle is colliding
+
+	# toggle the bool if the reverse switchc is pressed
+	if Input.is_action_just_pressed("toggle_reverse") && InputProcessor.can_process_game_input:
+		forward = !forward
 
 	# add to distance traveled only if the car is moving
 	if linear_velocity.length() > 0.5:
@@ -125,55 +190,27 @@ func _physics_process(delta):
 			blackboard.kvps["maximum_speed_achieved_meters_per_second"] = maximum_speed_achieved_meters_per_second
 			blackboard.kvps["maximum_speed_achieved_miles_per_hour"] = maximum_speed_achieved_miles_per_hour
 
-	# toggle the bool if the reverse switchc is pressed
-	if Input.is_action_just_pressed("toggle_reverse") && InputProcessor.can_process_game_input:
-		forward = !forward
+	# var collision_info = move_and_collide(linear_velocity * delta)
 
-	var collision_info = move_and_collide(linear_velocity * delta)
-
-	# check if there's a collision and then get the strength by comparing the previous velocity to the current velocity
-	if collision_info:
-		# var impact = previous_velocity.length() - linear_velocity.length()
-		# get the velocity of the other object by getting the parent, casting it to a rigidbody, and then getting the velocity
-		var collider = collision_info.get_collider()
-		var other_velocity = 0
-		var impact = 0
-		# if it's another object that can move
-		if collider is RigidBody3D:
-			other_velocity = collider.linear_velocity
-			impact = (linear_velocity - other_velocity).length()
-			if impact > 20:
-				#impact is very strong, let's make it reasonable
-				impact = pow(impact / 40, 2)
-				emit_signal("object_collision_occurred", impact, collision_info)
-			
-			# move the other object up about half a meter and then recalculate the collision
-			# collider.translate(Vector3(0, .5, 0))
-			# collision_info = move_and_collide(linear_velocity * delta)
-			# try speeding up the other object to get it out of the way
-			var new_velocity = collider.linear_velocity.normalized() * .05
-			# make the velocity go up a little
-			new_velocity.y += .005
-			collider.apply_central_impulse(new_velocity)
-			return
-			# collider.apply_torque_impulse(collider.constant_torque * 1)
-		# if it's a wall
-		# else:
-		# 	# if it's not another object you're hitting a wall, compare your velocity to the previous velocity
-		# 	impact = (previous_velocity - linear_velocity).length()
-		# 	if impact > .01:
-		# 		#impact is very strong, let's make it reasonable
-		# 		impact = pow(impact / 10, 2)
-		# 		emit_signal("static_collision_occurred", impact)
-
-
-			
-	# trying detect static collisions outside the collider
-	var static_impact = (previous_velocity - linear_velocity).length()
-	if static_impact > .05:
-		#impact is very strong, let's make it reasonable
-		static_impact = pow(static_impact / 10, 2)
-		emit_signal("static_collision_occurred", static_impact)
+	# # check if there's a collision and then get the strength by comparing the previous velocity to the current velocity
+	# if collision_info:
+	# 	# get the velocity of the other object by getting the parent, casting it to a rigidbody, and then getting the velocity
+	# 	var collider = collision_info.get_collider()
+	# 	var other_velocity = 0
+	# 	var impact = 0
+	# 	# if it's another object that can move
+	# 	if collider is RigidBody3D:
+	# 		other_velocity = collider.linear_velocity
+	# 		impact = (linear_velocity - other_velocity).length()
+	# 		if impact > 20:
+	# 			#impact is very strong, let's make it reasonable
+	# 			impact = pow(impact / 40, 2)
+	# 			emit_signal("object_collision_occurred", impact, collision_info)
+	# 		var new_velocity = collider.linear_velocity.normalized() * .05
+	# 		# make the velocity go up a little
+	# 		new_velocity.y += .005
+	# 		collider.apply_central_impulse(new_velocity)
+	# 		return
 
 	previous_velocity = linear_velocity
 
@@ -199,6 +236,9 @@ func _physics_process(delta):
 		# if the timer has ended throttle it
 		if accelerationTimer > accelerationDelaySeconds:
 			accelerationTimer = 0
+			# burst accelerate by adding impulse to the car in it's normal direction
+			var impule_multiplier = 40000
+			apply_impulse(transform.basis.z * impule_multiplier)
 			emit_signal("shake_occurred", 5)
 			previous_acceleration = acceleration
 			pedal_stomps += 1
@@ -212,7 +252,9 @@ func _physics_process(delta):
 	if acceleration < 0 and linear_velocity.length() > 0:
 		if (previous_acceleration != acceleration and linear_velocity.length() > 5):
 			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.braking_sounds)
-		brake = mass / 2
+		brake = brake_force
+		bl.use_as_traction = true
+		br.use_as_traction = true
 		engine_force = 0
 		previous_acceleration = acceleration
 		return
@@ -221,7 +263,9 @@ func _physics_process(delta):
 	if !forward and is_moving_forward() and acceleration > 0 and linear_velocity.length() > 2:
 		if (previous_acceleration != acceleration and linear_velocity.length() > 5):
 			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.braking_sounds)
-		brake = mass / 2
+		brake = brake_force
+		bl.use_as_traction = true
+		br.use_as_traction = true
 		engine_force = 0
 		previous_acceleration = acceleration
 		return
@@ -230,27 +274,61 @@ func _physics_process(delta):
 	if acceleration == 0 and linear_velocity.length() > 0:
 		if (previous_acceleration != acceleration and linear_velocity.length() > 5):
 			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.braking_sounds)
-		brake = mass / 8
+		brake = regen_brake_force
+		# set the back wheels to have traction
+		bl.use_as_traction = true
+		br.use_as_traction = true
+		# fr.use_as_traction = false
+		# fl.use_as_traction = false
 		engine_force = 0
 		previous_acceleration = acceleration
 		return
 
 	# # get the rpm of all the wheels and create an average
-	var rpm = abs(($BL.get_rpm() + $BR.get_rpm() + $FL.get_rpm() + $FR.get_rpm()) / 4)
+	var rpm = abs((bl.get_rpm() + br.get_rpm() + fl.get_rpm() + fr.get_rpm()) / 4)
 
 	# forward movement
 	if forward and acceleration > 0:
 		if (previous_acceleration != acceleration):
 			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.soft_acceleration_sounds)
 		brake = 0
-		engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
+		# engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
+		bl.use_as_traction = false
+		br.use_as_traction = false
+		# if linear velocity is greater than 100mph
+		if linear_velocity.length() < 44.704:
+			# set the back wheels to not have traction
+			# fr.use_as_traction = true
+			# fl.use_as_traction = true
+			engine_force = forward_force
+		else:
+			# set the back wheels to have traction
+			# bl.use_as_traction = true
+			# br.use_as_traction = true
+			# fr.use_as_traction = false
+			# fl.use_as_traction = false
+			engine_force = 22000
+		# engine_force = 50000
 		previous_acceleration = acceleration
 		return
 
 	# backward movement
 	if !forward and acceleration > 0:
+		# set the back wheels to have traction
+		# bl.use_as_traction = true
+		# br.use_as_traction = true
+		# fr.use_as_traction = true
+		# fl.use_as_traction = true
+		bl.use_as_traction = true
+		br.use_as_traction = true
 		brake = 0
-		engine_force = -acceleration * max_torque * (1 - rpm / max_rpm_reverse)
+		# engine_force = -acceleration * max_torque * (1 - rpm / max_rpm_reverse)
+		if rpm < 400:
+			engine_force = reverse_force
+		else:
+			engine_force = 0
+		
+		# engine_force = reverse_force
 		previous_acceleration = acceleration
 		return
 	
