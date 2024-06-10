@@ -1,16 +1,14 @@
-[gd_scene load_steps=35 format=3 uid="uid://hc1ywbfhiaym"]
+[gd_scene load_steps=38 format=3 uid="uid://hc1ywbfhiaym"]
 
 [ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="1_0hrub"]
 [ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_1sden"]
 [ext_resource type="ArrayMesh" uid="uid://coa82po4n78nb" path="res://meshes/human-tall_001.obj" id="1_4p3fh"]
-[ext_resource type="AudioStream" uid="uid://d2r2utrjly253" path="res://sounds/hit-human-1.wav" id="2_37hns"]
 [ext_resource type="ArrayMesh" uid="uid://cvx0o7l7g00is" path="res://meshes/human-short.obj" id="2_mfhou"]
 [ext_resource type="Script" path="res://scripts/random_movement_npc.gd" id="2_xklj2"]
 [ext_resource type="AudioStream" uid="uid://4xjkdruhfbxw" path="res://sounds/hit-human-2.wav" id="3_4hpsv"]
 [ext_resource type="ArrayMesh" uid="uid://bq56717l4wh2j" path="res://meshes/human-short_001.obj" id="3_d72j1"]
 [ext_resource type="AudioStream" uid="uid://bgiwxwng2bjvu" path="res://sounds/hit-human-3.wav" id="4_r3h4m"]
 [ext_resource type="ArrayMesh" uid="uid://6kg2t6dsro40" path="res://meshes/human-short_002.obj" id="4_svljm"]
-[ext_resource type="AudioStream" uid="uid://b52myj2ehxoxj" path="res://sounds/hit-human-4.wav" id="5_6rxs6"]
 [ext_resource type="ArrayMesh" uid="uid://cw2ljg313y633" path="res://meshes/human-short_003.obj" id="5_i8xi8"]
 [ext_resource type="ArrayMesh" uid="uid://cbobeu880ai72" path="res://meshes/human-short_004.obj" id="6_edj4c"]
 [ext_resource type="AudioStream" uid="uid://pgwtubxl1so1" path="res://sounds/hit-human-5.wav" id="6_fecog"]
@@ -29,9 +27,14 @@
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="14_h2b5c"]
 [ext_resource type="ArrayMesh" uid="uid://l8r1x1hecd8r" path="res://meshes/human-tall_004.obj" id="14_j2fso"]
 [ext_resource type="ArrayMesh" uid="uid://cnjslnchoyma1" path="res://meshes/human-tall_005.obj" id="15_fw3sw"]
+[ext_resource type="AudioStream" uid="uid://vk34utlcdhoq" path="res://sounds/hit-human-12.wav" id="15_wub4w"]
 [ext_resource type="Script" path="res://scripts/random_mesh.gd" id="16_jalih"]
+[ext_resource type="AudioStream" uid="uid://bwmuiins4bdjd" path="res://sounds/hit-human-13.wav" id="16_sxpmo"]
 [ext_resource type="ArrayMesh" uid="uid://7j1mckr40l28" path="res://meshes/human-tall_006.obj" id="16_uy35r"]
+[ext_resource type="AudioStream" uid="uid://dfncepvnbjwoh" path="res://sounds/hit-human-14.wav" id="17_5p547"]
 [ext_resource type="ArrayMesh" uid="uid://cn3h8xqxrgg1q" path="res://meshes/human-tall_007.obj" id="17_xtpq6"]
+[ext_resource type="AudioStream" uid="uid://dqvp6mxoxkbjn" path="res://sounds/hit-human-15.wav" id="18_cr4gl"]
+[ext_resource type="AudioStream" uid="uid://bj0pmv4jsxgl3" path="res://sounds/hit-human-16.wav" id="19_2wdsv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_32shn"]
 height = 0.10544
@@ -53,12 +56,13 @@ center_of_mass = Vector3(2.08167e-16, 2.08167e-16, 2.08167e-16)
 script = ExtResource("2_xklj2")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-volume_db = 9.655
+volume_db = 3.468
 max_polyphony = 2
 bus = &"Spatial"
 area_mask = 3
+doppler_tracking = 2
 script = ExtResource("1_0hrub")
-sounds = Array[AudioStream]([ExtResource("2_37hns"), ExtResource("3_4hpsv"), ExtResource("4_r3h4m"), ExtResource("5_6rxs6"), ExtResource("6_fecog"), ExtResource("7_hxdxq"), ExtResource("8_w2u4o"), ExtResource("9_bssbo"), ExtResource("10_g8djk"), ExtResource("11_r0y2e"), ExtResource("12_2r8sm")])
+sounds = Array[AudioStream]([ExtResource("3_4hpsv"), ExtResource("4_r3h4m"), ExtResource("6_fecog"), ExtResource("7_hxdxq"), ExtResource("8_w2u4o"), ExtResource("9_bssbo"), ExtResource("10_g8djk"), ExtResource("11_r0y2e"), ExtResource("12_2r8sm"), ExtResource("15_wub4w"), ExtResource("16_sxpmo"), ExtResource("17_5p547"), ExtResource("18_cr4gl"), ExtResource("19_2wdsv")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.0440652, 2.08165e-12)

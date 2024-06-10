@@ -19,7 +19,7 @@ func _ready():
 	if blackboard.saved_kvps.size() == 0:
 		no_data_label.show()
 		data_label.hide()
-		clear_button.hide()
+		clear_button.disabled = true
 	
 	no_data_label.hide()
 	data_label.show()
@@ -39,10 +39,10 @@ func _ready():
 		else:
 			value_labels[i].set_text("0")
 
-# this is a weird workaround but whatever
-func _process(delta):
-	if blackboard.saved_kvps.size() == 0:
-		clear_button.hide()
+# # this is a weird workaround but whatever
+# func _process(delta):
+# 	if blackboard.saved_kvps.size() == 0:
+# 		clear_button.hide()
 
 func _on_clear_confirm_button_pressed():
 	blackboard.clear_save()

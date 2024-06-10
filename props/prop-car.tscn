@@ -1,12 +1,37 @@
-[gd_scene load_steps=10 format=3 uid="uid://dl68hly4kkpgv"]
+[gd_scene load_steps=35 format=3 uid="uid://dl68hly4kkpgv"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://1ywww4riyotg" path="res://props_physics_material.tres" id="1_2s62c"]
 [ext_resource type="Script" path="res://scripts/audio_prop_impact.gd" id="2_566ov"]
-[ext_resource type="AudioStream" uid="uid://8eddbc3knuva" path="res://sounds/hit-debris-large-1.wav" id="3_wrfw6"]
-[ext_resource type="AudioStream" uid="uid://7kesvwcu6mx1" path="res://sounds/hit-debris-large-2.wav" id="4_6m2nq"]
+[ext_resource type="AudioStream" uid="uid://dstuk1dswf5s2" path="res://sounds/car-crash-1.wav" id="3_ibxn1"]
+[ext_resource type="AudioStream" uid="uid://dtmijlk8r6elx" path="res://sounds/car-crash-2.wav" id="4_7jqrq"]
+[ext_resource type="AudioStream" uid="uid://6tp5h8b41euj" path="res://sounds/car-crash-3.wav" id="5_d77vf"]
 [ext_resource type="ArrayMesh" uid="uid://drotyttpa0f20" path="res://meshes/car.obj" id="5_lit8i"]
+[ext_resource type="AudioStream" uid="uid://ctka5gb4d5tls" path="res://sounds/car-crash-4.wav" id="6_vhrle"]
 [ext_resource type="Script" path="res://scripts/random_mesh.gd" id="7_16t6u"]
+[ext_resource type="AudioStream" uid="uid://cd005jm878h0w" path="res://sounds/car-crash-5.wav" id="7_n1tio"]
+[ext_resource type="AudioStream" uid="uid://dtxerehqfc2xj" path="res://sounds/car-crash-6.wav" id="8_14vuv"]
+[ext_resource type="AudioStream" uid="uid://bn68v05ujf5cs" path="res://sounds/car-crash-7.wav" id="9_8i5i8"]
+[ext_resource type="AudioStream" uid="uid://54fc4s1hcw2r" path="res://sounds/car-crash-8.wav" id="10_32m1p"]
+[ext_resource type="AudioStream" uid="uid://cjna7ljevo7e0" path="res://sounds/car-horn-1.wav" id="11_8bvpl"]
+[ext_resource type="AudioStream" uid="uid://driinbgcie5va" path="res://sounds/car-horn-2.wav" id="12_qjlif"]
+[ext_resource type="AudioStream" uid="uid://w3awmljm7i0s" path="res://sounds/car-horn-3.wav" id="13_o5afk"]
+[ext_resource type="AudioStream" uid="uid://btyxn0unmxl40" path="res://sounds/car-horn-4.wav" id="14_aluet"]
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="15_jf1rf"]
+[ext_resource type="AudioStream" uid="uid://b60cwnt12gs3s" path="res://sounds/car-horn-5.wav" id="15_wixb2"]
+[ext_resource type="AudioStream" uid="uid://djfqku6ojc7k4" path="res://sounds/car-horn-6.wav" id="16_8rux5"]
+[ext_resource type="AudioStream" uid="uid://bfrk5sjv2ufe" path="res://sounds/car-horn-7.wav" id="17_2b6p8"]
+[ext_resource type="AudioStream" uid="uid://dmj5jopb6cipw" path="res://sounds/car-horn-8.wav" id="18_jmgka"]
+[ext_resource type="AudioStream" uid="uid://bq87831nfc2pp" path="res://sounds/car-horn-9.wav" id="19_wuo3q"]
+[ext_resource type="AudioStream" uid="uid://br0tkgdh3hdnt" path="res://sounds/car-horn-10.wav" id="20_hx5f7"]
+[ext_resource type="AudioStream" uid="uid://3a7kwiqajnnv" path="res://sounds/car-horn-11.wav" id="21_fegs6"]
+[ext_resource type="AudioStream" uid="uid://buggpstmjl2i" path="res://sounds/car-horn-12.wav" id="22_hn5kt"]
+[ext_resource type="AudioStream" uid="uid://u3f3hx7r6ne3" path="res://sounds/car-horn-13.wav" id="23_e35i8"]
+[ext_resource type="AudioStream" uid="uid://cpn64mlovpnic" path="res://sounds/car-horn-14.wav" id="24_34tif"]
+[ext_resource type="AudioStream" uid="uid://c82vrtscu22ss" path="res://sounds/car-horn-15.wav" id="25_a2kax"]
+[ext_resource type="AudioStream" uid="uid://bkgyio0khwe35" path="res://sounds/car-horn-16.wav" id="26_5kv4a"]
+[ext_resource type="AudioStream" uid="uid://dbgey1oxsopb6" path="res://sounds/car-horn-17.wav" id="27_iglpg"]
+[ext_resource type="AudioStream" uid="uid://xypgpb46t4s6" path="res://sounds/car-horn-18.wav" id="28_3rhfb"]
+[ext_resource type="AudioStream" uid="uid://dvg6k77p5l4ok" path="res://sounds/car-horn-19.wav" id="29_06bv6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_srl0a"]
 size = Vector3(1.93066, 1.04166, 4.50836)
@@ -23,12 +48,20 @@ physics_material_override = ExtResource("1_2s62c")
 gravity_scale = 2.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-volume_db = -4.103
 max_polyphony = 2
 bus = &"Spatial"
 area_mask = 3
 script = ExtResource("2_566ov")
-sounds = Array[AudioStream]([ExtResource("3_wrfw6"), ExtResource("4_6m2nq")])
+sounds = Array[AudioStream]([ExtResource("3_ibxn1"), ExtResource("4_7jqrq"), ExtResource("5_d77vf"), ExtResource("6_vhrle"), ExtResource("7_n1tio"), ExtResource("8_14vuv"), ExtResource("9_8i5i8"), ExtResource("10_32m1p")])
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+volume_db = 0.44
+max_polyphony = 2
+bus = &"Spatial"
+area_mask = 3
+doppler_tracking = 2
+script = ExtResource("2_566ov")
+sounds = Array[AudioStream]([ExtResource("11_8bvpl"), ExtResource("12_qjlif"), ExtResource("13_o5afk"), ExtResource("14_aluet"), ExtResource("15_wixb2"), ExtResource("16_8rux5"), ExtResource("17_2b6p8"), ExtResource("18_jmgka"), ExtResource("19_wuo3q"), ExtResource("20_hx5f7"), ExtResource("21_fegs6"), ExtResource("22_hn5kt"), ExtResource("23_e35i8"), ExtResource("24_34tif"), ExtResource("25_a2kax"), ExtResource("26_5kv4a"), ExtResource("27_iglpg"), ExtResource("28_3rhfb"), ExtResource("29_06bv6")])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("5_lit8i")

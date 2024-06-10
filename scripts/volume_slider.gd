@@ -17,8 +17,8 @@ func _ready():
 	current_step = int(value * 10)
 	value_changed.connect(_on_value_changed)
 
-	for i in range(1, 3):
-		sounds.append(load("res://sounds/truck-crash-" + str(i) + ".wav"))
+	for i in range(1, 8):
+		sounds.append(load("res://sounds/car-crash-" + str(i) + ".wav"))
 
 func _on_value_changed(new_value: float) -> void:
 	var next_step = int(new_value * 10)

@@ -274,7 +274,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_awknl")
-clear_confirm_button_path = NodePath("../../Buttons/clear-stats2")
+clear_confirm_button_path = NodePath("../../Buttons/clear-main")
 clear_button_path = NodePath("../../Buttons/stats-clear")
 
 [node name="no-data" type="Label" parent="Menus/stats"]
@@ -530,13 +530,13 @@ text = "Oh never mind"
 
 [node name="ButtonPlayer" parent="Buttons/quit-main" instance=ExtResource("4_ru3qn")]
 
-[node name="clear-stats2" type="Button" parent="Buttons"]
+[node name="clear-main" type="Button" parent="Buttons"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Yes delete save file"
 
-[node name="ButtonPlayer" parent="Buttons/clear-stats2" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/clear-main" instance=ExtResource("4_ru3qn")]
 
 [node name="clear-stats" type="Button" parent="Buttons"]
 visible = false

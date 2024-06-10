@@ -4,17 +4,16 @@ Latest changes:
 New world with complete walls
 
 Must happen
-- Camera needs to slowly rotate to behind the vehicle
-- Finish neighborhood design
-- Updated car hit sound with random horn noise
-
-Possibly
-- Doge coin that randomly instantiates every game, game logs how many you've collected in the save file
-- Achievements that pop up after the tally
-- Achievements page
-- Cars move
+- fix the inverted box on the world
+- fix the fence that's missing a piece by the big road
+- model dogecoin
+- add total lawsuits to the save file
+- make sound for dogecoin
 
 Ideas
+- achievement banner
+- achievement page
+- Cars move
 - Gas pedal stuck, tap to reset
 - Controller support
 - Boombox with Pedestrian Tactics music

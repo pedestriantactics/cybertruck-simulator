@@ -70,7 +70,7 @@ func _get_destination_name(full_name: String) -> String:
 func _refresh_current_menu():
 	# hide all the buttons except the buttons for the first menu
 	for button in buttons:
-		if _get_menu_name(button.name) == current_menu_name:
+		if _get_menu_name(button.name) == current_menu_name and !button.disabled:
 			button.show()
 		else:
 			button.hide()
