@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bqneq8a0bf8hw"
+path="res://.godot/imported/doge-coin.obj-4297b4cc6f3b3580b69daa112fae70fa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/doge-coin.obj-4297b4cc6f3b3580b69daa112fae70fa.mesh"]
+
+source_file="res://meshes/doge-coin.obj"
+dest_files=["res://.godot/imported/doge-coin.obj-4297b4cc6f3b3580b69daa112fae70fa.mesh", "res://.godot/imported/doge-coin.obj-4297b4cc6f3b3580b69daa112fae70fa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

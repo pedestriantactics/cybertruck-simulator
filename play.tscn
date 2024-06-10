@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=64 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -6,13 +6,49 @@
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="3_waqbr"]
 [ext_resource type="AudioStream" uid="uid://bj366ttv2gund" path="res://sounds/ui-timer-low.wav" id="4_d6pfb"]
 [ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="10_oy7ox"]
-[ext_resource type="PackedScene" uid="uid://c57qtmthhlqnc" path="res://prefabs/cybertruck.tscn" id="16_ndj0s"]
+[ext_resource type="Script" path="res://scripts/vehicle.gd" id="16_d71hj"]
+[ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="17_xp7b1"]
+[ext_resource type="Script" path="res://scripts/audio_wind.gd" id="18_q7wfn"]
+[ext_resource type="AudioStream" uid="uid://daae6fl14bxpr" path="res://sounds/truck-acceleration-loop.wav" id="19_q7hf4"]
+[ext_resource type="Script" path="res://scripts/audio_truck_loop.gd" id="20_4lsok"]
+[ext_resource type="AudioStream" uid="uid://bqg0o0fd3ee11" path="res://sounds/truck-reverse-loop.wav" id="21_i4g5o"]
+[ext_resource type="AudioStream" uid="uid://dvp715uvnrkbw" path="res://sounds/truck-tires-loop.wav" id="22_guqb4"]
+[ext_resource type="Script" path="res://scripts/audio_truck_tires_loop.gd" id="23_05vxr"]
+[ext_resource type="Script" path="res://scripts/audio_truck_accelerate.gd" id="24_gahof"]
+[ext_resource type="AudioStream" uid="uid://w8jb6122t5dt" path="res://sounds/truck-accelerate-1.wav" id="25_idxrd"]
+[ext_resource type="AudioStream" uid="uid://ds4qcis8va4du" path="res://sounds/truck-accelerate-2.wav" id="26_60dt1"]
+[ext_resource type="AudioStream" uid="uid://duqm07bh20482" path="res://sounds/truck-accelerate-3.wav" id="27_sygeg"]
+[ext_resource type="AudioStream" uid="uid://b64vsub0d5sqr" path="res://sounds/truck-soft-accelerate.wav" id="28_lu8nr"]
+[ext_resource type="AudioStream" uid="uid://4aophh10bsf2" path="res://sounds/truck-decelerate.wav" id="29_rh76m"]
+[ext_resource type="AudioStream" uid="uid://kmrp8rcmynh2" path="res://sounds/truck-brake.wav" id="30_ukm0f"]
+[ext_resource type="Script" path="res://scripts/audio_truck_impact.gd" id="31_y5agu"]
+[ext_resource type="AudioStream" uid="uid://dk3v2q4ahxwmt" path="res://sounds/truck-hit-1.wav" id="32_pbhet"]
+[ext_resource type="AudioStream" uid="uid://co3xsvwxahc6g" path="res://sounds/truck-hit-2.wav" id="33_dercy"]
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="33_orntt"]
+[ext_resource type="AudioStream" uid="uid://hjwh0x7p6mpj" path="res://sounds/truck-hit-3.wav" id="34_x4atn"]
+[ext_resource type="AudioStream" uid="uid://dyy4io8wnvhc5" path="res://sounds/truck-hit-4.wav" id="35_a515n"]
 [ext_resource type="FontFile" uid="uid://dw8ppg88hpy7d" path="res://fonts/Hyperwalk-Display.otf" id="35_xvq7y"]
+[ext_resource type="AudioStream" uid="uid://bxnqgllhrkmlw" path="res://sounds/truck-hit-5.wav" id="36_gbiwt"]
 [ext_resource type="Script" path="res://scripts/gear_shift_indicator.gd" id="36_iwnde"]
+[ext_resource type="AudioStream" uid="uid://dgdb3mvijloai" path="res://sounds/truck-hit-6.wav" id="37_die20"]
+[ext_resource type="AudioStream" uid="uid://caa42n42ka5qy" path="res://sounds/truck-hit-7.wav" id="38_cfe4h"]
+[ext_resource type="AudioStream" uid="uid://bxhyat3ru5j51" path="res://sounds/truck-hit-8.wav" id="39_lo0vb"]
+[ext_resource type="AudioStream" uid="uid://dgb62dxjqao4h" path="res://sounds/truck-hit-hard-1.wav" id="40_7ieiu"]
+[ext_resource type="AudioStream" uid="uid://b42n8giihjyv5" path="res://sounds/truck-hit-hard-2.wav" id="41_c48pw"]
+[ext_resource type="AudioStream" uid="uid://bfjt011qcwn5i" path="res://sounds/truck-hit-hard-3.wav" id="42_06ops"]
+[ext_resource type="AudioStream" uid="uid://b7rch3fddjw4" path="res://sounds/truck-hit-hard-4.wav" id="43_5lyj1"]
+[ext_resource type="AudioStream" uid="uid://itrfjtl3yftq" path="res://sounds/truck-hit-hard-5.wav" id="44_3v0u3"]
+[ext_resource type="AudioStream" uid="uid://ca0xm4cvj8dbt" path="res://sounds/truck-crash-1.wav" id="45_kgw7t"]
 [ext_resource type="AudioStream" uid="uid://il6apbs2r1uv" path="res://sounds/switch-forward.wav" id="45_wpc7e"]
 [ext_resource type="AudioStream" uid="uid://djcjym3o355th" path="res://sounds/switch-reverse.wav" id="46_e3al3"]
+[ext_resource type="AudioStream" uid="uid://crlds0ulv18s7" path="res://sounds/truck-crash-2.wav" id="46_pyq07"]
+[ext_resource type="AudioStream" uid="uid://cpykpe4iy30ou" path="res://sounds/truck-crash-3.wav" id="47_1o8oo"]
+[ext_resource type="ArrayMesh" uid="uid://cl0hbt18yr3ha" path="res://meshes/cybertruck-wheel.obj" id="48_7dd4w"]
 [ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="49_ifvba"]
+[ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="49_nn8bi"]
+[ext_resource type="ArrayMesh" uid="uid://chl8nv8audeuo" path="res://meshes/cybertruck-body.obj" id="50_auivc"]
+[ext_resource type="Material" uid="uid://b51smst5hugdj" path="res://materials/everything_shiny.tres" id="51_653qo"]
+[ext_resource type="Script" path="res://scripts/follow_camera.gd" id="52_8gmvm"]
 [ext_resource type="Script" path="res://scripts/world_spawner.gd" id="52_w6bf3"]
 [ext_resource type="PackedScene" uid="uid://7jhjfbi3x80u" path="res://world/world.tscn" id="55_17vea"]
 [ext_resource type="Script" path="res://scripts/lawsuit_counter.gd" id="56_agw6f"]
@@ -74,6 +110,11 @@ _data = {
 "timer_default": SubResource("Animation_6klkl"),
 "timer_warn": SubResource("Animation_7oekd")
 }
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_15ilr"]
+
+[sub_resource type="BoxShape3D" id="7"]
+size = Vector3(2.28125, 1.54492, 5.64902)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0vktu"]
 shader = ExtResource("71_i2cqu")
@@ -238,7 +279,146 @@ script = ExtResource("52_w6bf3")
 
 [node name="World" parent="Environment/Node3D" instance=ExtResource("55_17vea")]
 
-[node name="Body" parent="Environment/Node3D/World" instance=ExtResource("16_ndj0s")]
+[node name="Body" type="VehicleBody3D" parent="Environment/Node3D/World"]
+mass = 3000.0
+physics_material_override = SubResource("PhysicsMaterial_15ilr")
+center_of_mass_mode = 1
+script = ExtResource("16_d71hj")
+
+[node name="WindAudioStreamPlayer" type="AudioStreamPlayer" parent="Environment/Node3D/World/Body"]
+stream = ExtResource("17_xp7b1")
+volume_db = -80.0
+autoplay = true
+bus = &"Game"
+script = ExtResource("18_q7wfn")
+
+[node name="TruckMotorAudioStreamPlayer" type="AudioStreamPlayer" parent="Environment/Node3D/World/Body"]
+stream = ExtResource("19_q7hf4")
+volume_db = -80.0
+autoplay = true
+bus = &"Truck Ambient"
+script = ExtResource("20_4lsok")
+forward_stream = ExtResource("19_q7hf4")
+reverse_stream = ExtResource("21_i4g5o")
+
+[node name="TruckTiresAudioStreamPlayer" type="AudioStreamPlayer" parent="Environment/Node3D/World/Body"]
+stream = ExtResource("22_guqb4")
+volume_db = -80.0
+autoplay = true
+bus = &"Truck Ambient"
+script = ExtResource("23_05vxr")
+
+[node name="TruckAccelerateAudioStreamPlayer" type="AudioStreamPlayer" parent="Environment/Node3D/World/Body"]
+bus = &"Truck Ambient"
+script = ExtResource("24_gahof")
+acceleration_sounds = Array[AudioStream]([ExtResource("25_idxrd"), ExtResource("26_60dt1"), ExtResource("27_sygeg")])
+soft_acceleration_sounds = Array[AudioStream]([ExtResource("28_lu8nr")])
+deceleration_sounds = Array[AudioStream]([ExtResource("29_rh76m")])
+braking_sounds = Array[AudioStream]([ExtResource("30_ukm0f")])
+
+[node name="TruckImpactAudio" type="Node" parent="Environment/Node3D/World/Body"]
+process_mode = 3
+script = ExtResource("31_y5agu")
+impact_sounds = Array[AudioStream]([ExtResource("32_pbhet"), ExtResource("33_dercy"), ExtResource("34_x4atn"), ExtResource("35_a515n"), ExtResource("36_gbiwt"), ExtResource("37_die20"), ExtResource("38_cfe4h"), ExtResource("39_lo0vb")])
+impact_hard_sounds = Array[AudioStream]([ExtResource("40_7ieiu"), ExtResource("41_c48pw"), ExtResource("42_06ops"), ExtResource("43_5lyj1"), ExtResource("44_3v0u3")])
+crash_sounds = Array[AudioStream]([ExtResource("45_kgw7t"), ExtResource("46_pyq07"), ExtResource("47_1o8oo")])
+
+[node name="FL" type="VehicleWheel3D" parent="Environment/Node3D/World/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957798, 0.142565, 2.08265)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 2.08165e-12
+wheel_radius = 0.48
+wheel_rest_length = 2.08165e-12
+wheel_friction_slip = 7.0
+suspension_travel = 0.143
+suspension_stiffness = 100.0
+suspension_max_force = 90000.0
+damping_relaxation = 900.0
+
+[node name="Wheel1" type="MeshInstance3D" parent="Environment/Node3D/World/Body/FL"]
+_import_path = NodePath("BODY-vehicle/wheel1-wheel")
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+mesh = ExtResource("48_7dd4w")
+surface_material_override/0 = ExtResource("49_nn8bi")
+
+[node name="FR" type="VehicleWheel3D" parent="Environment/Node3D/World/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.958, 0.143, 2.083)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 2.08165e-12
+wheel_radius = 0.48
+wheel_rest_length = 2.08165e-12
+wheel_friction_slip = 7.0
+suspension_travel = 0.143
+suspension_stiffness = 100.0
+suspension_max_force = 90000.0
+damping_relaxation = 900.0
+
+[node name="Wheel1" type="MeshInstance3D" parent="Environment/Node3D/World/Body/FR"]
+_import_path = NodePath("BODY-vehicle/wheel1-wheel")
+transform = Transform3D(-1, 3.48787e-16, 8.74228e-08, 3.48787e-16, 1, -3.48787e-16, -8.74228e-08, -3.48787e-16, -1, 0, 0, 0)
+mesh = ExtResource("48_7dd4w")
+surface_material_override/0 = ExtResource("49_nn8bi")
+
+[node name="BL" type="VehicleWheel3D" parent="Environment/Node3D/World/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957798, 0.142565, -1.62108)
+wheel_roll_influence = 2.08165e-12
+wheel_radius = 0.48
+wheel_rest_length = 2.08165e-12
+wheel_friction_slip = 7.0
+suspension_travel = 0.143
+suspension_stiffness = 100.0
+suspension_max_force = 90000.0
+damping_relaxation = 900.0
+
+[node name="Wheel1" type="MeshInstance3D" parent="Environment/Node3D/World/Body/BL"]
+_import_path = NodePath("BODY-vehicle/wheel1-wheel")
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+mesh = ExtResource("48_7dd4w")
+surface_material_override/0 = ExtResource("49_nn8bi")
+
+[node name="BR" type="VehicleWheel3D" parent="Environment/Node3D/World/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.958, 0.143, -1.62073)
+wheel_roll_influence = 2.08165e-12
+wheel_radius = 0.48
+wheel_rest_length = 2.08165e-12
+wheel_friction_slip = 7.0
+suspension_travel = 0.143
+suspension_stiffness = 100.0
+suspension_max_force = 90000.0
+damping_relaxation = 900.0
+
+[node name="Wheel1" type="MeshInstance3D" parent="Environment/Node3D/World/Body/BR"]
+_import_path = NodePath("BODY-vehicle/wheel1-wheel")
+transform = Transform3D(-1, 3.48787e-16, 8.74228e-08, 3.48787e-16, 1, -3.48787e-16, -8.74228e-08, -3.48787e-16, -1, 0, 0, 0)
+mesh = ExtResource("48_7dd4w")
+surface_material_override/0 = ExtResource("49_nn8bi")
+
+[node name="Body" type="MeshInstance3D" parent="Environment/Node3D/World/Body"]
+_import_path = NodePath("BODY-vehicle")
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0.558808, 0)
+mesh = ExtResource("50_auivc")
+surface_material_override/0 = ExtResource("49_nn8bi")
+surface_material_override/1 = ExtResource("51_653qo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Node3D/World/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769337, 0.0749741)
+shape = SubResource("7")
+
+[node name="CameraBase" type="Node3D" parent="Environment/Node3D/World/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="Camera3D" type="Camera3D" parent="Environment/Node3D/World/Body/CameraBase"]
+transform = Transform3D(-1, 2.11495e-08, -8.48259e-08, 9.03234e-16, 0.970296, 0.241922, 8.74227e-08, 0.241922, -0.970296, 0, 3.032, -4.394)
+doppler_tracking = 2
+current = true
+fov = 60.0
+script = ExtResource("52_8gmvm")
+min_distance = 6.0
+max_distance = 8.0
+angle_v_adjust = 10.0
+height = 2.0
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3

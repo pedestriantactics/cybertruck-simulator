@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=13 format=3 uid="uid://diyp0iqyevltm"]
+[gd_resource type="AudioBusLayout" load_steps=14 format=3 uid="uid://diyp0iqyevltm"]
 
 [sub_resource type="AudioEffectEQ21" id="AudioEffectEQ21_wingd"]
 resource_name = "EQ21"
@@ -29,6 +29,11 @@ band_db/22000_hz = 3.3
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_u8ooy"]
 resource_name = "Compressor"
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_ij7kd"]
+resource_name = "Compressor"
+threshold = -41.6
+sidechain = &"Achievement"
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_grcbn"]
 resource_name = "Compressor"
@@ -83,6 +88,8 @@ bus/1/effect/2/effect = SubResource("AudioEffectEQ21_1onf4")
 bus/1/effect/2/enabled = true
 bus/1/effect/3/effect = SubResource("AudioEffectCompressor_u8ooy")
 bus/1/effect/3/enabled = true
+bus/1/effect/4/effect = SubResource("AudioEffectCompressor_ij7kd")
+bus/1/effect/4/enabled = true
 bus/2/name = &"Truck Ambient"
 bus/2/solo = false
 bus/2/mute = false
@@ -125,3 +132,9 @@ bus/6/mute = false
 bus/6/bypass_fx = false
 bus/6/volume_db = 0.0
 bus/6/send = &"Master"
+bus/7/name = &"Achievement"
+bus/7/solo = false
+bus/7/mute = false
+bus/7/bypass_fx = false
+bus/7/volume_db = 0.0
+bus/7/send = &"Master"

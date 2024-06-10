@@ -6,11 +6,9 @@ New world with complete walls
 Must happen
 - eog stats page same as stats page, include dogecoin
 	- "found the dogecoin = nope"
-- fix the inverted box on the world
-- fix the fence that's missing a piece by the big road
-- model dogecoin
 - add total lawsuits to the save file
-- make sound for dogecoin
+- add bark to dogecoin
+- game ends if car flips
 
 Ideas
 - achievement banner
