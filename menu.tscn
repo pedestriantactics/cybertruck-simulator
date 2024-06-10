@@ -369,6 +369,16 @@ theme_override_fonts/font = ExtResource("5_vsv6q")
 theme_override_font_sizes/font_size = 48
 text = "0"
 
+[node name="ColorRect2" type="ColorRect" parent="Menus/stats"]
+z_index = 1
+material = SubResource("ShaderMaterial_5ewc3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="settings" type="Control" parent="Menus"]
 visible = false
 layout_mode = 1
