@@ -29,7 +29,7 @@ func _process(delta):
 	# get the velocity of the parent object
 	var velocity = parent.get_linear_velocity()
 	# get the length of the velocity vector
-	var speed = (velocity.length() * 4) - 80
+	var speed = (velocity.length() * 3) - 80
 	# scale the speed so that 0 is -80 and 100 is 0
 	# speed = lerp(-80, 0, speed / 10)
 	# cap the volume at 0

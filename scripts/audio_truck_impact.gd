@@ -7,14 +7,19 @@ extends Node
 @export var impact_hard_sounds: Array[AudioStream] = []
 @export var crash_sounds: Array[AudioStream] = []
 
+var hold_frames = 5
+var pause_timer = 0
+# var pause_recovery_frames = 10
+# var pause_recovery_timer = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_parent().object_collision_occurred.connect(_on_object_collision_occurred)
 	get_parent().static_collision_occurred.connect(_on_static_collision_occurred)
 
 func _on_object_collision_occurred(impact, collision_info):
-	# if (impact < .1):
-		# return
+	if (impact < .2):
+		return
 	
 	var final_sounds = impact_sounds
 	if (impact > .75):
@@ -28,6 +33,9 @@ func _on_object_collision_occurred(impact, collision_info):
 	if (calculated_volume > 0):
 		calculated_volume = 0
 	play_random_instantiated(final_sounds, calculated_volume)
+
+	# if (impact > .3):
+	# 	pause_timer = hold_frames
 
 func _on_static_collision_occurred(impact):
 	if (impact < .1):
@@ -45,12 +53,20 @@ func _on_static_collision_occurred(impact):
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	# get the children and remove any players that aren't playing
 	var audiostreamplayers = get_children()
 	for player in audiostreamplayers:
 		if (!player.playing):
 			player.queue_free()
+	# if (pause_timer > 0):
+	# 	# pause_recovery_timer = pause_recovery_frames
+	# 	pause_timer -= 1
+	# 	get_tree().set_pause(true)
+	# else:
+	# 	get_tree().set_pause(false)
+	# 	# pause_recovery_timer -= 1
+
 
 	# create a function called play that takes in the array of sounds and plays one of them at random
 func play_random_instantiated(sounds, volume):

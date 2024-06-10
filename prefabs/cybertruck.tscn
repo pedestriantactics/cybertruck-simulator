@@ -81,6 +81,7 @@ deceleration_sounds = Array[AudioStream]([ExtResource("14_cgagi")])
 braking_sounds = Array[AudioStream]([ExtResource("15_ipxtl")])
 
 [node name="TruckImpactAudio" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("16_8e7fg")
 impact_sounds = Array[AudioStream]([ExtResource("17_kq2mp"), ExtResource("18_6ym21"), ExtResource("19_wctif"), ExtResource("20_esnns"), ExtResource("21_ns617"), ExtResource("22_fx7y2"), ExtResource("23_8qd78"), ExtResource("24_u6q0j")])
 impact_hard_sounds = Array[AudioStream]([ExtResource("25_q0d0d"), ExtResource("26_gvwv5"), ExtResource("27_pvjxq"), ExtResource("28_t8wj3"), ExtResource("29_l0sga")])
