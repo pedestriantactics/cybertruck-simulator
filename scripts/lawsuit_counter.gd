@@ -29,3 +29,10 @@ func _on_collision_occurred(impact, colliding_body):
 		if (collision_name.contains("tree")):
 			trees_hit += 1
 			blackboard.kvps["trees_hit"] = trees_hit
+
+# func _physics_process(delta):
+# 	if blackboard.kvps["lawsuits"] > 0:
+# 		text = "Lawsuits " + str(blackboard.kvps["lawsuits"])
+# 		if blackboard.kvps["trees_hit"] > 0:
+# 			text += " Trees " + str(blackboard.kvps["trees_hit"])
+# 		set_text(text)

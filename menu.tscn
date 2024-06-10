@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cdgf8o3jwsgxq"]
+[gd_scene load_steps=25 format=3 uid="uid://cdgf8o3jwsgxq"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_m7t57"]
 [ext_resource type="Script" path="res://scripts/scene_menu.gd" id="2_5aap3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/toggle_menu.gd" id="3_o8npu"]
 [ext_resource type="Texture2D" uid="uid://doowpjqy2iklh" path="res://Keyboard Guide.svg" id="4_86pho"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="4_ru3qn"]
+[ext_resource type="Script" path="res://scripts/stats.gd" id="5_awknl"]
 [ext_resource type="Shader" path="res://materials/offset.gdshader" id="5_pg62n"]
 [ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="5_vsv6q"]
 [ext_resource type="Texture2D" uid="uid://clrbi2xmfe644" path="res://textures/glitch-post.jpg" id="6_nka0h"]
@@ -118,6 +119,7 @@ theme = ExtResource("1_m7t57")
 script = ExtResource("2_5aap3")
 play_button_path = NodePath("Buttons/main-play")
 quit_button_path = NodePath("Buttons/quit-yes")
+clear_button_path = NodePath("Buttons/clear-stats")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -159,6 +161,39 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="ColorRect2" type="ColorRect" parent="Menus/quit"]
+z_index = 1
+material = SubResource("ShaderMaterial_5ewc3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="clear" type="Control" parent="Menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="text" type="Label" parent="Menus/clear"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 432
+text = "Confirm?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Menus/clear"]
 z_index = 1
 material = SubResource("ShaderMaterial_5ewc3")
 layout_mode = 1
@@ -231,7 +266,111 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="stats" type="Control" parent="Menus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_awknl")
+clear_confirm_button_path = NodePath("../../Buttons/clear-stats2")
+clear_button_path = NodePath("../../Buttons/stats-clear")
+
+[node name="no-data" type="Label" parent="Menus/stats"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_font_sizes/font_size = 48
+text = "Must play first"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="data" type="HBoxContainer" parent="Menus/stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -546.0
+offset_top = -183.0
+offset_right = 546.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menus/stats/data"]
+custom_minimum_size = Vector2(960, 2.08165e-12)
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="total_distance_traveled_miles" type="Label" parent="Menus/stats/data/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_font_sizes/font_size = 48
+text = "Total miles traveled"
+uppercase = true
+
+[node name="maximum_speed_achieved_miles_per_hour" type="Label" parent="Menus/stats/data/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_font_sizes/font_size = 48
+text = "Maximum speed achieved (MPH)"
+uppercase = true
+
+[node name="trees_hit" type="Label" parent="Menus/stats/data/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_font_sizes/font_size = 48
+text = "Total trees destroyed"
+uppercase = true
+
+[node name="dogecoin_collected" type="Label" parent="Menus/stats/data/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_font_sizes/font_size = 48
+text = "Dogecoins found"
+uppercase = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menus/stats/data"]
+custom_minimum_size = Vector2(128, 2.08165e-12)
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="Menus/stats/data/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="Label2" type="Label" parent="Menus/stats/data/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="Label3" type="Label" parent="Menus/stats/data/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="Label4" type="Label" parent="Menus/stats/data/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
 [node name="settings" type="Control" parent="Menus"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -337,6 +476,13 @@ text = "Just go"
 
 [node name="ButtonPlayer" parent="Buttons/main-play" instance=ExtResource("4_ru3qn")]
 
+[node name="main-stats" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Stats"
+
+[node name="ButtonPlayer" parent="Buttons/main-stats" instance=ExtResource("4_ru3qn")]
+
 [node name="main-controls" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -374,6 +520,22 @@ text = "Oh never mind"
 
 [node name="ButtonPlayer" parent="Buttons/quit-main" instance=ExtResource("4_ru3qn")]
 
+[node name="clear-stats2" type="Button" parent="Buttons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Yes delete save file"
+
+[node name="ButtonPlayer" parent="Buttons/clear-stats2" instance=ExtResource("4_ru3qn")]
+
+[node name="clear-stats" type="Button" parent="Buttons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Whoa no"
+
+[node name="ButtonPlayer" parent="Buttons/clear-stats" instance=ExtResource("4_ru3qn")]
+
 [node name="controls-main" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -387,6 +549,20 @@ size_flags_horizontal = 4
 text = "Back"
 
 [node name="ButtonPlayer" parent="Buttons/settings-main" instance=ExtResource("4_ru3qn")]
+
+[node name="stats-main" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[node name="ButtonPlayer" parent="Buttons/stats-main" instance=ExtResource("4_ru3qn")]
+
+[node name="stats-clear" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Clear stats"
+
+[node name="ButtonPlayer" parent="Buttons/stats-clear" instance=ExtResource("4_ru3qn")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

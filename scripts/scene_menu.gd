@@ -8,6 +8,9 @@ extends Control
 @export var quit_button_path: NodePath
 @onready var quit_button = get_node(quit_button_path)
 
+@export var clear_button_path: NodePath
+@onready var clear_button = get_node(quit_button_path)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	play_button.pressed.connect(scene_changer.change_scene.bind("play"))

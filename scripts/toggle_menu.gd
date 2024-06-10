@@ -61,7 +61,11 @@ func _get_menu_name(full_name: String) -> String:
 
 func _get_destination_name(full_name: String) -> String:
 	var split_name = full_name.split("-")
-	return split_name[1]
+	var final_name = split_name[1]
+	# if the last character of final_name is a number, remove it
+	if final_name[final_name.length() - 1].is_valid_int():
+		final_name = final_name.left(final_name.length() - 1)
+	return final_name
 
 func _refresh_current_menu():
 	# hide all the buttons except the buttons for the first menu

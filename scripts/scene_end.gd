@@ -58,6 +58,49 @@ func _ready():
 	# start the timer
 	timer = 1
 
+	# save specific values from the blackboard to the saved blackboard
+	# top speed
+	var key = "maximum_speed_achieved_miles_per_hour"
+	if blackboard.kvps.has(key):
+		# compare if the saved blackboard has one
+		if blackboard.saved_kvps.has(key):
+			var session_top_speed = blackboard.kvps[key]
+			var saved_top_speed = blackboard.saved_kvps[key]
+			if session_top_speed > saved_top_speed:
+				blackboard.saved_kvps[key] = session_top_speed
+		else:
+			blackboard.saved_kvps[key] = blackboard.kvps[key]
+
+	# total distance traveled
+	key = "total_distance_traveled_miles"
+	if blackboard.kvps.has(key):
+		# add it to the saved blackboard
+		if blackboard.saved_kvps.has(key):
+			blackboard.saved_kvps[key] += blackboard.kvps[key]
+		else:
+			blackboard.saved_kvps[key] = blackboard.kvps[key]
+
+	# total trees hit
+	key = "trees_hit"
+	if blackboard.kvps.has(key):
+		# add it to the saved blackboard
+		if blackboard.saved_kvps.has(key):
+			blackboard.saved_kvps[key] += blackboard.kvps[key]
+		else:
+			blackboard.saved_kvps[key] = blackboard.kvps[key]
+
+	# dogecoins collected
+	key = "dogecoin_collected"
+	if blackboard.kvps.has(key):
+		# there's only one to collect so just add it
+		if blackboard.saved_kvps.has(key):
+			blackboard.saved_kvps[key] += 1
+		else:
+			blackboard.saved_kvps[key] = 1
+
+	# save
+	blackboard.save()
+
 func _on_timeout():
 	if current_label_index >= key_labels.size():
 		retry_button.pressed.connect(scene_changer.change_scene.bind("play"))

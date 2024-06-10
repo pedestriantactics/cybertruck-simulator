@@ -31,7 +31,10 @@ func _ready():
 
 func on_command(text_command):
 	# add a carriage return and the command to the console
+	debug_print("")
+	debug_print("")
 	debug_print("command entered: " + text_command)
+	debug_print("")
 
 	# exact dev console commands go here
 	match text_command:
@@ -63,6 +66,12 @@ func on_command(text_command):
 			for key in blackboard.kvps:
 				debug_print(key + " " + str(blackboard.kvps[key])) 
 			return
+		"sbb":
+			var blackboard = get_node("/root/Blackboard")
+			debug_print("saved blackboard contents:")
+			for key in blackboard.saved_kvps:
+				debug_print(key + " " + str(blackboard.saved_kvps[key])) 
+			return
 	
 	# contains dev console commands go here
 	var keyword = ""
@@ -85,6 +94,21 @@ func on_command(text_command):
 		var keyword_result = text_command.replace(keyword, "").replace(" ", "").split(",")
 		var blackboard = get_node("/root/Blackboard")
 		blackboard.kvps[keyword_result[0]] = keyword_result[1]
+		debug_print("added to blackboard: " + keyword_result[0] + " " + keyword_result[1])
+		return
+	
+	# add to saved blackboard
+	keyword = "sbb"
+	if text_command.begins_with(keyword):
+		if !text_command.contains(","):
+			debug_print("not enough arguments for blackboard")
+			debug_print("use a comma to separate arguments")
+			return
+		var keyword_result = text_command.replace(keyword, "").replace(" ", "").split(",")
+		var blackboard = get_node("/root/Blackboard")
+		blackboard.saved_kvps[keyword_result[0]] = keyword_result[1]
+		debug_print("added to saved blackboard: " + keyword_result[0] + " " + keyword_result[1])
+		blackboard.save_game()
 		return
 
 func debug_print(in_text):

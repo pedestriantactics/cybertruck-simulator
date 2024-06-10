@@ -237,8 +237,8 @@ func _physics_process(delta):
 		if accelerationTimer > accelerationDelaySeconds:
 			accelerationTimer = 0
 			# burst accelerate by adding impulse to the car in it's normal direction
-			var impule_multiplier = 40000
-			apply_impulse(transform.basis.z * impule_multiplier)
+			var impule_multiplier = 60000
+			apply_impulse(global_transform.basis.z * impule_multiplier)
 			emit_signal("shake_occurred", 5)
 			previous_acceleration = acceleration
 			pedal_stomps += 1

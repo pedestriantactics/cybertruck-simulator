@@ -14,7 +14,8 @@ var shakeReturnSeconds = 0.05
 
 var shakeTimer = 0
 
-var relative_start_position: Vector3
+# var relative_start_position: Vector3
+# var relative_start_rotation: Vector3
 
 
 func _ready():
@@ -31,8 +32,8 @@ func _ready():
 	set_as_top_level(true)
 
 	# Save the relative start position but it needs to be relative to the target's rotation too
-	relative_start_position = get_global_transform().origin - get_parent().get_global_transform().origin
-
+	# relative_start_position = position - get_parent().position
+	# relative_start_rotation = rotation - get_parent().rotation
 
 	# Assuming vehicle is a reference to your VehicleBody3D instance
 	get_parent().get_parent().object_collision_occurred.connect(_on_object_collision_occurred)

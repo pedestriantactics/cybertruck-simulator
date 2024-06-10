@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfhjmdx2pe52a"]
+
+[ext_resource type="Script" path="res://scripts/doge-coin.gd" id="1_2dbie"]
+[ext_resource type="AudioStream" uid="uid://d0bnphiyg5qja" path="res://sounds/intro-music.wav" id="2_0t7ah"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6a3e6"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.564706)
+disable_receive_shadows = true
+
+[sub_resource type="Animation" id="Animation_7d881"]
+resource_name = "spin"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.48787e-16, 3.14159, 3.48787e-16), Vector3(3.48787e-16, 6.28319, 3.48787e-16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8dk7d"]
+_data = {
+"spin": SubResource("Animation_7d881")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vr5q3"]
+radius = 1.39409
+
+[node name="doge-coin" type="Node3D"]
+script = ExtResource("1_2dbie")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Node3D"]
+transform = Transform3D(1, 1.72274e-09, -1.35377e-15, -1.74198e-22, -4.37114e-08, -1, -3.12049e-09, 1, -4.37114e-08, 2.08165e-12, 1.5, 2.08165e-12)
+radius = 1.21566
+height = 0.278029
+
+[node name="debug-cylinder" type="CSGCylinder3D" parent="Node3D"]
+transform = Transform3D(1, 3.12049e-09, -1.36401e-14, 0, -4.37114e-08, -100, -3.12049e-09, 1, -4.37114e-06, 2.08165e-12, 33.4613, 2.08165e-12)
+visible = false
+radius = 1.21566
+height = 0.278029
+material = SubResource("StandardMaterial3D_6a3e6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8dk7d")
+}
+autoplay = "spin"
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+shape = SubResource("SphereShape3D_vr5q3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0t7ah")
