@@ -119,8 +119,6 @@ func _physics_process(delta):
 	# upside down timer
 	var facing = -get_global_transform().basis.z
 	var angle = facing.angle_to(Vector3.DOWN)
-	print("angle: " + angle)
-	print("angle: " + str(rad_to_deg(angle)))
 	if(rad_to_deg(angle) < 20):
 		upside_down_timer += delta
 		print("test")
