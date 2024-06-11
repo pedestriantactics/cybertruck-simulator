@@ -80,6 +80,15 @@ func _ready():
 		else:
 			blackboard.saved_kvps[key] = blackboard.kvps[key]
 
+	# total lawsuits
+	key = "lawsuits"
+	if blackboard.kvps.has(key):
+		# add it to the saved blackboard
+		if blackboard.saved_kvps.has(key):
+			blackboard.saved_kvps[key] += blackboard.kvps[key]
+		else:
+			blackboard.saved_kvps[key] = blackboard.kvps[key]
+
 	# total trees hit
 	key = "trees_hit"
 	if blackboard.kvps.has(key):

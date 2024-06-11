@@ -152,18 +152,18 @@ custom_minimum_size = Vector2(960, 2.08165e-12)
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="total_distance_traveled_miles" type="Label" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_pl2kf")
-theme_override_font_sizes/font_size = 48
-text = "Miles traveled"
-uppercase = true
-
 [node name="pedal_stomps" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pl2kf")
 theme_override_font_sizes/font_size = 48
 text = "Accelerator stomps"
+uppercase = true
+
+[node name="total_distance_traveled_miles" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "Miles traveled"
 uppercase = true
 
 [node name="maximum_speed_achieved_miles_per_hour" type="Label" parent="HBoxContainer/VBoxContainer"]

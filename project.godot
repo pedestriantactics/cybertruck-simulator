@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Cybertruck Simulator"
+config/name="Cybertruck Simulator 2024"
 config/description="This is a demo implementing different types of trucks of
 varying complexity using vehicle physics.
 
@@ -19,6 +19,7 @@ Godot's physics system is not polished and will likely be
 reworked in the future."
 run/main_scene="res://intro.tscn"
 config/features=PackedStringArray("4.2")
+boot_splash/show_image=false
 
 [autoload]
 
@@ -82,7 +83,12 @@ toggle_reverse={
 }
 dev_console={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":61,"key_label":0,"unicode":61,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":61,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+dev_console_1={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194327,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 pause={

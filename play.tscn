@@ -286,6 +286,7 @@ script = ExtResource("52_w6bf3")
 [node name="World" parent="Environment/Node3D" instance=ExtResource("55_17vea")]
 
 [node name="Body" type="VehicleBody3D" parent="Environment/Node3D/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.498333, 0)
 mass = 3000.0
 physics_material_override = SubResource("PhysicsMaterial_15ilr")
 center_of_mass_mode = 1

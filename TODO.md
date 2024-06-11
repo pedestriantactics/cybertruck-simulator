@@ -1,15 +1,6 @@
-Cybertruck simulator
-
-Latest changes:
-- Dogecoin
-- House noises
-- New car hit noises and horns
-- Save file with stats page
-
-Must happen
-- add total lawsuits to the save file
-- dev console should be combo of keys
-- game ends if car flips
+Known issues
+- holes in truck bottom
+- trying to skip on end page sometimes resets the current tally
 
 Ideas
 - achievement banner

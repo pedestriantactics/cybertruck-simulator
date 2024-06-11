@@ -116,7 +116,7 @@ func debug_print(in_text):
 
 # when the key is pressed
 func _input(event):
-	if event.is_action_released("dev_console"):
+	if event.is_action_released("dev_console") and Input.is_action_pressed("dev_console_1"):
 		if visible:
 			visible = false
 			get_tree().paused = false

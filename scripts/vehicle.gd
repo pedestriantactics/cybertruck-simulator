@@ -31,6 +31,11 @@ var accelerationDelaySeconds = .3
 var accelerationTimer = 0.0
 var previous_acceleration = 0.0
 
+# when the vehicle is upside down for a certain period of time end the game
+var upside_down_timer = 0.0
+var upside_down_seconds = 5.0
+@onready var scene_changer = get_node("/root/SceneChanger")
+
 # for collisions
 signal object_collision_occurred(impact, colliding_body)
 signal static_collision_occurred(impact)
@@ -110,6 +115,20 @@ func is_moving_forward() -> bool:
 	return dot_product > 0
 
 func _physics_process(delta):
+
+	# upside down timer
+	var facing = -get_global_transform().basis.z
+	var angle = facing.angle_to(Vector3.DOWN)
+	print("angle: " + angle)
+	print("angle: " + str(rad_to_deg(angle)))
+	if(rad_to_deg(angle) < 20):
+		upside_down_timer += delta
+		print("test")
+		if upside_down_timer > upside_down_seconds:
+			scene_changer.change_scene("end")
+			# change scene
+	else:
+		upside_down_timer = 0
 
 	# keep the car on the ground
 	# if (get_contact_count() > 0):
