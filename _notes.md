@@ -1,12 +1,14 @@
 Cybertruck simulator
 
 Latest changes:
-New world with complete walls
+- Dogecoin
+- House noises
+- New car hit noises and horns
+- Save file with stats page
 
 Must happen
-- eog stats page same as stats page, include dogecoin
-	- "found the dogecoin = nope"
 - add total lawsuits to the save file
+- dev console should be combo of keys
 - game ends if car flips
 
 Ideas

@@ -125,9 +125,11 @@ func _on_timeout():
 	var blackboard_value = blackboard.kvps.get(names[0])
 	var blackboard_value_int = 0
 	if blackboard_value != null:
-		blackboard_value_int = int(floor(blackboard_value))
+		var blackboard_float = float(blackboard_value)
+		# round blackboard value down to the nearest int, if it's 1 it should be rounded to 1
+		blackboard_value_int = int(floor(blackboard_float))
 
-	var current_value = int(value_label.text)
+	var current_labeled_value = int(value_label.text)
 
 	match timer_state:
 		0:
@@ -137,22 +139,35 @@ func _on_timeout():
 			click_sound_audiostream_player.play()
 			animation_player.play("glitch")
 
-			if skip or current_value >= blackboard_value_int:
+			if skip or current_labeled_value >= blackboard_value_int || key_label.name == "dogecoin_collected":
 				# if the value is the same as blackboard or skip
-				value_label.text = str(blackboard_value_int)
+				if (key_label.name == "dogecoin_collected"):
+					print("dogecoin_collected raw: " + str(blackboard_value))
+					print("dogecoin_collected int: " + str(blackboard_value_int))
+					if blackboard_value_int == 0:
+						value_label.text = "Nope"
+					else:
+						value_label.text = "Yup"
+				else:
+					value_label.text = str(blackboard_value_int)
 			else:
 				# break after the name appears to when it starts counting up
 				timer_state = 1
 				timer = 0.4
 				return
 		1:
-			if current_value < blackboard_value_int:
+			if current_labeled_value < blackboard_value_int:
 				# check if it's worth skipping some numbers
-				var check_value = current_value + (1 * skip_numbers)
+				var check_value = current_labeled_value + (1 * skip_numbers)
 				if check_value < blackboard_value_int:
-					value_label.text = str(check_value)
+					if (key_label.name == "dogecoin_collected"):
+						if blackboard_value_int == 1:
+							value_label.text = 1
+							return						
+					else:
+						value_label.text = str(check_value)
 				else:
-					value_label.text = str(current_value + 1)
+					value_label.text = str(current_labeled_value + 1)
 				timer = 0.02
 				click_sound_audiostream_player.play_random()
 				return
@@ -182,7 +197,8 @@ func _input(event):
 		var blackboard_value = blackboard.kvps.get(names[0])
 		var blackboard_value_int = 0
 		if blackboard_value != null:
-			blackboard_value_int = int(floor(blackboard_value))
+			if (blackboard_value is float):
+				blackboard_value_int = int(floor(blackboard_value))
 		var value_label = value_labels[current_label_index]
 		value_label.text = str(blackboard_value_int)
 		_on_timeout()
