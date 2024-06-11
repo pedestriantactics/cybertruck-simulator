@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=70 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -50,9 +50,15 @@
 [ext_resource type="Material" uid="uid://b51smst5hugdj" path="res://materials/everything_shiny.tres" id="51_653qo"]
 [ext_resource type="Script" path="res://scripts/follow_camera.gd" id="52_8gmvm"]
 [ext_resource type="Script" path="res://scripts/world_spawner.gd" id="52_w6bf3"]
+[ext_resource type="PackedScene" uid="uid://bn6qyjb1c5o1r" path="res://prefabs/house_music_player.tscn" id="53_mefuf"]
+[ext_resource type="AudioStream" uid="uid://dodx0gc5jb2ml" path="res://sounds/house-music-1.wav" id="54_ej7ev"]
 [ext_resource type="PackedScene" uid="uid://7jhjfbi3x80u" path="res://world/world.tscn" id="55_17vea"]
+[ext_resource type="AudioStream" uid="uid://dxfmmjxw1xg0f" path="res://sounds/house-music-2.wav" id="55_wf38t"]
+[ext_resource type="AudioStream" uid="uid://de6hep5488qq3" path="res://sounds/house-music-3.wav" id="56_632hu"]
 [ext_resource type="Script" path="res://scripts/lawsuit_counter.gd" id="56_agw6f"]
+[ext_resource type="AudioStream" uid="uid://cvmgvth4p660h" path="res://sounds/house-music-4.wav" id="57_307fx"]
 [ext_resource type="AudioStream" uid="uid://3sh3j3ey7sv7" path="res://sounds/bg-bird-loop.wav" id="57_v7wme"]
+[ext_resource type="AudioStream" uid="uid://n2jqfeihx5jj" path="res://sounds/house-music-5.wav" id="58_c387x"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="70_t6n0f"]
 [ext_resource type="Shader" path="res://materials/bw.gdshader" id="71_i2cqu"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="72_g0p4h"]
@@ -419,6 +425,27 @@ min_distance = 6.0
 max_distance = 8.0
 angle_v_adjust = 10.0
 height = 2.0
+
+[node name="AudioStreamPlayer3D" parent="Environment/Node3D/World" instance=ExtResource("53_mefuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8852, 0, 108.624)
+stream = ExtResource("54_ej7ev")
+volume_db = 5.0
+
+[node name="AudioStreamPlayer3D2" parent="Environment/Node3D/World" instance=ExtResource("53_mefuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7392, -7.62939e-06, 236.965)
+stream = ExtResource("55_wf38t")
+
+[node name="AudioStreamPlayer3D3" parent="Environment/Node3D/World" instance=ExtResource("53_mefuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -297.558, -7.62939e-06, 213.058)
+stream = ExtResource("56_632hu")
+
+[node name="AudioStreamPlayer3D4" parent="Environment/Node3D/World" instance=ExtResource("53_mefuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157.178, -7.62939e-06, 463.869)
+stream = ExtResource("57_307fx")
+
+[node name="AudioStreamPlayer3D5" parent="Environment/Node3D/World" instance=ExtResource("53_mefuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.7614, 7.62939e-06, 461.991)
+stream = ExtResource("58_c387x")
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3

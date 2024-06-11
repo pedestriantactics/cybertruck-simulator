@@ -7,7 +7,6 @@ Must happen
 - eog stats page same as stats page, include dogecoin
 	- "found the dogecoin = nope"
 - add total lawsuits to the save file
-- add bark to dogecoin
 - game ends if car flips
 
 Ideas

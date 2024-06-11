@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfhjmdx2pe52a"]
+[gd_scene load_steps=11 format=3 uid="uid://dfhjmdx2pe52a"]
 
 [ext_resource type="Script" path="res://scripts/doge-coin.gd" id="1_2dbie"]
 [ext_resource type="ArrayMesh" uid="uid://bqneq8a0bf8hw" path="res://meshes/doge-coin.obj" id="2_el0fb"]
 [ext_resource type="Material" uid="uid://mt1rp5lfrs7k" path="res://materials/everything.tres" id="3_04sp1"]
 [ext_resource type="AudioStream" uid="uid://drutluumqqv54" path="res://sounds/dogecoin-pickup.wav" id="4_tc32p"]
+[ext_resource type="AudioStream" uid="uid://b32psj15kru8l" path="res://sounds/bark.wav" id="5_whg4t"]
+[ext_resource type="Script" path="res://scripts/bork.gd" id="5_yqr2g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6a3e6"]
 transparency = 1
@@ -50,6 +52,7 @@ height = 0.278029
 
 [node name="debug-cylinder" type="CSGCylinder3D" parent="Node3D"]
 transform = Transform3D(1, 3.12049e-09, -4.77403e-15, 0, -4.37114e-08, -35, -3.12049e-09, 1, -1.5299e-06, 2.08165e-12, 50, 2.08165e-12)
+visible = false
 radius = 1.21566
 height = 0.278029
 material = SubResource("StandardMaterial3D_6a3e6")
@@ -76,3 +79,8 @@ shape = SubResource("SphereShape3D_vr5q3")
 stream = ExtResource("4_tc32p")
 volume_db = 2.0
 bus = &"Achievement"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_whg4t")
+volume_db = 2.0
+script = ExtResource("5_yqr2g")
