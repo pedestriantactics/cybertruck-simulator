@@ -140,9 +140,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -546.0
-offset_top = -183.0
+offset_top = -223.0
 offset_right = 546.0
-offset_bottom = 183.0
+offset_bottom = 223.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -187,6 +187,13 @@ theme_override_font_sizes/font_size = 48
 text = "Trees destroyed"
 uppercase = true
 
+[node name="dogecoin_collected" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "Dogecoin Found"
+uppercase = true
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(128, 2.08165e-12)
 layout_mode = 2
@@ -221,6 +228,13 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pl2kf")
 theme_override_font_sizes/font_size = 48
 text = "0"
+
+[node name="Label6" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "Nope"
+uppercase = true
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 bus = &"UI"

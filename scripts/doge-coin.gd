@@ -18,4 +18,4 @@ func _physics_process(delta):
 		audio_stream_player.play()
 		var blackboard = get_node("/root/Blackboard")
 		if blackboard != null:
-			blackboard.kvps["dogecoin_collected"] = 1
+			blackboard.kvps["dogecoin_collected"] = "yup"

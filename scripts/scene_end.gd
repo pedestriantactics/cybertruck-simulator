@@ -122,12 +122,15 @@ func _on_timeout():
 	if names.size() > 1 and names[1] == "skip":
 		skip = true
 
+	var is_string = false
+	if value_label.text is String:
+		is_string = true
+	var current_value = int(value_label.text)
+
 	var blackboard_value = blackboard.kvps.get(names[0])
 	var blackboard_value_int = 0
-	if blackboard_value != null:
+	if blackboard_value != null && !is_string:
 		blackboard_value_int = int(floor(blackboard_value))
-
-	var current_value = int(value_label.text)
 
 	match timer_state:
 		0:
@@ -137,9 +140,13 @@ func _on_timeout():
 			click_sound_audiostream_player.play()
 			animation_player.play("glitch")
 
-			if skip or current_value >= blackboard_value_int:
+			if skip or current_value >= blackboard_value_int or is_string:
 				# if the value is the same as blackboard or skip
-				value_label.text = str(blackboard_value_int)
+				if !is_string:
+					value_label.text = str(blackboard_value_int)
+				else:
+					if (blackboard_value != null):
+						value_label.text = str(blackboard_value)
 			else:
 				# break after the name appears to when it starts counting up
 				timer_state = 1
@@ -150,9 +157,11 @@ func _on_timeout():
 				# check if it's worth skipping some numbers
 				var check_value = current_value + (1 * skip_numbers)
 				if check_value < blackboard_value_int:
-					value_label.text = str(check_value)
+					if !is_string:
+						value_label.text = str(check_value)
 				else:
-					value_label.text = str(current_value + 1)
+					if !is_string:
+						value_label.text = str(current_value + 1)
 				timer = 0.02
 				click_sound_audiostream_player.play_random()
 				return
