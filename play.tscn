@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=71 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
@@ -59,6 +59,7 @@
 [ext_resource type="AudioStream" uid="uid://cvmgvth4p660h" path="res://sounds/house-music-4.wav" id="57_307fx"]
 [ext_resource type="AudioStream" uid="uid://3sh3j3ey7sv7" path="res://sounds/bg-bird-loop.wav" id="57_v7wme"]
 [ext_resource type="AudioStream" uid="uid://n2jqfeihx5jj" path="res://sounds/house-music-5.wav" id="58_c387x"]
+[ext_resource type="PackedScene" uid="uid://v0o3a6uscjju" path="res://prefabs/goal.tscn" id="59_ncd21"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="70_t6n0f"]
 [ext_resource type="Shader" path="res://materials/bw.gdshader" id="71_i2cqu"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="72_g0p4h"]
@@ -207,6 +208,23 @@ tutorial_overlay_path = NodePath("../../../TutorialOverlay")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dash/Margin/Drive"]
 volume_db = -8.065
 bus = &"UI"
+
+[node name="Current goal" type="Label" parent="Dash/Margin"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 112.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("35_xvq7y")
+theme_override_font_sizes/font_size = 64
+text = "Current goal"
+horizontal_alignment = 1
+script = ExtResource("36_iwnde")
+vehicle_node = NodePath("../../../Environment/Node3D/World/Body")
+forward_sound = ExtResource("45_wpc7e")
+reverse_sound = ExtResource("46_e3al3")
+tutorial_overlay_path = NodePath("../../../TutorialOverlay")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dash/Margin"]
 layout_mode = 1
@@ -447,6 +465,17 @@ stream = ExtResource("57_307fx")
 [node name="AudioStreamPlayer3D5" parent="Environment/Node3D/World" instance=ExtResource("53_mefuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.7614, 7.62939e-06, 461.991)
 stream = ExtResource("58_c387x")
+
+[node name="Goals" type="Node" parent="Environment/Node3D/World"]
+
+[node name="Pick up the kids" parent="Environment/Node3D/World/Goals" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 0, 12)
+
+[node name="Drop off the kids" parent="Environment/Node3D/World/Goals" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 0, 266)
+
+[node name="Show off at work" parent="Environment/Node3D/World/Goals" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289, 0, 274)
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3

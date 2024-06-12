@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://v0o3a6uscjju"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5e377"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w368l"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.298039)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4, 0)
+shape = SubResource("CylinderShape3D_5e377")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Area3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4, 0)
+height = 100.0
+material = SubResource("StandardMaterial3D_w368l")
