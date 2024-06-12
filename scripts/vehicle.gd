@@ -45,7 +45,6 @@ signal shake_occurred(impact)
 var previous_velocity = Vector3()
 
 @onready var accelerate_audio_stream_player = $TruckAccelerateAudioStreamPlayer
-@onready var area_3d = $Area3D
 
 @onready var bl = $BL
 @onready var br = $BR

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dp2io41fhtno3"]
+[gd_scene load_steps=23 format=3 uid="uid://dp2io41fhtno3"]
 
 [ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_63vjl"]
 [ext_resource type="Script" path="res://scripts/scene_end.gd" id="2_df16n"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bpmi6fek72skc" path="res://sounds/ui-impact-3.wav" id="12_3yu4l"]
 [ext_resource type="Texture2D" uid="uid://clrbi2xmfe644" path="res://textures/glitch-post.jpg" id="12_gky68"]
 [ext_resource type="Script" path="res://scripts/shader_glitch.gd" id="13_2sveu"]
+[ext_resource type="Shader" path="res://materials/invert.gdshader" id="16_5n3l5"]
 
 [sub_resource type="Animation" id="Animation_dakr1"]
 length = 0.001
@@ -79,6 +80,9 @@ shader_parameter/dispAmt = 0.0
 shader_parameter/dispSize = 0.416
 shader_parameter/displace = ExtResource("12_gky68")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pg7lx"]
+shader = ExtResource("16_5n3l5")
+
 [node name="End" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -121,7 +125,7 @@ alignment = 1
 [node name="retry" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Retry"
+text = "Play again"
 
 [node name="ButtonPlayer" parent="Buttons/retry" instance=ExtResource("5_2k7py")]
 
@@ -140,9 +144,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -546.0
-offset_top = -219.0
+offset_top = -256.0
 offset_right = 546.0
-offset_bottom = 219.0
+offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -185,6 +189,13 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pl2kf")
 theme_override_font_sizes/font_size = 48
 text = "Trees destroyed"
+uppercase = true
+
+[node name="day_completed" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "Completed daily goals"
 uppercase = true
 
 [node name="dogecoin_collected" type="Label" parent="HBoxContainer/VBoxContainer"]
@@ -236,6 +247,13 @@ theme_override_font_sizes/font_size = 48
 text = "0"
 uppercase = true
 
+[node name="Label7" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pl2kf")
+theme_override_font_sizes/font_size = 48
+text = "0"
+uppercase = true
+
 [node name="Click" type="AudioStreamPlayer" parent="."]
 bus = &"UI"
 script = ExtResource("6_vsyj0")
@@ -263,3 +281,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("13_2sveu")
+
+[node name="Invert" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_pg7lx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

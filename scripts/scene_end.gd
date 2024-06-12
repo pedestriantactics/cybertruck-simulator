@@ -60,52 +60,61 @@ func _ready():
 
 	# save specific values from the blackboard to the saved blackboard
 	# top speed
-	var key = "maximum_speed_achieved_miles_per_hour"
-	if blackboard.kvps.has(key):
+	var key_to_check = "maximum_speed_achieved_miles_per_hour"
+	if blackboard.kvps.has(key_to_check):
 		# compare if the saved blackboard has one
-		if blackboard.saved_kvps.has(key):
-			var session_top_speed = blackboard.kvps[key]
-			var saved_top_speed = blackboard.saved_kvps[key]
+		if blackboard.saved_kvps.has(key_to_check):
+			var session_top_speed = blackboard.kvps[key_to_check]
+			var saved_top_speed = blackboard.saved_kvps[key_to_check]
 			if session_top_speed > saved_top_speed:
-				blackboard.saved_kvps[key] = session_top_speed
+				blackboard.saved_kvps[key_to_check] = session_top_speed
 		else:
-			blackboard.saved_kvps[key] = blackboard.kvps[key]
+			blackboard.saved_kvps[key_to_check] = blackboard.kvps[key_to_check]
 
 	# total distance traveled
-	key = "total_distance_traveled_miles"
-	if blackboard.kvps.has(key):
+	key_to_check = "total_distance_traveled_miles"
+	if blackboard.kvps.has(key_to_check):
 		# add it to the saved blackboard
-		if blackboard.saved_kvps.has(key):
-			blackboard.saved_kvps[key] += blackboard.kvps[key]
+		if blackboard.saved_kvps.has(key_to_check):
+			blackboard.saved_kvps[key_to_check] += blackboard.kvps[key_to_check]
 		else:
-			blackboard.saved_kvps[key] = blackboard.kvps[key]
+			blackboard.saved_kvps[key_to_check] = blackboard.kvps[key_to_check]
 
 	# total lawsuits
-	key = "lawsuits"
-	if blackboard.kvps.has(key):
+	key_to_check = "lawsuits"
+	if blackboard.kvps.has(key_to_check):
 		# add it to the saved blackboard
-		if blackboard.saved_kvps.has(key):
-			blackboard.saved_kvps[key] += blackboard.kvps[key]
+		if blackboard.saved_kvps.has(key_to_check):
+			blackboard.saved_kvps[key_to_check] += blackboard.kvps[key_to_check]
 		else:
-			blackboard.saved_kvps[key] = blackboard.kvps[key]
+			blackboard.saved_kvps[key_to_check] = blackboard.kvps[key_to_check]
 
 	# total trees hit
-	key = "trees_hit"
-	if blackboard.kvps.has(key):
+	key_to_check = "trees_hit"
+	if blackboard.kvps.has(key_to_check):
 		# add it to the saved blackboard
-		if blackboard.saved_kvps.has(key):
-			blackboard.saved_kvps[key] += blackboard.kvps[key]
+		if blackboard.saved_kvps.has(key_to_check):
+			blackboard.saved_kvps[key_to_check] += blackboard.kvps[key_to_check]
 		else:
-			blackboard.saved_kvps[key] = blackboard.kvps[key]
+			blackboard.saved_kvps[key_to_check] = blackboard.kvps[key_to_check]
 
 	# dogecoins collected
-	key = "dogecoin_collected"
-	if blackboard.kvps.has(key):
+	key_to_check = "dogecoin_collected"
+	if blackboard.kvps.has(key_to_check):
 		# there's only one to collect so just add it
-		if blackboard.saved_kvps.has(key):
-			blackboard.saved_kvps[key] += 1
+		if blackboard.saved_kvps.has(key_to_check):
+			blackboard.saved_kvps[key_to_check] += 1
 		else:
-			blackboard.saved_kvps[key] = 1
+			blackboard.saved_kvps[key_to_check] = 1
+
+	key_to_check = "day_completed"
+	var save_key = "days_completed"
+	if blackboard.kvps.has(key_to_check) and int(blackboard.kvps[key_to_check] == 1):
+		# day complete is binary so just add to the day
+		if blackboard.saved_kvps.has(save_key):
+			blackboard.saved_kvps[save_key] += 1
+		else:
+			blackboard.saved_kvps[save_key] = 1
 
 	# save
 	blackboard.save()
@@ -115,6 +124,8 @@ func _on_timeout():
 		retry_button.pressed.connect(scene_changer.change_scene.bind("play"))
 		menu_button.pressed.connect(scene_changer.change_scene.bind("menu"))
 
+		if blackboard.kvps.has("day_completed") and blackboard.kvps["day_completed"] == 1:
+			retry_button.text = "Next day"
 		retry_button.show()
 		menu_button.show()
 		
@@ -148,15 +159,22 @@ func _on_timeout():
 			click_sound_audiostream_player.play()
 			animation_player.play("glitch")
 
-			if skip or current_labeled_value >= blackboard_value_int || key_label.name == "dogecoin_collected":
+			if skip or (current_labeled_value >= blackboard_value_int || key_label.name == "dogecoin_collected" || key_label.name == "day_completed"):
+				print(blackboard_value)
+				print(blackboard_value_int)
 				# if the value is the same as blackboard or skip
 				if (key_label.name == "dogecoin_collected"):
-					print("dogecoin_collected raw: " + str(blackboard_value))
-					print("dogecoin_collected int: " + str(blackboard_value_int))
 					if blackboard_value_int == 0:
 						value_label.text = "Nope"
 					else:
 						value_label.text = "Yup"
+				elif (key_label.name == "day_completed"):
+					if blackboard_value_int == 0:
+						value_label.text = "Nope"
+					else:
+						value_label.text = "Yup"
+					if !blackboard.kvps.has("day_completed"):
+						value_label.text = "N/A"
 				else:
 					value_label.text = str(blackboard_value_int)
 			else:
@@ -172,7 +190,11 @@ func _on_timeout():
 					if (key_label.name == "dogecoin_collected"):
 						if blackboard_value_int == 1:
 							value_label.text = 1
-							return						
+							return		
+					elif (key_label.name == "day_completed"):
+						if blackboard_value_int == 1:
+							value_label.text = 1
+							return
 					else:
 						value_label.text = str(check_value)
 				else:

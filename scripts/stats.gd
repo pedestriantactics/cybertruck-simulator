@@ -35,7 +35,7 @@ func _ready():
 	for i in title_labels.size():
 		var title = title_labels[i].name
 		if blackboard.saved_kvps.has(title):
-			value_labels[i].text = str(round(blackboard.saved_kvps[title]))
+			value_labels[i].text = str(floor(float(blackboard.saved_kvps[title])))
 		else:
 			value_labels[i].set_text("0")
 

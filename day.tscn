@@ -1,27 +1,27 @@
-[gd_scene load_steps=25 format=3 uid="uid://cdgf8o3jwsgxq"]
+[gd_scene load_steps=25 format=3 uid="uid://dbojeep5h7h0y"]
 
-[ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_m7t57"]
-[ext_resource type="Script" path="res://scripts/scene_menu.gd" id="2_5aap3"]
-[ext_resource type="Shader" path="res://materials/invert.gdshader" id="3_6i4ca"]
-[ext_resource type="Script" path="res://scripts/toggle_menu.gd" id="3_o8npu"]
-[ext_resource type="Texture2D" uid="uid://doowpjqy2iklh" path="res://Keyboard Guide.svg" id="4_86pho"]
-[ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="4_ru3qn"]
-[ext_resource type="Script" path="res://scripts/stats.gd" id="5_awknl"]
-[ext_resource type="Shader" path="res://materials/offset.gdshader" id="5_pg62n"]
-[ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="5_vsv6q"]
-[ext_resource type="Texture2D" uid="uid://clrbi2xmfe644" path="res://textures/glitch-post.jpg" id="6_nka0h"]
-[ext_resource type="Script" path="res://scripts/shader_glitch.gd" id="7_dnh87"]
-[ext_resource type="Script" path="res://scripts/random_audio_stream_player.gd" id="8_o5hrv"]
-[ext_resource type="AudioStream" uid="uid://cdw50anqraeov" path="res://sounds/ui-transition-1.wav" id="9_yq8pa"]
-[ext_resource type="AudioStream" uid="uid://deohy4nhwcnby" path="res://sounds/ui-transition-2.wav" id="10_uyus1"]
-[ext_resource type="AudioStream" uid="uid://dkqi5kkdfolh8" path="res://sounds/ui-transition-3.wav" id="11_yk0wh"]
-[ext_resource type="AudioStream" uid="uid://ccreunq2k5axq" path="res://sounds/ui-transition-4.wav" id="12_noulh"]
-[ext_resource type="AudioStream" uid="uid://bu7syons7i3yo" path="res://sounds/ui-transition-5.wav" id="13_0xc8u"]
-[ext_resource type="AudioStream" uid="uid://bucsamfybpbah" path="res://sounds/ui-transition-6.wav" id="14_w73ap"]
-[ext_resource type="Script" path="res://scripts/volume_slider.gd" id="17_8fdba"]
+[ext_resource type="Theme" uid="uid://c5e7qkd72wxfn" path="res://pt_theme.tres" id="1_gld6p"]
+[ext_resource type="Script" path="res://scripts/scene_menu.gd" id="2_uwinn"]
+[ext_resource type="Shader" path="res://materials/invert.gdshader" id="3_k1wg0"]
+[ext_resource type="Texture2D" uid="uid://doowpjqy2iklh" path="res://Keyboard Guide.svg" id="4_g16rk"]
+[ext_resource type="Script" path="res://scripts/stats.gd" id="5_xs21j"]
+[ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="6_hgdcd"]
+[ext_resource type="Script" path="res://scripts/volume_slider.gd" id="7_r281n"]
+[ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="8_3si2m"]
+[ext_resource type="Script" path="res://scripts/toggle_menu.gd" id="9_uv3rt"]
+[ext_resource type="Shader" path="res://materials/offset.gdshader" id="10_nekni"]
+[ext_resource type="Texture2D" uid="uid://clrbi2xmfe644" path="res://textures/glitch-post.jpg" id="11_1ms34"]
+[ext_resource type="Script" path="res://scripts/shader_glitch.gd" id="12_xa4ql"]
+[ext_resource type="Script" path="res://scripts/random_audio_stream_player.gd" id="13_knqrf"]
+[ext_resource type="AudioStream" uid="uid://cdw50anqraeov" path="res://sounds/ui-transition-1.wav" id="14_aucf5"]
+[ext_resource type="AudioStream" uid="uid://deohy4nhwcnby" path="res://sounds/ui-transition-2.wav" id="15_f5rmv"]
+[ext_resource type="AudioStream" uid="uid://dkqi5kkdfolh8" path="res://sounds/ui-transition-3.wav" id="16_j2hf6"]
+[ext_resource type="AudioStream" uid="uid://ccreunq2k5axq" path="res://sounds/ui-transition-4.wav" id="17_qegm2"]
+[ext_resource type="AudioStream" uid="uid://bu7syons7i3yo" path="res://sounds/ui-transition-5.wav" id="18_djyvu"]
+[ext_resource type="AudioStream" uid="uid://bucsamfybpbah" path="res://sounds/ui-transition-6.wav" id="19_hmmgk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ewc3"]
-shader = ExtResource("3_6i4ca")
+shader = ExtResource("3_k1wg0")
 
 [sub_resource type="Animation" id="Animation_5po4n"]
 length = 0.001
@@ -102,11 +102,11 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_43mau"]
-shader = ExtResource("5_pg62n")
+shader = ExtResource("10_nekni")
 shader_parameter/offset = Vector2(2.08165e-12, 2.08165e-12)
 shader_parameter/dispAmt = 0.0
 shader_parameter/dispSize = 0.416
-shader_parameter/displace = ExtResource("6_nka0h")
+shader_parameter/displace = ExtResource("11_1ms34")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -115,8 +115,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_m7t57")
-script = ExtResource("2_5aap3")
+theme = ExtResource("1_gld6p")
+script = ExtResource("2_uwinn")
 play_button_path = NodePath("Buttons/main-play")
 quit_button_path = NodePath("Buttons/quit-yes")
 clear_button_path = NodePath("Buttons/clear-stats")
@@ -235,7 +235,7 @@ offset_right = 491.0
 offset_bottom = 156.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_86pho")
+texture = ExtResource("4_g16rk")
 expand_mode = 1
 
 [node name="main" type="Label" parent="Menus/controls"]
@@ -273,7 +273,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("5_awknl")
+script = ExtResource("5_xs21j")
 clear_confirm_button_path = NodePath("../../Buttons/clear-main")
 clear_button_path = NodePath("../../Buttons/stats-clear")
 
@@ -285,7 +285,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "Must play first"
 horizontal_alignment = 1
@@ -300,9 +300,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -546.0
-offset_top = -217.0
+offset_top = -183.0
 offset_right = 546.0
-offset_bottom = 217.0
+offset_bottom = 183.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -314,42 +314,35 @@ theme_override_constants/separation = 32
 
 [node name="total_distance_traveled_miles" type="Label" parent="Menus/stats/data/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "Total miles traveled"
 uppercase = true
 
 [node name="maximum_speed_achieved_miles_per_hour" type="Label" parent="Menus/stats/data/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "Maximum speed achieved (MPH)"
 uppercase = true
 
 [node name="lawsuits" type="Label" parent="Menus/stats/data/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "Total lawsuits"
 uppercase = true
 
 [node name="trees_hit" type="Label" parent="Menus/stats/data/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "Total trees destroyed"
 uppercase = true
 
-[node name="days_completed" type="Label" parent="Menus/stats/data/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
-theme_override_font_sizes/font_size = 48
-text = "Days completed"
-uppercase = true
-
 [node name="dogecoin_collected" type="Label" parent="Menus/stats/data/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "Dogecoins found"
 uppercase = true
@@ -361,37 +354,31 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="Menus/stats/data/VBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "0"
 
 [node name="Label2" type="Label" parent="Menus/stats/data/VBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "0"
 
 [node name="Label3" type="Label" parent="Menus/stats/data/VBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "0"
 
 [node name="Label4" type="Label" parent="Menus/stats/data/VBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "0"
 
 [node name="Label5" type="Label" parent="Menus/stats/data/VBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
-theme_override_font_sizes/font_size = 48
-text = "0"
-
-[node name="Label6" type="Label" parent="Menus/stats/data/VBoxContainer2"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "0"
 
@@ -437,7 +424,7 @@ alignment = 1
 
 [node name="total_distance_traveled_miles" type="Label" parent="Menus/settings/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_vsv6q")
+theme_override_fonts/font = ExtResource("6_hgdcd")
 theme_override_font_sizes/font_size = 48
 text = "Volume"
 uppercase = true
@@ -456,7 +443,7 @@ step = 0.1
 value = 0.2
 tick_count = 10
 ticks_on_borders = true
-script = ExtResource("17_8fdba")
+script = ExtResource("7_r281n")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Menus/settings/HBoxContainer/VBoxContainer2/VolumeSlider"]
 
@@ -510,35 +497,35 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Just go"
 
-[node name="ButtonPlayer" parent="Buttons/main-play" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/main-play" instance=ExtResource("8_3si2m")]
 
 [node name="main-stats" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Stats"
 
-[node name="ButtonPlayer" parent="Buttons/main-stats" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/main-stats" instance=ExtResource("8_3si2m")]
 
 [node name="main-controls" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Help"
 
-[node name="ButtonPlayer" parent="Buttons/main-controls" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/main-controls" instance=ExtResource("8_3si2m")]
 
 [node name="main-settings" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Settings"
 
-[node name="ButtonPlayer" parent="Buttons/main-settings" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/main-settings" instance=ExtResource("8_3si2m")]
 
 [node name="main-quit" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Quit"
 
-[node name="ButtonPlayer" parent="Buttons/main-quit" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/main-quit" instance=ExtResource("8_3si2m")]
 
 [node name="quit-yes" type="Button" parent="Buttons"]
 visible = false
@@ -546,7 +533,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Yes"
 
-[node name="ButtonPlayer" parent="Buttons/quit-yes" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/quit-yes" instance=ExtResource("8_3si2m")]
 
 [node name="quit-main" type="Button" parent="Buttons"]
 visible = false
@@ -554,7 +541,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Oh never mind"
 
-[node name="ButtonPlayer" parent="Buttons/quit-main" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/quit-main" instance=ExtResource("8_3si2m")]
 
 [node name="clear-main" type="Button" parent="Buttons"]
 visible = false
@@ -562,7 +549,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Yes delete save file"
 
-[node name="ButtonPlayer" parent="Buttons/clear-main" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/clear-main" instance=ExtResource("8_3si2m")]
 
 [node name="clear-stats" type="Button" parent="Buttons"]
 visible = false
@@ -570,41 +557,41 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Whoa no"
 
-[node name="ButtonPlayer" parent="Buttons/clear-stats" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/clear-stats" instance=ExtResource("8_3si2m")]
 
 [node name="controls-main" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
 
-[node name="ButtonPlayer" parent="Buttons/controls-main" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/controls-main" instance=ExtResource("8_3si2m")]
 
 [node name="settings-main" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
 
-[node name="ButtonPlayer" parent="Buttons/settings-main" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/settings-main" instance=ExtResource("8_3si2m")]
 
 [node name="stats-main" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
 
-[node name="ButtonPlayer" parent="Buttons/stats-main" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/stats-main" instance=ExtResource("8_3si2m")]
 
 [node name="stats-clear" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Clear stats"
 
-[node name="ButtonPlayer" parent="Buttons/stats-clear" instance=ExtResource("4_ru3qn")]
+[node name="ButtonPlayer" parent="Buttons/stats-clear" instance=ExtResource("8_3si2m")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_38wxc")
 }
-script = ExtResource("3_o8npu")
+script = ExtResource("9_uv3rt")
 buttons_container_path = NodePath("../Buttons")
 menus_container_path = NodePath("../Menus")
 animation_player_path = NodePath(".")
@@ -624,10 +611,10 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("7_dnh87")
+script = ExtResource("12_xa4ql")
 
 [node name="TransitionSounds" type="AudioStreamPlayer" parent="AnimationPlayer"]
 volume_db = -5.0
 bus = &"UI"
-script = ExtResource("8_o5hrv")
-sounds = Array[AudioStream]([ExtResource("9_yq8pa"), ExtResource("10_uyus1"), ExtResource("11_yk0wh"), ExtResource("12_noulh"), ExtResource("13_0xc8u"), ExtResource("14_w73ap")])
+script = ExtResource("13_knqrf")
+sounds = Array[AudioStream]([ExtResource("14_aucf5"), ExtResource("15_f5rmv"), ExtResource("16_j2hf6"), ExtResource("17_qegm2"), ExtResource("18_djyvu"), ExtResource("19_hmmgk")])

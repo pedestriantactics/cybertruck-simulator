@@ -21,7 +21,7 @@ func _on_collision_occurred(impact, colliding_body):
 	var collision_name = colliding_body.get_name()
 	if (targets_hit.find(collision_name) == - 1):
 		targets_hit.append(collision_name)
-		print("hit " + collision_name)
+		# print("hit " + collision_name)
 		text = "Lawsuits " + str(targets_hit.size())
 		# add it to the blackboard
 		blackboard.kvps["lawsuits"] = targets_hit.size()

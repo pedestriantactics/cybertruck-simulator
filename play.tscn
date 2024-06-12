@@ -1,11 +1,11 @@
-[gd_scene load_steps=72 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=75 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
 [ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
 [ext_resource type="Script" path="res://scripts/toggle_ui.gd" id="2_uyho2"]
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="3_waqbr"]
 [ext_resource type="AudioStream" uid="uid://bj366ttv2gund" path="res://sounds/ui-timer-low.wav" id="4_d6pfb"]
-[ext_resource type="Script" path="res://goal_display.gd" id="7_ktwsa"]
+[ext_resource type="Script" path="res://scripts/goal_display.gd" id="7_ktwsa"]
 [ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="10_oy7ox"]
 [ext_resource type="Script" path="res://scripts/vehicle.gd" id="16_d71hj"]
 [ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="17_xp7b1"]
@@ -61,6 +61,9 @@
 [ext_resource type="AudioStream" uid="uid://3sh3j3ey7sv7" path="res://sounds/bg-bird-loop.wav" id="57_v7wme"]
 [ext_resource type="AudioStream" uid="uid://n2jqfeihx5jj" path="res://sounds/house-music-5.wav" id="58_c387x"]
 [ext_resource type="PackedScene" uid="uid://co77qlrvhqqch" path="res://prefabs/goal.tscn" id="59_ncd21"]
+[ext_resource type="Script" path="res://scripts/goal_manager.gd" id="60_4os3x"]
+[ext_resource type="AudioStream" uid="uid://d0aga3cv5e0x" path="res://sounds/checkpoint.wav" id="61_3h33q"]
+[ext_resource type="AudioStream" uid="uid://kp10mqaqnv00" path="res://sounds/checkpoint-2.wav" id="62_1w76h"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="70_t6n0f"]
 [ext_resource type="Shader" path="res://materials/bw.gdshader" id="71_i2cqu"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="72_g0p4h"]
@@ -212,17 +215,20 @@ bus = &"UI"
 
 [node name="Current goal" type="Label" parent="Dash/Margin"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_bottom = 112.0
+anchor_bottom = 1.0
+offset_top = -56.0
 grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("35_xvq7y")
 theme_override_font_sizes/font_size = 64
 text = "Current goal"
 horizontal_alignment = 1
 script = ExtResource("7_ktwsa")
-goals_path = NodePath("../../../Environment/Node3D/World/Goals")
+goal_manager_node_path = NodePath("../../../Environment/Node3D/World/Goals")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dash/Margin"]
 layout_mode = 1
@@ -465,17 +471,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.7614, 7.62939e-06, 461.991
 stream = ExtResource("58_c387x")
 
 [node name="Goals" type="Node" parent="Environment/Node3D/World"]
+script = ExtResource("60_4os3x")
+checkpoint_audio_stream = ExtResource("61_3h33q")
+all_checkpoints_audio_stream = ExtResource("62_1w76h")
 
-[node name="Pick up the kids" parent="Environment/Node3D/World/Goals" instance=ExtResource("59_ncd21")]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Environment/Node3D/World/Goals"]
+stream = ExtResource("61_3h33q")
+bus = &"Achievement"
+
+[node name="Day 1" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Pick up the kids" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 0, 12)
 
-[node name="Drop off the kids" parent="Environment/Node3D/World/Goals" instance=ExtResource("59_ncd21")]
+[node name="Drop off the kids" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 0, 266)
-visible = false
 
-[node name="Show off at work" parent="Environment/Node3D/World/Goals" instance=ExtResource("59_ncd21")]
+[node name="Show off at work" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289, 0, 274)
-visible = false
+
+[node name="Day 2" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Pick up more kids" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 0, 107)
+
+[node name="Drop off those kids" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 0, 266)
+
+[node name="Go back to work" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289, 0, 274)
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3

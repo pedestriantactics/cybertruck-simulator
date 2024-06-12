@@ -1,7 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://co77qlrvhqqch"]
-
-[ext_resource type="Script" path="res://scripts/goal.gd" id="1_4xj4k"]
-[ext_resource type="AudioStream" uid="uid://d0aga3cv5e0x" path="res://sounds/checkpoint.wav" id="2_prq62"]
+[gd_scene load_steps=3 format=3 uid="uid://co77qlrvhqqch"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5e377"]
 
@@ -11,8 +8,7 @@ albedo_color = Color(1, 0, 0, 0.298039)
 emission_enabled = true
 emission = Color(1, 0, 0, 1)
 
-[node name="Node3D" type="Area3D"]
-script = ExtResource("1_4xj4k")
+[node name="Area3D" type="Area3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4, 0)
@@ -22,8 +18,3 @@ shape = SubResource("CylinderShape3D_5e377")
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4, 0)
 height = 100.0
 material = SubResource("StandardMaterial3D_w368l")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_prq62")
-volume_db = 2.0
-bus = &"Achievement"
