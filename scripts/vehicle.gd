@@ -323,7 +323,7 @@ func _physics_process(delta):
 			# br.use_as_traction = true
 			# fr.use_as_traction = false
 			# fl.use_as_traction = false
-			engine_force = 22000
+			engine_force = 40000
 		# engine_force = 50000
 		previous_acceleration = acceleration
 		return
