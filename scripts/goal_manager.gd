@@ -18,6 +18,9 @@ var current_goal_text = ""
 @onready var blackboard = get_node("/root/Blackboard")
 @onready var audio_stream_player = get_child(0)
 
+var completed_goal_timer = 0.0
+var completed_goal_seconds = 5.0
+
 func _ready():
 	# turn off all the children
 	for child in get_children():
@@ -42,6 +45,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if completed_goal_timer > 0:
+		completed_goal_timer -= delta
+		if completed_goal_timer - delta <= 0:
+			current_goal_text = ""
+			set_process(false)
+		return
 	if current_goal_area == null:
 		return
 	# if there are no more goals left
@@ -67,6 +76,7 @@ func _process(delta):
 				# save the new day to the blackboard
 				blackboard.kvps["day_completed"] = 1
 				current_goal_text = "All daily goals completed!"
+				completed_goal_timer = completed_goal_seconds
 			break
 
 func set_new_current_goal(index):

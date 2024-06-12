@@ -12,6 +12,7 @@ var targets_hit = []
 var trees_hit = 0
 
 func _ready():
+	text = ""
 	# add it to the blackboard
 	blackboard.kvps["lawsuits"] = 0
 	car.object_collision_occurred.connect(_on_collision_occurred)

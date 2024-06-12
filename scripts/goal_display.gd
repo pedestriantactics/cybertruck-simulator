@@ -10,6 +10,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if goal_manager_node.current_goal_text == "":
+		get_parent().visible = false
+		set_process(false)
+		return
 	var new_text = goal_manager_node.current_goal_text
 	if new_text != text:
 		text = new_text

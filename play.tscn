@@ -1,12 +1,12 @@
 [gd_scene load_steps=75 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
-[ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
 [ext_resource type="Script" path="res://scripts/toggle_ui.gd" id="2_uyho2"]
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="3_waqbr"]
 [ext_resource type="AudioStream" uid="uid://bj366ttv2gund" path="res://sounds/ui-timer-low.wav" id="4_d6pfb"]
 [ext_resource type="Script" path="res://scripts/goal_display.gd" id="7_ktwsa"]
 [ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="10_oy7ox"]
+[ext_resource type="StyleBox" uid="uid://cfb7bet5ysfxo" path="res://ui/goal-container.tres" id="11_oa8mm"]
 [ext_resource type="Script" path="res://scripts/vehicle.gd" id="16_d71hj"]
 [ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="17_xp7b1"]
 [ext_resource type="Script" path="res://scripts/audio_wind.gd" id="18_q7wfn"]
@@ -213,64 +213,16 @@ tutorial_overlay_path = NodePath("../../../TutorialOverlay")
 volume_db = -8.065
 bus = &"UI"
 
-[node name="Current goal" type="Label" parent="Dash/Margin"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -56.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("35_xvq7y")
-theme_override_font_sizes/font_size = 64
-text = "Current goal"
-horizontal_alignment = 1
-script = ExtResource("7_ktwsa")
-goal_manager_node_path = NodePath("../../../Environment/Node3D/World/Goals")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Dash/Margin"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Spedometer" type="Label" parent="Dash/Margin/VBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("35_xvq7y")
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 2
-script = ExtResource("2_njc2h")
-car_path = NodePath("../../../../Environment/Node3D/World/Body")
-
-[node name="Lawsuits" type="Label" parent="Dash/Margin/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("10_oy7ox")
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 2
-vertical_alignment = 2
-uppercase = true
-script = ExtResource("56_agw6f")
-car_path = NodePath("../../../../Environment/Node3D/World/Body")
-
 [node name="TimerLabel" type="Label" parent="Dash/Margin"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -79.5
-offset_right = 79.5
-offset_bottom = 56.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("10_oy7ox")
 theme_override_font_sizes/font_size = 32
+text = "X:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_waqbr")
@@ -284,6 +236,46 @@ autoplay = "timer_default"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dash/Margin/TimerLabel"]
 volume_db = -5.914
 bus = &"UI"
+
+[node name="Lawsuits" type="Label" parent="Dash/Margin"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_oy7ox")
+theme_override_font_sizes/font_size = 32
+text = "Lawsuits X"
+horizontal_alignment = 2
+vertical_alignment = 2
+uppercase = true
+script = ExtResource("56_agw6f")
+car_path = NodePath("../../../Environment/Node3D/World/Body")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dash/Margin"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -37.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Dash/Margin/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("11_oa8mm")
+
+[node name="Current goal" type="Label" parent="Dash/Margin/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "Current goal"
+horizontal_alignment = 1
+script = ExtResource("7_ktwsa")
+goal_manager_node_path = NodePath("../../../../../Environment/Node3D/World/Goals")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_608ts")
@@ -503,6 +495,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289, 0, 274)
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
