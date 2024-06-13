@@ -139,7 +139,7 @@ shader_parameter/hide = false
 shader_parameter/color = Color(0.658824, 0.803922, 0.929412, 1)
 shader_parameter/strength = 0.4
 
-[node name="World" type="Node3D"]
+[node name="Play" type="Node3D"]
 
 [node name="Dash" type="Control" parent="."]
 process_mode = 3

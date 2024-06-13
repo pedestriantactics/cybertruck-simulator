@@ -3,9 +3,9 @@
 ## Recent changes
 PT-G3-2
 - New daily goals added, checkpoints show up around the city and you must complete them within the day. Days completed are saved with the save file.
-- New game time limit set to 2 minutes
 - Fixed: Ability to skip the tallying of line items with the keyboard works now
 - The car now speeds up more on long straights
+- Added playtime data save file. If you want to give me more information about your playtime you can send me your file. On Mac it's: /Users/yourusename/Library/Application Support/Godot/app_userdata/Cybertruck Simulator 2024/playtime.save
 
 ## Installation
 Head over to the [releases](https://github.com/pedestriantactics/cybertruck-simulator/releases) tab and download the latest version for Mac or Windows.
