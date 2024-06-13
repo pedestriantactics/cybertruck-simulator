@@ -10,7 +10,7 @@ var started = false
 var blocked = false
 
 var timer = 0.00
-@export var timer_start_seconds = 90
+@export var timer_start_seconds = 120
 var seconds = 0
 
 func _ready():
