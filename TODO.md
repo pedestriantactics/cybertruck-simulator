@@ -1,10 +1,5 @@
-Next
-- Add the pointer for the goals
-- Finish a lot of day goals
-
 Known issues
 - holes in truck bottom
-- trying to skip on end page sometimes resets the current tally
 
 Ideas
 - achievement banner

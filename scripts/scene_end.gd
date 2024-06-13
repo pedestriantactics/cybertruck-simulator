@@ -44,6 +44,9 @@ var current_label_index = 0
 # amount of numbers to skip for speed sake
 var skip_numbers = 2
 
+# allows skipping when pressing enter
+var skip_key_enabled = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	retry_button.hide()
@@ -135,14 +138,7 @@ func _on_timeout():
 	var key_label = key_labels[current_label_index]
 	var value_label = value_labels[current_label_index]
 
-	# if the value contains a space split it into two 
-	var names = key_label.name.split(" ")
-	var skip = false
-	# if names is greater than one and the second name is skip, change skip to false
-	if names.size() > 1 and names[1] == "skip":
-		skip = true
-
-	var blackboard_value = blackboard.kvps.get(names[0])
+	var blackboard_value = blackboard.kvps.get(key_label.name)
 	var blackboard_value_int = 0
 	if blackboard_value != null:
 		var blackboard_float = float(blackboard_value)
@@ -159,10 +155,8 @@ func _on_timeout():
 			click_sound_audiostream_player.play()
 			animation_player.play("glitch")
 
-			if skip or (current_labeled_value >= blackboard_value_int || key_label.name == "dogecoin_collected" || key_label.name == "day_completed"):
-				print(blackboard_value)
-				print(blackboard_value_int)
-				# if the value is the same as blackboard or skip
+			if current_labeled_value >= blackboard_value_int || key_label.name == "dogecoin_collected" || key_label.name == "day_completed":
+				# if the value is the same as blackboard
 				if (key_label.name == "dogecoin_collected"):
 					if blackboard_value_int == 0:
 						value_label.text = "Nope"
@@ -180,8 +174,12 @@ func _on_timeout():
 			else:
 				# break after the name appears to when it starts counting up
 				timer_state = 1
-				timer = 0.4
-				return
+				if skip_key_enabled:
+					skip_key_enabled = false
+					# _on_timeout()
+				else:
+					timer = 0.4
+					return
 		1:
 			if current_labeled_value < blackboard_value_int:
 				# check if it's worth skipping some numbers
@@ -223,13 +221,12 @@ func _input(event):
 			return
 		timer_state = 0
 		timer = 0
+		skip_key_enabled = true
 		var key_label = key_labels[current_label_index]
-		var names = key_label.name.split(" ")
-		var blackboard_value = blackboard.kvps.get(names[0])
+		var blackboard_value = blackboard.kvps.get(key_label.name)
 		var blackboard_value_int = 0
 		if blackboard_value != null:
-			if (blackboard_value is float):
-				blackboard_value_int = int(floor(blackboard_value))
+			blackboard_value_int = int(floor(blackboard_value))
 		var value_label = value_labels[current_label_index]
 		value_label.text = str(blackboard_value_int)
 		_on_timeout()

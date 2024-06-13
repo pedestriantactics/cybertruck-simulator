@@ -141,43 +141,6 @@ shader_parameter/strength = 0.4
 
 [node name="World" type="Node3D"]
 
-[node name="TutorialOverlay" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("33_orntt")
-
-[node name="ColorRect" type="ColorRect" parent="TutorialOverlay"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.615686)
-
-[node name="TimerLabel" type="Label" parent="TutorialOverlay"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "Press \"Shift\" to switch drive modes"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Dash" type="Control" parent="."]
 process_mode = 3
 layout_mode = 3
@@ -282,6 +245,43 @@ text = "Current goal"
 horizontal_alignment = 1
 script = ExtResource("7_ktwsa")
 goal_manager_node_path = NodePath("../../../../../Environment/Node3D/World/Goals")
+
+[node name="TutorialOverlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("33_orntt")
+
+[node name="ColorRect" type="ColorRect" parent="TutorialOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.615686)
+
+[node name="TimerLabel" type="Label" parent="TutorialOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "Press \"Shift\" to switch drive modes"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_608ts")
@@ -502,19 +502,83 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 0, 12)
 [node name="Drop off the kids" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 0, 266)
 
-[node name="Show off at work" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
+[node name="Show off the truck at work" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289, 0, 274)
 
 [node name="Day 2" type="Node" parent="Environment/Node3D/World/Goals"]
 
-[node name="Pick up more kids" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 0, 107)
+[node name="Take spouse to the dentist" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.0982, 0, 252.042)
 
-[node name="Drop off those kids" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 0, 266)
+[node name="Buy a huge OLED TV" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224.919, 0, 89.3737)
 
-[node name="Go back to work" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289, 0, 274)
+[node name="Visit friends and brag" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 344.438, 0, 433.694)
+
+[node name="Day 3" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Pick up 200lbs of girl scout cookies" parent="Environment/Node3D/World/Goals/Day 3" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206.103, 0, 451.381)
+
+[node name="Sell cookies at the park" parent="Environment/Node3D/World/Goals/Day 3" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -254.054, 0, 474.447)
+
+[node name="Sell cookies to a doorstep" parent="Environment/Node3D/World/Goals/Day 3" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -309.287, 3.8147e-06, 433.164)
+
+[node name="Sell cookies to another doorstep" parent="Environment/Node3D/World/Goals/Day 3" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -311.017, 3.8147e-06, 359.994)
+
+[node name="Sell cookies to yet another doorstep" parent="Environment/Node3D/World/Goals/Day 3" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -313.526, 7.62939e-06, 250.179)
+
+[node name="Day 4" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Buy a hotdog as an excuse to show off the truck" parent="Environment/Node3D/World/Goals/Day 4" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.375, 0, 170.903)
+
+[node name="Drive directly through a park" parent="Environment/Node3D/World/Goals/Day 4" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 234.745, 0, 100.122)
+
+[node name="Go to the gas station" parent="Environment/Node3D/World/Goals/Day 4" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.507, -1.52588e-05, 345.52)
+
+[node name="Oh lol it\'s electric, go steal someone\'s power" parent="Environment/Node3D/World/Goals/Day 4" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.457, -1.52588e-05, 410.927)
+
+[node name="Day 5" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Break up a back alley fight" parent="Environment/Node3D/World/Goals/Day 5" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.6174, 1.52588e-05, 368.184)
+
+[node name="Get rid of big oil\'s HQ" parent="Environment/Node3D/World/Goals/Day 5" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -262.044, 1.52588e-05, 375.399)
+
+[node name="Drop off the kids, they\'re scared" parent="Environment/Node3D/World/Goals/Day 5" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.655, 3.05176e-05, 289.6)
+
+[node name="Day 6" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Reduce bicycle commutes" parent="Environment/Node3D/World/Goals/Day 6" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 223.823, 7.62939e-06, 144.735)
+
+[node name="Make space for a parking lot" parent="Environment/Node3D/World/Goals/Day 6" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 304.946, 1.52588e-05, 460.874)
+
+[node name="Solve the gasoline crisis" parent="Environment/Node3D/World/Goals/Day 6" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.304, 1.52588e-05, 159.78)
+
+[node name="Day 7" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Find big oil informant" parent="Environment/Node3D/World/Goals/Day 7" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 212.099, 7.62939e-06, 143.135)
+
+[node name="Report findings to office" parent="Environment/Node3D/World/Goals/Day 7" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 230.051, 7.62939e-06, 217.695)
+
+[node name="Take out the trash" parent="Environment/Node3D/World/Goals/Day 7" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -238.449, 7.62939e-06, 401.009)
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
