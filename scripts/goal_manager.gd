@@ -60,7 +60,6 @@ func _process(delta):
 	# if there is nothing inside the goal
 	if !current_goal_area.has_overlapping_bodies():
 		return
-	print("something is in the current goal")
 	# at this point there's something inside the current goal
 	for body in current_goal_area.get_overlapping_bodies():
 		if body is VehicleBody3D:

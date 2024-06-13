@@ -28,7 +28,6 @@ DevConsole="*res://prefabs/dev_console.tscn"
 InputProcessor="*res://scripts/input_processor.gd"
 Globals="*res://scripts/globals.gd"
 Blackboard="*res://scripts/blackboard.gd"
-PlaytimeTracker="*res://scripts/playtime_tracker.gd"
 
 [display]
 
