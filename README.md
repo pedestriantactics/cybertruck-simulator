@@ -4,6 +4,7 @@
 PT-G3-3
 - Bound playtime inside the save file. It's located in /Users/yourusename/Library/Application Support/Godot/app_userdata/Cybertruck Simulator 2024/savegame.save
 - Added tracking of total time in game
+
 PT-G3-2
 - New daily goals added, checkpoints show up around the city and you must complete them within the day. Days completed are saved with the save file.
 - Fixed: Ability to skip the tallying of line items with the keyboard works now
