@@ -1,11 +1,12 @@
-[gd_scene load_steps=70 format=3 uid="uid://bpi4e502aqlx0"]
+[gd_scene load_steps=79 format=3 uid="uid://bpi4e502aqlx0"]
 
 [ext_resource type="Environment" uid="uid://iedcxr0w6ygm" path="res://environments/new_environment.tres" id="1_608ts"]
-[ext_resource type="Script" path="res://scripts/spedometer.gd" id="2_njc2h"]
 [ext_resource type="Script" path="res://scripts/toggle_ui.gd" id="2_uyho2"]
 [ext_resource type="Script" path="res://scripts/game_timer.gd" id="3_waqbr"]
 [ext_resource type="AudioStream" uid="uid://bj366ttv2gund" path="res://sounds/ui-timer-low.wav" id="4_d6pfb"]
+[ext_resource type="Script" path="res://scripts/goal_display.gd" id="7_ktwsa"]
 [ext_resource type="FontFile" uid="uid://cf6nvrgw1f3by" path="res://fonts/PT-F3Mono2024-Regular.otf" id="10_oy7ox"]
+[ext_resource type="StyleBox" uid="uid://cfb7bet5ysfxo" path="res://ui/goal-container.tres" id="11_oa8mm"]
 [ext_resource type="Script" path="res://scripts/vehicle.gd" id="16_d71hj"]
 [ext_resource type="AudioStream" uid="uid://cuvrtjuna84uu" path="res://sounds/wind-loop.wav" id="17_xp7b1"]
 [ext_resource type="Script" path="res://scripts/audio_wind.gd" id="18_q7wfn"]
@@ -52,13 +53,20 @@
 [ext_resource type="Script" path="res://scripts/world_spawner.gd" id="52_w6bf3"]
 [ext_resource type="PackedScene" uid="uid://bn6qyjb1c5o1r" path="res://prefabs/house_music_player.tscn" id="53_mefuf"]
 [ext_resource type="AudioStream" uid="uid://dodx0gc5jb2ml" path="res://sounds/house-music-1.wav" id="54_ej7ev"]
+[ext_resource type="ArrayMesh" uid="uid://dq5txfijuwrst" path="res://meshes/arrow.obj" id="55_6e5lw"]
 [ext_resource type="PackedScene" uid="uid://7jhjfbi3x80u" path="res://world/world.tscn" id="55_17vea"]
+[ext_resource type="Script" path="res://scripts/arrow.gd" id="55_gsm5k"]
 [ext_resource type="AudioStream" uid="uid://dxfmmjxw1xg0f" path="res://sounds/house-music-2.wav" id="55_wf38t"]
 [ext_resource type="AudioStream" uid="uid://de6hep5488qq3" path="res://sounds/house-music-3.wav" id="56_632hu"]
 [ext_resource type="Script" path="res://scripts/lawsuit_counter.gd" id="56_agw6f"]
 [ext_resource type="AudioStream" uid="uid://cvmgvth4p660h" path="res://sounds/house-music-4.wav" id="57_307fx"]
+[ext_resource type="Material" uid="uid://wlr08o45l82m" path="res://materials/gray.tres" id="57_ag5jw"]
 [ext_resource type="AudioStream" uid="uid://3sh3j3ey7sv7" path="res://sounds/bg-bird-loop.wav" id="57_v7wme"]
 [ext_resource type="AudioStream" uid="uid://n2jqfeihx5jj" path="res://sounds/house-music-5.wav" id="58_c387x"]
+[ext_resource type="PackedScene" uid="uid://co77qlrvhqqch" path="res://prefabs/goal.tscn" id="59_ncd21"]
+[ext_resource type="Script" path="res://scripts/goal_manager.gd" id="60_4os3x"]
+[ext_resource type="AudioStream" uid="uid://d0aga3cv5e0x" path="res://sounds/checkpoint.wav" id="61_3h33q"]
+[ext_resource type="AudioStream" uid="uid://kp10mqaqnv00" path="res://sounds/checkpoint-2.wav" id="62_1w76h"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="70_t6n0f"]
 [ext_resource type="Shader" path="res://materials/bw.gdshader" id="71_i2cqu"]
 [ext_resource type="PackedScene" uid="uid://cgqdb3ijsk8kx" path="res://prefabs/button_sound_player.tscn" id="72_g0p4h"]
@@ -122,6 +130,9 @@ _data = {
 [sub_resource type="BoxShape3D" id="7"]
 size = Vector3(2.28125, 1.54492, 5.64902)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1dv2"]
+shading_mode = 0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0vktu"]
 shader = ExtResource("71_i2cqu")
 shader_parameter/hide = false
@@ -129,43 +140,6 @@ shader_parameter/color = Color(0.658824, 0.803922, 0.929412, 1)
 shader_parameter/strength = 0.4
 
 [node name="World" type="Node3D"]
-
-[node name="TutorialOverlay" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("33_orntt")
-
-[node name="ColorRect" type="ColorRect" parent="TutorialOverlay"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.615686)
-
-[node name="TimerLabel" type="Label" parent="TutorialOverlay"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "Press \"Shift\" to switch drive modes"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Dash" type="Control" parent="."]
 process_mode = 3
@@ -208,47 +182,16 @@ tutorial_overlay_path = NodePath("../../../TutorialOverlay")
 volume_db = -8.065
 bus = &"UI"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Dash/Margin"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Spedometer" type="Label" parent="Dash/Margin/VBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("35_xvq7y")
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 2
-script = ExtResource("2_njc2h")
-car_path = NodePath("../../../../Environment/Node3D/World/Body")
-
-[node name="Lawsuits" type="Label" parent="Dash/Margin/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("10_oy7ox")
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 2
-vertical_alignment = 2
-uppercase = true
-script = ExtResource("56_agw6f")
-car_path = NodePath("../../../../Environment/Node3D/World/Body")
-
 [node name="TimerLabel" type="Label" parent="Dash/Margin"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -79.5
-offset_right = 79.5
-offset_bottom = 56.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("10_oy7ox")
 theme_override_font_sizes/font_size = 32
+text = "X:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_waqbr")
@@ -262,6 +205,83 @@ autoplay = "timer_default"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dash/Margin/TimerLabel"]
 volume_db = -5.914
 bus = &"UI"
+
+[node name="Lawsuits" type="Label" parent="Dash/Margin"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_oy7ox")
+theme_override_font_sizes/font_size = 32
+text = "Lawsuits X"
+horizontal_alignment = 2
+vertical_alignment = 2
+uppercase = true
+script = ExtResource("56_agw6f")
+car_path = NodePath("../../../Environment/Node3D/World/Body")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dash/Margin"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -37.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Dash/Margin/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("11_oa8mm")
+
+[node name="Current goal" type="Label" parent="Dash/Margin/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "Current goal"
+horizontal_alignment = 1
+script = ExtResource("7_ktwsa")
+goal_manager_node_path = NodePath("../../../../../Environment/Node3D/World/Goals")
+
+[node name="TutorialOverlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("33_orntt")
+
+[node name="ColorRect" type="ColorRect" parent="TutorialOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.615686)
+
+[node name="TimerLabel" type="Label" parent="TutorialOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "Press \"Shift\" to switch drive modes"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_608ts")
@@ -427,6 +447,23 @@ max_distance = 8.0
 angle_v_adjust = 10.0
 height = 2.0
 
+[node name="Arrow" type="Node3D" parent="Environment/Node3D/World/Body/CameraBase/Camera3D"]
+transform = Transform3D(0.008, -2.11526e-18, 2.70741e-18, 2.70741e-18, 0.00776237, -0.00193538, -2.11526e-18, 0.00193538, 0.00776237, 2.08165e-12, -0.045, -0.109)
+script = ExtResource("55_gsm5k")
+goal_manager_node_path = NodePath("../../../../Goals")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Node3D/World/Body/CameraBase/Camera3D/Arrow"]
+transform = Transform3D(-1, 3.48787e-16, 8.74228e-08, 3.48787e-16, 1, -3.48787e-16, -8.74228e-08, -3.48787e-16, -1, 0, 0, 0)
+mesh = ExtResource("55_6e5lw")
+surface_material_override/0 = SubResource("StandardMaterial3D_j1dv2")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Node3D/World/Body/CameraBase/Camera3D/Arrow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.01, 2.08165e-12)
+radius = 0.96
+height = 0.001
+sides = 32
+material = ExtResource("57_ag5jw")
+
 [node name="AudioStreamPlayer3D" parent="Environment/Node3D/World" instance=ExtResource("53_mefuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8852, 0, 108.624)
 stream = ExtResource("54_ej7ev")
@@ -448,8 +485,104 @@ stream = ExtResource("57_307fx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.7614, 7.62939e-06, 461.991)
 stream = ExtResource("58_c387x")
 
+[node name="Goals" type="Node" parent="Environment/Node3D/World"]
+script = ExtResource("60_4os3x")
+checkpoint_audio_stream = ExtResource("61_3h33q")
+all_checkpoints_audio_stream = ExtResource("62_1w76h")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Environment/Node3D/World/Goals"]
+stream = ExtResource("61_3h33q")
+bus = &"Achievement"
+
+[node name="Day 1" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Pick up the kids" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 0, 12)
+
+[node name="Drop off the kids" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 0, 266)
+
+[node name="Show off the truck at work" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289, 0, 274)
+
+[node name="Day 2" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Take spouse to the dentist" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.0982, 0, 252.042)
+
+[node name="Buy a huge OLED TV" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224.919, 0, 89.3737)
+
+[node name="Visit friends and brag" parent="Environment/Node3D/World/Goals/Day 2" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 344.438, 0, 433.694)
+
+[node name="Day 3" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Pick up 200lbs of girl scout cookies" parent="Environment/Node3D/World/Goals/Day 3" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206.103, 0, 451.381)
+
+[node name="Sell cookies at the park" parent="Environment/Node3D/World/Goals/Day 3" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -254.054, 0, 474.447)
+
+[node name="Sell cookies to a doorstep" parent="Environment/Node3D/World/Goals/Day 3" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -309.287, 3.8147e-06, 433.164)
+
+[node name="Sell cookies to another doorstep" parent="Environment/Node3D/World/Goals/Day 3" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -311.017, 3.8147e-06, 359.994)
+
+[node name="Sell cookies to yet another doorstep" parent="Environment/Node3D/World/Goals/Day 3" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -313.526, 7.62939e-06, 250.179)
+
+[node name="Day 4" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Buy a hotdog as an excuse to show off the truck" parent="Environment/Node3D/World/Goals/Day 4" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.375, 0, 170.903)
+
+[node name="Drive directly through a park" parent="Environment/Node3D/World/Goals/Day 4" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 234.745, 0, 100.122)
+
+[node name="Go to the gas station" parent="Environment/Node3D/World/Goals/Day 4" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.507, -1.52588e-05, 345.52)
+
+[node name="Oh lol it\'s electric, go steal someone\'s power" parent="Environment/Node3D/World/Goals/Day 4" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.457, -1.52588e-05, 410.927)
+
+[node name="Day 5" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Break up a back alley fight" parent="Environment/Node3D/World/Goals/Day 5" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.6174, 1.52588e-05, 368.184)
+
+[node name="Get rid of big oil\'s HQ" parent="Environment/Node3D/World/Goals/Day 5" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -262.044, 1.52588e-05, 375.399)
+
+[node name="Drop off the kids, they\'re scared" parent="Environment/Node3D/World/Goals/Day 5" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.655, 3.05176e-05, 289.6)
+
+[node name="Day 6" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Reduce bicycle commutes" parent="Environment/Node3D/World/Goals/Day 6" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 223.823, 7.62939e-06, 144.735)
+
+[node name="Make space for a parking lot" parent="Environment/Node3D/World/Goals/Day 6" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 304.946, 1.52588e-05, 460.874)
+
+[node name="Solve the gasoline crisis" parent="Environment/Node3D/World/Goals/Day 6" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.304, 1.52588e-05, 159.78)
+
+[node name="Day 7" type="Node" parent="Environment/Node3D/World/Goals"]
+
+[node name="Find big oil informant" parent="Environment/Node3D/World/Goals/Day 7" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 212.099, 7.62939e-06, 143.135)
+
+[node name="Report findings to office" parent="Environment/Node3D/World/Goals/Day 7" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 230.051, 7.62939e-06, 217.695)
+
+[node name="Take out the trash" parent="Environment/Node3D/World/Goals/Day 7" instance=ExtResource("59_ncd21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -238.449, 7.62939e-06, 401.009)
+
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

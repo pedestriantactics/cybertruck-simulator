@@ -14,7 +14,7 @@ sky_material = SubResource("ShaderMaterial_8xux4")
 
 [resource]
 background_mode = 1
-background_color = Color(0.570021, 0.78202, 0.930652, 1)
+background_color = Color(0.4968, 0.743667, 0.92, 1)
 sky = SubResource("Sky_6k8hk")
 ambient_light_source = 3
 ambient_light_color = Color(0, 0.184314, 0.411765, 1)

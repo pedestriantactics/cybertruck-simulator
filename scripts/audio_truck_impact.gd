@@ -26,7 +26,6 @@ func _on_object_collision_occurred(impact, collision_info):
 		final_sounds = impact_hard_sounds
 	# scale the volume to be -80 for an impact of 0 and 0 for an impact of .KEY_5
 	var calculated_volume = impact * 100 - 30
-	print(calculated_volume)
 	# temp
 	# calculated_volume = 0
 	# if the volume is over 0 cap it at 0

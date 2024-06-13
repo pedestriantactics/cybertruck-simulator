@@ -93,7 +93,8 @@ func on_command(text_command):
 			return
 		var keyword_result = text_command.replace(keyword, "").replace(" ", "").split(",")
 		var blackboard = get_node("/root/Blackboard")
-		blackboard.kvps[keyword_result[0]] = keyword_result[1]
+		var number_result = float(keyword_result[1])
+		blackboard.kvps[keyword_result[0]] = number_result
 		debug_print("added to blackboard: " + keyword_result[0] + " " + keyword_result[1])
 		return
 	
@@ -108,7 +109,7 @@ func on_command(text_command):
 		var blackboard = get_node("/root/Blackboard")
 		blackboard.saved_kvps[keyword_result[0]] = keyword_result[1]
 		debug_print("added to saved blackboard: " + keyword_result[0] + " " + keyword_result[1])
-		blackboard.save_game()
+		blackboard.save()
 		return
 
 func debug_print(in_text):

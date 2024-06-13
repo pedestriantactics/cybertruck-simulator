@@ -45,7 +45,6 @@ signal shake_occurred(impact)
 var previous_velocity = Vector3()
 
 @onready var accelerate_audio_stream_player = $TruckAccelerateAudioStreamPlayer
-@onready var area_3d = $Area3D
 
 @onready var bl = $BL
 @onready var br = $BR
@@ -324,7 +323,7 @@ func _physics_process(delta):
 			# br.use_as_traction = true
 			# fr.use_as_traction = false
 			# fl.use_as_traction = false
-			engine_force = 22000
+			engine_force = 40000
 		# engine_force = 50000
 		previous_acceleration = acceleration
 		return

@@ -14,6 +14,7 @@ var timer = 0.00
 var seconds = 0
 
 func _ready():
+	text = ""
 	timer = timer_start_seconds
 	seconds = int(timer)
 	DevConsole.command.connect(handle_command)
