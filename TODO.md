@@ -1,3 +1,5 @@
+- Add total play time
+
 Known issues
 - holes in truck bottom
 
