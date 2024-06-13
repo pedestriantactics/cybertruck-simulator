@@ -174,7 +174,7 @@ uppercase = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pl2kf")
 theme_override_font_sizes/font_size = 48
-text = "Maximum speed achieved (MPH)"
+text = "Top speed (MPH)"
 uppercase = true
 
 [node name="lawsuits" type="Label" parent="HBoxContainer/VBoxContainer"]

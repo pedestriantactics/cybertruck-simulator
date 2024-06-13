@@ -1,5 +1,4 @@
 Next
-- Make the truck speed up more when on a long straight
 - Add the pointer for the goals
 - Finish a lot of day goals
 

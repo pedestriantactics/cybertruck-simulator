@@ -11,6 +11,7 @@ var current_goal_index = 0
 var current_goal_area = null
 # for possible reference by other scripts
 var current_goal_text = ""
+var current_goal_global_position = Vector3(0,100,0)
 
 @export var checkpoint_audio_stream: AudioStream
 @export var all_checkpoints_audio_stream: AudioStream
@@ -77,6 +78,7 @@ func _process(delta):
 				blackboard.kvps["day_completed"] = 1
 				current_goal_text = "All daily goals completed!"
 				completed_goal_timer = completed_goal_seconds
+				current_goal_global_position = Vector3(0,100,0)
 			break
 
 func set_new_current_goal(index):
@@ -84,4 +86,5 @@ func set_new_current_goal(index):
 	current_goal_text = current_day_goals[current_goal_index].name
 	current_goal_area = current_day_goals[current_goal_index]
 	current_goal_area.visible = true
+	current_goal_global_position = current_goal_area.global_transform.origin
 
