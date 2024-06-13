@@ -32,7 +32,7 @@ resource_name = "Compressor"
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_ij7kd"]
 resource_name = "Compressor"
-threshold = -41.6
+threshold = -24.7
 sidechain = &"Achievement"
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_grcbn"]

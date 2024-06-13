@@ -491,13 +491,13 @@ checkpoint_audio_stream = ExtResource("61_3h33q")
 all_checkpoints_audio_stream = ExtResource("62_1w76h")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Environment/Node3D/World/Goals"]
-stream = ExtResource("61_3h33q")
+volume_db = 12.0
 bus = &"Achievement"
 
 [node name="Day 1" type="Node" parent="Environment/Node3D/World/Goals"]
 
 [node name="Pick up the kids" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 0, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.08165e-12, 306)
 
 [node name="Drop off the kids" parent="Environment/Node3D/World/Goals/Day 1" instance=ExtResource("59_ncd21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 0, 266)
