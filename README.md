@@ -1,6 +1,11 @@
 # Cybertruck Simulator 2024
 
 ## Recent changes
+PT-G3-4
+- Burst waits based on inactivity and no speed
+- Shake reduced
+- New version number
+
 PT-G3-3
 - Bound playtime inside the save file. It's located in /Users/yourusename/Library/Application Support/Godot/app_userdata/Cybertruck Simulator 2024/savegame.save
 - Added tracking of total time in game

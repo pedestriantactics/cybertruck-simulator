@@ -1,10 +1,5 @@
-Recent fixes before build
-- Burst waits based on inactivity and no speed
-
-TODO
-- Shake is too strong
-
 Known issues
+- Easy to get stuck in fences
 - Add disable shake to accessibility?
 - Add total play time?
 - holes in truck bottom

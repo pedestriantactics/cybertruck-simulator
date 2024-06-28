@@ -44,7 +44,7 @@ func _on_object_collision_occurred(impact, collision_info):
 	_on_vehicle_collision_occurred(impact)
 
 func _on_vehicle_collision_occurred(impact):
-	shakeStrength += impact/1.7
+	shakeStrength += impact/2.1
 	# adjust this line based on how you want the impact to affect the shakeStrength
 
 
@@ -87,6 +87,9 @@ func _physics_process(_delta):
 	shakeTimer = shakeDelay
 	# create a shake effect that wiggles randomly on the x and y axis times the shake strength
 	var shake = Vector3(randf_range(-shakeStrength, shakeStrength), randf_range(-shakeStrength, shakeStrength), randf_range(-shakeStrength, shakeStrength)/2)
+	# cap shake to a certain value
+	var max_shake = 0.18
+	shake = Vector3(clamp(shake.x, -max_shake, max_shake), clamp(shake.y, -max_shake, max_shake), clamp(shake.z, -max_shake, max_shake))
 	# add the shake to the camera's position
 
 	var new_position = shake

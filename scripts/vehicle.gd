@@ -33,7 +33,7 @@ var speed_wait_timer = 0.0
 var speed_inactivity_delay_seconds = 0.8
 
 var burst_wait_timer = 0.0
-var burst_inactivity_delay_seconds = 2.0
+var burst_inactivity_delay_seconds = 3.0
 
 
 
@@ -80,6 +80,10 @@ func _ready():
 		# clear the blackboard
 		blackboard.kvps = {}
 		blackboard.kvps["total_distance_traveled_meters"] = 0
+
+	# this will allow you to start with a burst right away
+	burst_wait_timer = burst_inactivity_delay_seconds
+	speed_wait_timer = speed_inactivity_delay_seconds
 
 func handle_command(text_command):
 	var check_command = ""
@@ -130,7 +134,9 @@ func _physics_process(delta):
 	if linear_velocity.length() < 2:
 		speed_wait_timer += delta
 	else:
-		speed_wait_timer = 0.0
+		# prevents speed timer from starting when the vehicle drops to the ground
+		if !parked:
+			speed_wait_timer = 0.0
 	burst_wait_timer += delta
 
 	print("burst wait timer:" + str(burst_wait_timer))
