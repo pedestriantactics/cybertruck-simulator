@@ -27,6 +27,17 @@ var regen_brake_force = 1000
 # this allows the burst to be toggled off for development testing
 var toggle_burst = true
 
+# burst is only possible if you haven't been pressing any buttons for the delay seconds 
+# and your speed is less than a threshold
+var speed_wait_timer = 0.0
+var speed_inactivity_delay_seconds = 0.8
+
+var burst_wait_timer = 0.0
+var burst_inactivity_delay_seconds = 2.0
+
+
+
+# this is the timer between when you press the accelerator and when burst happens
 var accelerationDelaySeconds = .3
 var accelerationTimer = 0.0
 var previous_acceleration = 0.0
@@ -114,6 +125,15 @@ func is_moving_forward() -> bool:
 	return dot_product > 0
 
 func _physics_process(delta):
+
+	# set the burst wait timer
+	if linear_velocity.length() < 2:
+		speed_wait_timer += delta
+	else:
+		speed_wait_timer = 0.0
+	burst_wait_timer += delta
+
+	print("burst wait timer:" + str(burst_wait_timer))
 
 	# upside down timer
 	var facing = -get_global_transform().basis.z
@@ -246,11 +266,13 @@ func _physics_process(delta):
 
 	# burst
 	# this is where the first start delay happens
-	if (toggle_burst and forward and acceleration > 0 and previous_acceleration <= 0 and (linear_velocity.length() < 2 or linear_velocity.length() < 5 and is_moving_forward())):
+	if (speed_wait_timer >= speed_inactivity_delay_seconds and burst_wait_timer >= burst_inactivity_delay_seconds and toggle_burst and forward and acceleration > 0 and previous_acceleration <= 0 and (linear_velocity.length() < 2 or linear_velocity.length() < 5 and is_moving_forward())):
+		# play the burst sound at the start
 		if accelerationTimer == 0:
 			accelerate_audio_stream_player.play_random(accelerate_audio_stream_player.acceleration_sounds)
 		# if the timer has ended throttle it
 		if accelerationTimer > accelerationDelaySeconds:
+			burst_wait_timer = 0.0
 			accelerationTimer = 0
 			# burst accelerate by adding impulse to the car in it's normal direction
 			var impule_multiplier = 60000

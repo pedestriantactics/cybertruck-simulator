@@ -1,8 +1,12 @@
+Recent fixes before build
+- Burst waits based on inactivity and no speed
+
+TODO
+- Shake is too strong
 
 Known issues
-- Add total play time
-- Shake is too strong
-- Burst should have a timer if you've been inactive for a cerain amount of time, like 3 seconds, so you can recover from reverse without bursting. Maybe 1 second if the truck isn't moving
+- Add disable shake to accessibility?
+- Add total play time?
 - holes in truck bottom
 
 Ideas
